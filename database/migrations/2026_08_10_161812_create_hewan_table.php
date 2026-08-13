@@ -6,34 +6,39 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('hewan', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('kategori_id')->constrained('kategori')->cascadeOnDelete();
-            $table->string('nama');
+            $table->id('id_hewan');
+
+            $table->unsignedBigInteger('id_kategori');
+
+            $table->string('nama_hewan');
             $table->string('jenis');
             $table->string('ras')->nullable();
             $table->integer('umur');
             $table->enum('jenis_kelamin', ['jantan', 'betina']);
-            $table->string('warna')->nullable();
             $table->decimal('berat', 5, 2)->nullable();
-            $table->string('lokasi');
-            $table->text('deskripsi')->nullable();
-            $table->string('kondisi_kesehatan')->nullable();
+            $table->string('status_kesehatan')->nullable();
             $table->string('status_vaksin')->nullable();
-            $table->string('gambar')->nullable();
-            $table->enum('status', ['tersedia', 'diproses', 'diadopsi'])->default('tersedia');
+            $table->string('foto')->nullable();
+            $table->text('deskripsi')->nullable();
+
+            $table->enum('status_adopsi', [
+                'tersedia',
+                'diproses',
+                'diadopsi'
+            ])->default('tersedia');
+
             $table->timestamps();
+
+            $table->foreign('id_kategori')
+                  ->references('id_kategori')
+                  ->on('kategori_hewan')
+                  ->cascadeOnDelete();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('hewan');
