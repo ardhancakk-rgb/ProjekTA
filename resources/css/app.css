@@ -1,4 +1,6 @@
-@import 'tailwindcss';
+@import "talwindcss";
+@import "./themes/theme.css";
+@import "./themes/harvest.css"; 
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';

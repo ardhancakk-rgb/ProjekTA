@@ -1,0 +1,56 @@
+[33mcommit a7f9b0585347832d858605d060cb495fe979551b[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: ardhancakk-rgb <ardhancakk@gmail.com>
+Date:   Fri Aug 14 21:52:14 2026 +0700
+
+    feat: add authentication features with login, registration, and dashboard views
+
+database/migrations/0001_01_01_000000_create_users_table.php
+
+[33mcommit 508deb81c31868fc8c1384b5dc4f14dd0ee17144[m
+Author: chele-1024 <jayanataa24@gmail.com>
+Date:   Thu Aug 13 22:13:00 2026 +0700
+
+    refactor: perbaiki migration dan relasi database
+
+database/migrations/2026_08_10_161812_create_hewan_table.php
+
+[33mcommit 5365a6f1f301924dbe0860845a07704e63320bb5[m
+Author: SuryaJayanata <sjayanata00@gmail.com>
+Date:   Thu Aug 13 22:06:10 2026 +0700
+
+    refactor: perbaiki migration dan relasi database
+
+database/migrations/2026_08_10_161811_create_kategori_table.php
+database/migrations/2026_08_10_161812_create_hewan_table.php
+database/migrations/2026_08_10_161812_create_pengajuan_adopsi_table.php
+database/migrations/2026_08_10_161813_create_pengajuan_adopsi_table.php
+
+[33mcommit 27832b11fded621124ae98e60c3fb43118056d54[m
+Author: ardhancakk-rgb <ardhancakk@gmail.com>
+Date:   Wed Aug 12 19:55:24 2026 +0700
+
+    feat: implement models, migrations, and views for pet adoption system
+
+database/migrations/2026_08_10_161812_create_pengajuan_adopsi_table.php
+database/migrations/2026_08_10_161813_create_hewan_table.php
+database/migrations/2026_08_10_161813_create_hewans_table.php
+database/migrations/2026_08_12_000001_create_kategori_table.php
+
+[33mcommit f3007046b6da555cea65a3330f648556a89bc231[m
+Author: ardhancakk-rgb <ardhancakk@gmail.com>
+Date:   Tue Aug 11 12:46:00 2026 +0700
+
+    feat: initialize Laravel application structure with routes, testing, and storage configurations
+    
+    - Added console command for inspiring quotes.
+    - Created web route for the welcome view.
+    - Configured .gitignore files for storage directories to exclude unnecessary files.
+    - Implemented basic feature and unit tests.
+    - Set up Pest testing framework with custom expectations and helper functions.
+    - Configured Vite for asset management with Tailwind CSS support.
+
+database/migrations/0001_01_01_000000_create_users_table.php
+database/migrations/0001_01_01_000001_create_cache_table.php
+database/migrations/0001_01_01_000002_create_jobs_table.php
+database/migrations/2026_08_10_161812_create_pengajuan_adopsis_table.php
+database/migrations/2026_08_10_161813_create_hewans_table.php

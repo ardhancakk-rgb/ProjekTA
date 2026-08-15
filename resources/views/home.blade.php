@@ -22,6 +22,18 @@
             <span>Pet</span>
             <span>Nest</span>
         </div>
+        <style>
+            .logo span:first-child {
+                color: #452817;
+                font-weight: bold;
+            }
+
+            .logo span:last-child {
+                color: #222222;
+                font-weight: bold;
+            }
+        </style>
+        <br>
 
         <nav class="nav-menu">
 
@@ -42,7 +54,6 @@
             </a>
 
         </nav>
-
         <div class="nav-auth">
 
             <a href="/login" class="login">
@@ -54,6 +65,50 @@
             </a>
 
         </div>
+        <style>
+            .nav-menu a {
+                color: #222222;
+                text-decoration: none;
+                margin-right: 20px;
+                font-size: 16px;
+                transition: color 0.3s ease;
+            }
+
+            .nav-menu a:hover {
+                color: #452817;
+            }
+
+            .nav-menu a.active {
+                color: #452817;
+                font-weight: bold;
+            }
+            .nav-auth a {
+                color: #222222;
+                text-decoration: none;
+                margin-left: 20px;
+                font-size: 16px;
+                transition: color 0.3s ease;
+            }
+
+            .nav-auth a:hover {
+                color: #452817;
+                border-bottom: 1px solid #452817;
+                padding: 5px 10px;
+                border-radius: 5px;
+            }
+
+            .nav-auth a.login {
+                font-weight: bold;
+            }
+
+            .nav-auth a.register {
+                font-weight: bold;
+            }
+            </style>
+
+        
+        <style>
+            
 
     </header>
 

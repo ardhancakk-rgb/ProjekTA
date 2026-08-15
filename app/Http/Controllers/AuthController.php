@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -17,39 +16,48 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->validate([
-            'email' => ['required|email'],
+            'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
 
         if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-            return redirect()->intended('/dashboard');
+        $request->session()->regenerate();
+
+        if (Auth::user()->role === 'admin') {
+            return redirect('/dashboardAdmin');
         }
+
+        if (Auth::user()->role === 'customer') {
+            return redirect('/dashboard');
+        }
+    }
 
         return back()->withErrors([
             'email' => 'Email atau Password salah.',
             ])->onlyInput('email');
     }
 
-    public function register(Request $request)
-    {
-        $request->validate([
-            'name' => 'required',,
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:6|confirmed',
-        ]);
+public function register(Request $request)
+{
+    $request->validate([
+        'name' => 'required',
+        'email' => 'required|email|unique:users,email',
+        'password' => 'required|min:6|confirmed',
+    ]);
 
-        User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+    User::create([
+        'name' => $request->name,
+        'email' => $request->email,
+        'password' => $request->password,
+        'role' => 'customer',
+        'status' => 'active',
+    ]);
 
-         return redirect('/login')->with(
-            'success',
-            'Registrasi berhasil! Silakan login.'
-        );
-    }
+    return redirect('/login')->with(
+        'success',
+        'Registrasi berhasil! Silakan login.'
+    );
+}
 
     public function logout(Request $request)
     {
