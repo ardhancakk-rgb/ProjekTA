@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+
+    <title>Login - PetNest</title>
+
     <style>
         * {
             margin: 0;
@@ -12,138 +14,206 @@
         }
 
         body {
-            font-family: Georgia, 'Times New Roman', serif;
-            background: #D8D6C8;
             min-height: 100vh;
+            font-family: Georgia, 'Times New Roman', serif;
+            background-image:
+                linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.75)),
+                url('{{ asset('images/login-bg.jpg') }}');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+
             display: flex;
+            justify-content: center;
             align-items: center;
-            justify-content: left;
         }
 
-        .login-container {
-            width: 400px;
-            background: #D8D6C8;
-            padding: 40px;
-            border-radius: 0;
-            box-shadow: none;
-            text-align: left;
+        .login-card {
+            width: 320px;
+            min-height: 350px;
+            background: rgba(0, 0, 0, 0.46);
+            border-radius: 15px;
+            padding: 28px 24px;
+            color: white;
+            box-shadow: 0 8px 30px rgba(45, 92, 44, 0.73);
         }
 
-        .logo {
-            text-align: left;
-            margin-bottom: 35px;
+        .login-title {
+            text-align: center;
+            margin-bottom: 4px;
         }
 
-        .logo h1 {
-            color: #452817;
-            font-size: 46px;
-            font-weight: bold;
+        .login-title h1 {
+            font-size: 26px;
+            font-weight: normal;
         }
 
-        .logo p {
-            color: #222222;
-            margin-top: 8px;
-            font-size: 14px;
+        .login-subtitle {
+            text-align: center;
+            font-size: 9px;
+            margin-bottom: 25px;
+            color: #eeeeee;
         }
 
         .form-group {
-            margin-bottom: 24px;
+            margin-bottom: 14px;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 10px;
-            color: #111111;
-            font-size: 24px;
-            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 7px;
         }
 
         .form-group input {
             width: 100%;
-            height: 50px;
-            padding: 12px 16px;
+            height: 31px;
+
             border: none;
-            border-radius: 15px;
-            background: #FFFFFF;
-            font-size: 16px;
+            border-radius: 9px;
+
+            padding: 6px 10px;
+
+            background: #eeeeee;
+
             font-family: Georgia, 'Times New Roman', serif;
+            font-size: 13px;
         }
 
         .form-group input:focus {
             outline: 2px solid #704A2E;
         }
 
-        .error {
-            color: #B3261E;
-            font-size: 14px;
-            margin-bottom: 15px;
+        .login-options {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            margin-top: 7px;
+            margin-bottom: 16px;
+
+            font-size: 10px;
+        }
+
+        .remember {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .remember:hover {
+            cursor: pointer;
+            color: #c9a06b;
+        }
+
+        .remember input {
+            width: 11px;
+            height: 11px;
+        }
+
+        .forgot-password {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .forgot-password:hover {
+            color: #c9a06b;
         }
 
         .btn-login {
-            width: 145px;
-            padding: 9px 20px;
-            background: #704A2E;
-            color: #FFFFFF;
+            width: 74px;
+            height: 28px;
+
             border: none;
-            border-radius: 25px;
-            font-size: 20px;
+            border-radius: 20px;
+
+            background: #704A2E;
+            color: white;
+
             font-family: Georgia, 'Times New Roman', serif;
+            font-size: 14px;
+
             cursor: pointer;
         }
 
         .btn-login:hover {
-            background: #5A3923;
+            background: #8a5b35;
         }
 
         .register {
             text-align: center;
-            margin-top: 40px;
-            color: #111111;
-            font-size: 17px;
+
+            margin-top: 22px;
+
+            font-size: 11px;
         }
 
         .register a {
-            color: #17627A;
+            color: #36b9e8;
             text-decoration: underline;
-            font-weight: normal;
         }
 
         .register a:hover {
-            color: #0E4657;
+            color: #7ddcff;
+        }
+
+        .error {
+            color: #ff8f8f;
+            font-size: 11px;
+            margin-bottom: 8px;
         }
     </style>
 </head>
 <body>
-    <div class="login-container">
-        <div class="logo">
-            <h1>PetNest</h1>
-            <p>Your Pet Adoption Platform</p>
+    <div class="login-card">
+        <div class="login-title">
+            <h1>Login</h1>
         </div>
-
+        <div class="login-subtitle">
+            Access your account to explore and manage your orders
+        </div>
         @if ($errors->any())
             @foreach ($errors->all() as $error)
-                <div class="error">{{ $error }}</div>
+                <div class="error">
+                    {{ $error }}
+                </div>
             @endforeach
         @endif
-
-        <form method="POST" action="{{ route('login') }}">
+        <form method="POST" action="{{ route('login.process') }}">
             @csrf
-
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" id="email" name="email" required value="{{ old('email') }}">
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value="{{ old('email') }}"
+                    required
+                >
             </div>
-
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    required
+                >
             </div>
-
-            <button type="submit" class="btn-login">Login</button>
+            <div class="login-options">
+                <label class="remember">
+                    <input type="checkbox" name="remember">
+                    <span>Remember me</span>
+                </label>
+                <a href="#" class="forgot-password">Forgot Password?</a>
+            </div>
+            <button type="submit" class="btn-login">
+                Sign in
+            </button>
         </form>
-
         <div class="register">
-            Belum punya akun? <a href="/register">Daftar sekarang</a>
+            Don't have an account??
+            <a href="{{ route('register') }}">Sign Up</a>
         </div>
     </div>
 </body>

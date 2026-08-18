@@ -28,7 +28,7 @@ Route::get('/Kategori', function () {
     return view('Kategori');
 });
 Route::get('/dashboard', function () {
-    return view('dashboardAdmin');
+    return view('dashboard');
 })->middleware('auth');
 
 Route::get('/login', function () {
