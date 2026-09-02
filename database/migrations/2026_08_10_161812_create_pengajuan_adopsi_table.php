@@ -12,18 +12,25 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('pengajuan_adopsi', function (Blueprint $table) {
-            $table->id();
-             $table->id();
-            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
-            $table->foreignId('hewan_id')->constrained('hewan')->cascadeOnDelete();
-            $table->text('alasan');
-            $table->text('pengalaman')->nullable();
-            $table->text('kondisi_rumah')->nullable();
-            $table->string('nomor_telepon');
-            $table->text('alamat');
-            $table->enum('status', ['pending', 'diproses', 'diterima', 'ditolak'])->default('pending');
+            $table->id('id_pengajuan');
+            $table->unsignedBigInteger('id_user');
+            $table->unsignedBigInteger('id_hewan');
+            $table->date('tanggal_pengajuan');
+            $table->enum('status_pengajuan', [
+                'pending',
+                'disetujui',
+                'ditolak'
+            ])->default('pending');
             $table->text('catatan_admin')->nullable();
             $table->timestamps();
+            $table->foreign('id_user')
+                ->references('id')
+                ->on('users')
+                ->cascadeOnDelete();
+            $table->foreign('id_hewan')
+                ->references('id_hewan')
+                ->on('hewan')
+                ->cascadeOnDelete();
         });
     }
 

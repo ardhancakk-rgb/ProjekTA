@@ -123,16 +123,12 @@
         .btn-login {
             width: 74px;
             height: 28px;
-
             border: none;
             border-radius: 20px;
-
             background: #704A2E;
             color: white;
-
             font-family: Georgia, 'Times New Roman', serif;
             font-size: 14px;
-
             cursor: pointer;
         }
 
