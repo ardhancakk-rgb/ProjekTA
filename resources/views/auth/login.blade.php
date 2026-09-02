@@ -15,14 +15,11 @@
 
         body {
             min-height: 100vh;
-            font-family: Georgia, 'Times New Roman', serif;
-            background-image:
-                linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.75)),
-                url('{{ asset('images/login-bg.jpg') }}');
+            font-family:sans-serif;
+            background-image:linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.75)),url('{{ asset('images/login-bg.jpg') }}');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-
             display: flex;
             justify-content: center;
             align-items: center;
@@ -30,7 +27,7 @@
 
         .login-card {
             width: 320px;
-            min-height: 350px;
+            min-height: 500px;
             background: rgba(0, 0, 0, 0.46);
             border-radius: 15px;
             padding: 28px 24px;
@@ -40,43 +37,40 @@
 
         .login-title {
             text-align: center;
-            margin-bottom: 4px;
+            margin-bottom: 20px;
         }
 
         .login-title h1 {
-            font-size: 26px;
+            font-size: 40px;
+            font-weight: bold;
             font-weight: normal;
         }
 
         .login-subtitle {
             text-align: center;
-            font-size: 9px;
+            font-size: 10px;
             margin-bottom: 25px;
             color: #eeeeee;
         }
 
         .form-group {
-            margin-bottom: 14px;
+            margin-bottom: 25px;
         }
 
         .form-group label {
             display: block;
-            font-size: 14px;
+            font-size: 25px;
             margin-bottom: 7px;
         }
 
         .form-group input {
             width: 100%;
             height: 31px;
-
             border: none;
             border-radius: 9px;
-
             padding: 6px 10px;
-
             background: #eeeeee;
-
-            font-family: Georgia, 'Times New Roman', serif;
+            font-family: sans-serif;
             font-size: 13px;
         }
 
@@ -87,11 +81,9 @@
         .login-options {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-
+            justify-content: space-between;=
             margin-top: 7px;
             margin-bottom: 16px;
-
             font-size: 10px;
         }
 
@@ -99,6 +91,7 @@
             display: flex;
             align-items: center;
             gap: 5px;
+            font-size: 15px;
         }
 
         .remember:hover {
@@ -114,6 +107,7 @@
         .forgot-password {
             color: white;
             text-decoration: underline;
+            font-size: 13px;
         }
 
         .forgot-password:hover {
@@ -121,14 +115,14 @@
         }
 
         .btn-login {
-            width: 74px;
-            height: 28px;
+            width: 100px;
+            height: 30px;
             border: none;
-            border-radius: 20px;
+            border-radius: 10px;
             background: #704A2E;
             color: white;
-            font-family: Georgia, 'Times New Roman', serif;
-            font-size: 14px;
+            font-family: sans-serif;
+            font-size: 20px;
             cursor: pointer;
         }
 

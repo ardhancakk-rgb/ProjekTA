@@ -5,11 +5,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 
-
-// =========================
-// HALAMAN UTAMA
-// =========================
-
 Route::get('/', function () {
     return view('home');
 });
@@ -42,20 +37,11 @@ Route::get('/Kategori', function () {
     return view('Kategori');
 });
 
-
-// =========================
-// DASHBOARD
-// =========================
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware('auth');
 
-
-// =========================
-// LOGIN
-// =========================
-
+//auth
 Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
@@ -84,11 +70,6 @@ Route::post('/login', function (Request $request) {
 
 })->name('login.process');
 
-
-// =========================
-// REGISTER
-// =========================
-
 Route::get('/register', function () {
     return view('auth.register');
 })->name('register');
@@ -96,10 +77,8 @@ Route::get('/register', function () {
 Route::post('/register', [AuthController::class, 'register'])
     ->name('register.process');
 
-
-// =========================
-// LOGOUT
-// =========================
-
 Route::post('/logout', [AuthController::class, 'logout'])
     ->name('logout');
+
+Route::post('/pengajuan', [AuthController::class, 'pengajuan'])
+    ->name('pengajuan');

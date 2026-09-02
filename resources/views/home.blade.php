@@ -7,104 +7,166 @@
 
     <title>PetNest - Adopsi Hewan Peliharaan</title>
 
-    <link rel="stylesheet" href="{{ asset('public/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <style> 
-            .logo span:first-child {
-                color: #452817;
-                font-weight: bold;
-            }
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+        }
+        .logo {
+            display: flex;
+            flex-direction: column;
+            line-height: 0.9;
+        }
 
-            .logo span:last-child {
-                color: #222222;
-                font-weight: bold;
-            }
-            .nav-menu a {
-                color: #222222;
-                text-decoration: none;
-                margin-right: 20px;
-                font-size: 16px;
-                transition: color 0.3s ease;
-            }
+        .logo span:first-child {
+            color: #e2702f;
+            font-weight: bold;
+            font-size: 30px;
+        }
 
-            .nav-menu a:hover {
-                color: #452817;
-            }
+        .logo span:last-child {
+            color: #fff7f7;
+            font-weight: bold;
+            font-size: 30px;
+        }
 
-            .nav-menu a.active {
-                color: #452817;
-                font-weight: bold;
-            }
+        .navbar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 50px;
+            box-sizing: border-box;
+        }
 
-            .nav-auth a {
-                color: #222222;
-                text-decoration: none;
-                margin-left: 20px;
-                font-size: 16px;
-                transition: color 0.3s ease;
-            }
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 35px;
+        }
 
-            .nav-auth a:hover {
-                color: #452817;
-                border-bottom: 1px solid #452817;
-                padding: 5px 10px;
-                border-radius: 5px;
-            }
+        .nav-menu a {
+            color: #fff7f7;
+            text-decoration: none;
+            font-size: 30px;
+        }
 
-            .nav-auth a.login {
-                font-weight: bold;
-            }
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: #e2702f;
+        }
 
-            .nav-auth a.register {
-                font-weight: bold;
-            }
-        </style>
+
+        .nav-auth {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-auth a {
+            color: #fff7f7;
+            text-decoration: none;
+            font-size: 30px;
+        }
+
+        .nav-auth a:hover {
+            color: #e2702f;
+        }
+
+        .nav-auth .login {
+            font-weight: bold;
+        }
+
+        .nav-auth .login:hover {
+            color: #c9a06b;
+        }
+
+        .nav-auth .register {
+            background-color: #452817;
+            color: white;
+            padding: 8px 18px;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        .nav-auth .register:hover {
+            background-color: #5a3520;
+        }
+
+        .hero {
+            width: 100%;
+            height: 100vh;
+            min-height: 600px;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.45)), url('{{ asset('images/hero-bg.jpg') }}');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.35);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            min-height: 700px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            font-size: 25px;
+            font-family: sans-serif;
+        }
+    
+        .btn-primary {
+            background-color: #452817;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #5a3520;
+        }
+    </style>
 </head>
 
 <body>
 
     <header class="navbar">
+
+        <div class="logo">
+            <span>Pet</span><br>
+            <span>Nest</span>
+        </div>
+
         <nav class="nav-menu">
-            <div class="logo">
-                <span>Pet</span> <br>
-                <span>Nest</span>
-                <a href="/" class="active">
-                    Home
-                </a>
-
-                <a href="/pets">
-                    Pets
-                </a>
-
-                <a href="/about-us">
-                    About Us
-                </a>
-
-                <a href="/contact">
-                    Contact
-                </a>
-
+            <a href="/" class="active">Home</a>
+            <a href="/pets">Pets</a>
+            <a href="/about-us">About Us</a>
+            <a href="/contact">Contact</a>
         </nav>
 
-
-        
-        <br>
-
         <div class="nav-auth">
-
-            <a href="/login" class="login">
-                Login
-            </a>
-
-            <a href="/register" class="register">
-                Daftar
-            </a>
-
+            <a href="/login" class="login">Login</a>
+            <a href="/register" class="register">Daftar</a>
         </div>
-        <style>
-            
-        </style>
+
     </header>
     <section class="hero">
         <div class="hero-overlay"></div>
@@ -113,13 +175,12 @@
                 Say Hello To Your New Buddy
             </h1>
             <p>
-                Our shelter is home to loving cats and dogs waiting for a forever family.
+                Our shelter is home to loving cats and dogs waiting for a forever family.<br>
                 Browse available pets, learn their stories, and find the perfect companion to brighten your life.
             </p>
+            <br>
             <div class="hero-buttons">
-                <a href="/pets" class="btn-primary">
-                    View All Pets
-                </a>
+                <a href="/pets" class="btn-primary"> All Pets</a>
             </div>
         </div>
     </section>
@@ -140,33 +201,21 @@
             <div class="feature-icon">
                 <i class="fa-solid fa-heart"></i>
             </div>
-            <h3>
-                Be A Volunteer
-            </h3>
-            <p>
-                Help animals find a home
-            </p>
+            <h3>Be A Volunteer</h3>
+            <p>Help animals find a home</p>
         </div>
         <div class="feature-card">
             <div class="feature-icon">
                 <i class="fa-solid fa-hand-holding-heart"></i>
             </div>
-            <h3>
-                Donate For Them
-            </h3>
-            <p>
-                Support their better future
-            </p>
+            <h3>Donate For Them</h3>
+            <p>Support their better future</p>
         </div>
     </section>
     <section class="pets-section">
         <div class="section-title">
-            <h2>
-                These Lovely Souls Are Waiting For You
-            </h2>
-            <p>
-                Tap A Pet To Learn More About Them And Their Story.
-            </p>
+            <h2>These Lovely Souls Are Waiting For You</h2>
+            <p>Tap A Pet To Learn More About Them And Their Story.</p>
         </div>
         <div class="pets-grid">
             <div class="pet-card">
@@ -174,19 +223,10 @@
                     <img src="<?= asset('images/pets/desy.jpg') ?>" alt="Desy">
                 </div>
                 <div class="pet-info">
-                    <h3>
-                        Desy
-                    </h3>
-                    <p>
-                        9 Months
-                    </p>
-                    <p>
-                        <i class="fa-solid fa-venus"></i>
-                        Betina
-                    </p>
-                    <span class="pet-status">
-                        Terlatih
-                    </span>
+                    <h3>Desy</h3>
+                    <p>9 Months</p>
+                    <p><i class="fa-solid fa-venus"></i>Betina</p>
+                    <span class="pet-status">Terlatih</span>
                 </div>
             </div>
             <div class="pet-card">
@@ -194,9 +234,7 @@
                     <img src="<?= asset('images/pets/micha.jpg') ?>" alt="Micha">
                 </div>
                 <div class="pet-info">
-                    <h3>
-                        Micha
-                    </h3>
+                    <h3>Micha</h3>
                     <p>
                         3 Years
                     </p>
