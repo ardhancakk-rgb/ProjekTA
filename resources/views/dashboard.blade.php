@@ -61,8 +61,11 @@
 
     <p>Selamat datang, {{ Auth::user()->name }}!</p>
     <br>
-       <button>Logout</button>
-       <a href="{{ asset('/') }}">
+    <form action="{{ route('logout') }}" method="POST">
+        @csrf
+        <button type="submit">Logout</button>
+    </form>
+    <a href="{{ url('/') }}">
         <button type="button">Home</button>
        </a>
 
