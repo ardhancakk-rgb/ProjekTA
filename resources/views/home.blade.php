@@ -8,14 +8,17 @@
     <title>PetNest - Adopsi Hewan Peliharaan</title>
 
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <style>
         body {
             margin: 0;
             padding: 0;
-            font-family: sans-serif;
+            font-family: "Outfit", sans-serif;
         }
+
         .logo {
             display: flex;
             flex-direction: column;
@@ -78,7 +81,7 @@
         }
 
         .nav-auth a:hover {
-            color: #e2702f;
+            color: #faf9f9;
         }
 
         .nav-auth .login {
@@ -95,10 +98,14 @@
             padding: 8px 18px;
             border-radius: 6px;
             font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+            transition: 0.3s;
         }
 
         .nav-auth .register:hover {
             background-color: #5a3520;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            transform: translateY(-10px);
         }
 
         .hero {
@@ -125,23 +132,205 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: center;
-            text-align: center;
+            text-align: left;
+            margin-left: 80px;
             color: white;
-            font-size: 25px;
-            font-family: sans-serif;
+            font-size: 30px;
+            font-family: "Outfit", sans-serif;
         }
-    
+
+        .hero-content h1 {
+            font-size: 60px;
+            font-weight: bold;
+            justify-content: center;
+            text-align: left;
+            margin-left: 0px;
+            margin-bottom: 10px;
+        }
+
+        .hero-images {
+            position: absolute;
+            bottom: 0;
+            right: 10px;
+            width: 20%;
+            height: 100%;
+            margin-bottom: -50px;
+            justify-content: right;
+            background-image: url('{{ asset('images/kucing.png') }}');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            width: 300px;
+            height: 350px;
+            object-fit: cover;
+            object-position: center;
+        }
+
         .btn-primary {
-            background-color: #452817;
+            background-color: #61402d;
             color: white;
             padding: 10px 20px;
-            border-radius: 6px;
+            border-radius: 30px;
             text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+            transition: 0.8s;
         }
 
         .btn-primary:hover {
-            background-color: #5a3520;
+            background-color: #ac7353;
+            transform: translateY(-10px);
+        }
+
+        .feature-card {
+            background: rgba(105, 73, 73, 0.45);
+            border-radius: 15px;
+            padding: 10px;
+            margin: 10px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 20px 15px rgba(0, 0, 0, 0.25);
+            transition: 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-card .feature-icon {
+            font-size: 70px;
+            margin-bottom: 8px;
+            color: #6e452d;
+        }
+
+        .features {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 50px;
+            padding: 50px 0;
+        }
+
+        .pets-section {
+            padding: 10px 0;
+            background: #fffefe;
+            color: #452817;
+        }
+
+        .pets-section .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: large;
+        }
+
+        .pets-section .section-title h2 {
+            font-size: 40px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .pets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 0 50px;
+        }
+
+        .pets-grid .pet-card {
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+            transition: 0.3s;
+            margin-top: 50px;
+        }
+
+        .pets-grid .pet-card:hover {
+            transform: translateY(-30px);
+        }
+
+        .pets-grid .pet-card .pet-image img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .pets-grid .pet-card .pet-info {
+            padding: 15px;
+        }
+
+        .pets-grid .pet-card .pet-info h3 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .pets-grid .pet-card .pet-info p {
+            margin: 5px 0;
+            font-size: 16px;
+        }
+
+        .pets-grid .pet-card .pet-info .pet-status {
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: #61402d;
+            color: white;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+        .view-all {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .view-all a {
+            background-color: #61402d;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+            transition: 0.3s;
+            margin-top: 50px;
+        }
+
+        .view-all a:hover {
+            background-color: #ac7353;
+            transform: translateY(-10px);
+        }
+
+        .about-section {
+            height: 570px;
+            background-color: #e2b18b;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 50px;
+            overflow: hidden;
+            text-align: left;
+            margin-top: 100px;
+        }
+
+        .about-section .about-content {
+            max-width: 45%;
+            margin-left: 50px;
+        }
+
+        .character {
+            width: 300px;
+            height: auto;
+            align-self: flex-end;
+        }
+
+        .about-content .small-title {
+            font-size: 20px;
+            margin-bottom: -30px;
+        }
+
+        .about-content h2 {
+            font-size: 50px;
+            font-weight: bold;
+            margin-bottom: 10px;
         }
     </style>
 </head>
@@ -172,15 +361,22 @@
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <h1>
-                Say Hello To Your New Buddy
+                Say Hello To Your<br> New Buddy
             </h1>
             <p>
-                Our shelter is home to loving cats and dogs waiting for a forever family.<br>
-                Browse available pets, learn their stories, and find the perfect companion to brighten your life.
+                Our shelter is home to loving cats and dogs<br>waiting for a forever family.
+                Browse available pets, <br>learn their stories, and find the perfect companion <br>to brighten your
+                life.
             </p>
             <br>
             <div class="hero-buttons">
                 <a href="/pets" class="btn-primary"> All Pets</a>
+            </div>
+            <div class="hero-images">
+                <a href="('{{ asset('images/kucing.png') }}')"></a>
+            </div>
+            <div class="hero-images">
+                <a href="('{{ asset('images/anjwing.png') }}')"></a>
             </div>
         </div>
     </section>
@@ -192,24 +388,18 @@
             <h3>
                 Adopt A Pet
             </h3>
-            <p>
-                These Lovely Souls Are Waiting For You
-                Tap A Pet To Learn More About Them And Their Story.
-            </p>
         </div>
         <div class="feature-card">
             <div class="feature-icon">
                 <i class="fa-solid fa-heart"></i>
             </div>
             <h3>Be A Volunteer</h3>
-            <p>Help animals find a home</p>
         </div>
         <div class="feature-card">
             <div class="feature-icon">
                 <i class="fa-solid fa-hand-holding-heart"></i>
             </div>
             <h3>Donate For Them</h3>
-            <p>Support their better future</p>
         </div>
     </section>
     <section class="pets-section">
@@ -289,10 +479,7 @@
             </div>
         </div>
         <div class="view-all">
-            <a href="/pets">
-                View All Pets
-                <i class="fa-solid fa-arrow-right"></i>
-            </a>
+            <a href="/pets">View All Pets</a>
         </div>
     </section>
     <section class="about-section">
@@ -307,15 +494,12 @@
             </h2>
             <p>
                 Bergabunglah dengan komunitas kami
-                untuk membantu hewan mendapatkan
+                untuk membantu <br>hewan mendapatkan
                 keluarga dan kehidupan yang lebih baik.
             </p>
-            <div class="about-buttons">
-                <a href="/pets" class="about-btn">
+            <div class="view-all">
+                <a href="/pets" class="view-all">
                     Mulai Sekarang
-                </a>
-                <a href="/about-us" class="about-btn">
-                    Pelajari Lebih
                 </a>
             </div>
         </div>

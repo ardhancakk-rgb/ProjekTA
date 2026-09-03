@@ -79,17 +79,20 @@
             padding: 10px 24px;
             border: none;
             border-radius: 20px;
-            background: #76573f;
+            background: #452817;
             color: white;
             font-family: sans-serif;
             font-size: 15px;
             cursor: pointer;
             transition: 0.3s;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
         }
 
         .btn-register:hover {
             background: #927154;
             transform: translateY(-1px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
         }
 
         .button-wrapper {
