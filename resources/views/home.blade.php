@@ -332,6 +332,64 @@
             font-weight: bold;
             margin-bottom: 10px;
         }
+
+        .footer {
+            background-color: #452817;
+            color: white;
+            padding: 40px 50px;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .footer-brand h2 {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .footer-brand p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .footer-brand .social-icons a {
+            color: white;
+            margin-right: 10px;
+            font-size: 20px;
+            transition: 0.3s;
+        }
+
+        .footer-brand .social-icons a:hover {
+            color: #e2702f;
+        }
+
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            margin-left: 50px;
+        }
+
+        .footer-column a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 5px;
+            margin-left: 50px;
+            transition: 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: #e2702f;
+        }   
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+        }
     </style>
 </head>
 
@@ -533,33 +591,33 @@
             <div class="footer-column">
                 <h3>
                     Menu
-                </h3>
+                </h3><br>
                 <a href="/">
                     Home
-                </a>
+                </a><br>
                 <a href="/pets">
                     Pets
-                </a>
+                </a><br>
                 <a href="/about-us">
                     About Us
-                </a>
+                </a><br>
                 <a href="/contact">
                     Contact
-                </a>
+                </a><br>
             </div>
             <div class="footer-column">
                 <h3>
                     Help
-                </h3>
+                </h3><br>
                 <a href="/help">
                     FAQ
-                </a>
+                </a><br>
                 <a href="/contact">
                     Contact
-                </a>
+                </a><br>    
                 <a href="#">
                     Privacy Policy
-                </a>
+                </a><br>
                 <a href="#">
                     Terms
                 </a>
