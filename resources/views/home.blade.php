@@ -572,7 +572,7 @@
                     PetNest
                 </h2>
                 <p>
-                    Tempat bertemunya hewan
+                    Tempat bertemuznya hewan
                     dengan keluarga baru
                     yang penuh kasih.
                 </p>

@@ -58,16 +58,17 @@ Route::post('/login', function (Request $request) {
         $request->session()->regenerate();
 
         if (Auth::user()->role === 'admin') {
-            return redirect('/admin/dashboard');
+            return redirect('/admindash/dashboard');
         }
 
-        return redirect('/dashboard');
-    }
+        if (Auth::user()->role === 'customer') {
+            return redirect('/');
+        }
 
     return back()->withErrors([
         'email' => 'Email atau password salah.',
     ]);
-
+    }
 })->name('login.process');
 
 Route::get('/register', function () {

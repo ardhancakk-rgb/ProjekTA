@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,8 +16,8 @@
 
         body {
             min-height: 100vh;
-            font-family:sans-serif;
-            background-image:linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.75)),url('{{ asset('images/login-bg.jpg') }}');
+            font-family: sans-serif;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.75)), url('{{ asset('images/login-bg.jpg') }}');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -81,8 +82,8 @@
         .login-options {
             display: flex;
             align-items: center;
-            justify-content: space-between;=
-            margin-top: 7px;
+            justify-content: space-between;
+            =margin-top: 7px;
             margin-bottom: 16px;
             font-size: 10px;
         }
@@ -154,6 +155,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="login-card">
         <div class="login-title">
@@ -172,23 +174,12 @@
         <form method="POST" action="{{ route('login.process') }}">
             @csrf
             <div class="form-group">
-                <label for="email">Email</label>
-                <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value="{{ old('email') }}"
-                    required
-                >
+                <label>Email</label>
+                <input type="email" name="email" autocomplete="off" value="" placeholder="Enter your email">
             </div>
             <div class="form-group">
-                <label for="password">Password</label>
-                <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    required
-                >
+                <label>Password</label>
+                <input type="password" name="password" autocomplete="new-password" value="" placeholder="Enter your password">
             </div>
             <div class="login-options">
                 <label class="remember">
@@ -207,4 +198,5 @@
         </div>
     </div>
 </body>
+
 </html>
