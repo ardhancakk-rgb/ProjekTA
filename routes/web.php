@@ -1,13 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PetController;
 
 Route::get('/', function () {
     return view('home');
 });
-Route::get('/pets', function () {
-    return view('pets');
-});
+
 Route::get('/about-us', function () {
     return view('about-us');
 });
@@ -41,3 +40,6 @@ route::get('/register', function () {
 Route::get('/logout', function () {
     return view('auth.logout');
 })->name('logout');
+
+Route::get('/pets', [PetController::class, 'index'])
+->name('pets.index');
