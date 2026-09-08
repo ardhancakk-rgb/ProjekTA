@@ -1,25 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
+<aside class="sidebar">
+    <div class="logo">
+        🐾 PET NEST
+    </div>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Admin</title>
+    <nav>
+        <a href="/" class="menu-item">
+            Dashboard
+        </a>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-</head>
+        <a href="/pets" class="menu-item">
+             Hewan
+        </a>
 
-<body>
-    <header class="bg-brown-500">
-        <nav class="nav">
-            <a href="{{ route('admindash.dashboard') }}">Dashboard</a>
-            <a href="{{ route('pets.index') }}">Pets</a>
-            <a href="{{ route('logout') }}">Logout</a>
-            <p>alo</p>
-        </nav>
-</body>
+        <a href="/pengajuan" class="menu-item">
+            📋 Pengajuan
+        </a>
 
-</html>
+        <a href="/profil" class="menu-item">
+            👤 Profil
+        </a>
+    </nav>
+
+    <div class="logout">
+        <a href="/logout" class="menu-item">
+            🚪 Logout
+        </a>
+    </div>
+</aside>

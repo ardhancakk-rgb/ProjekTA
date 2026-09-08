@@ -24,11 +24,11 @@ class AuthController extends Controller
         $request->session()->regenerate();
 
         if (Auth::user()->role === 'admin') {
-            return redirect('/admindash/dashboard');
+            return redirect('/admindash');
         }
 
         if (Auth::user()->role === 'customer') {
-            return redirect('/');
+            return redirect('/dashboard');
         }
     }
 
