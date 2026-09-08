@@ -47,30 +47,11 @@ Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
 
-Route::post('/login', function (Request $request) {
+Route::get('/admindash', function () {
+    return view('admindash.dashboard');
+})->name('admindash.dashboard');
 
-    $credentials = $request->validate([
-        'email' => 'required|email',
-        'password' => 'required',
-    ]);
-
-    if (Auth::attempt($credentials)) {
-
-        $request->session()->regenerate();
-
-        if (Auth::user()->role === 'admin') {
-            return redirect('/admindash/dashboard');
-        }
-
-        if (Auth::user()->role === 'customer') {
-            return redirect('/');
-        }
-
-    return back()->withErrors([
-        'email' => 'Email atau password salah.',
-    ]);
-    }
-})->name('login.process');
+Route::post('/login', [AuthController::class, 'login'])->name('login.process');
 
 Route::get('/register', function () {
     return view('auth.register');
