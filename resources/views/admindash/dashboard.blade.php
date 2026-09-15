@@ -84,7 +84,7 @@
         align-items: center;
         gap: 12px;
         padding: 13px 15px;
-        color: #ef4444;
+        color: red;
         text-decoration: none;
         border-radius: 10px;
         transition: 0.2s;
@@ -131,19 +131,21 @@
             margin-left: 75px;
             padding: 20px;
         }
+
+        .hero {
+    margin-left: 210px;
+    width: calc(100% - 210px);
+    padding: 40px;
+    box-sizing: border-box;
+}
     }
 </style>
 
 
 <aside class="sidebar">
-
-    <!-- LOGO -->
     <div class="sidebar-logo">
         <span>Pet Nest</span>
     </div>
-
-
-    <!-- MENU -->
     <nav class="sidebar-menu">
 
         <a href="{{ url('/dashboard') }}"
@@ -152,7 +154,7 @@
             <span>Dashboard</span>
         </a>
 
-        <a href="{{ url('/pets') }}"
+        <a href="{{ url('/hewan') }}"
            class="{{ request()->is('pets*') ? 'active' : '' }}">
             <i class="fa-solid fa-paw"></i>
             <span>Data Hewan</span>
@@ -177,29 +179,16 @@
             <i class="fa-solid fa-user"></i>
             <span>Profil</span>
         </a>
-
     </nav>
-
-
-    <!-- LOGOUT -->
     <div class="sidebar-bottom">
-
         <a href="{{ url('/logout') }}">
             <i class="fa-solid fa-right-from-bracket"></i>
             <span>Logout</span>
         </a>
-
     </div>
-
 </aside>
-
-
-<!-- CONTENT -->
 <main class="main-content">
     @yield('content')
 </main>
-
-
-<!-- FONT AWESOME -->
 <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
