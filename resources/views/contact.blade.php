@@ -6,6 +6,6 @@
     <title>Document</title>
 </head>
 <body>
-    Ini Halaman Contact
+    contact me
 </body>
 </html>

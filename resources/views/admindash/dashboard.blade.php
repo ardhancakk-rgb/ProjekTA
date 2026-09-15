@@ -326,7 +326,7 @@
     @hasSection('content')
         @yield('content')
     @else
-    
+
         <section class="profile-section">
             <div class="profile-info">
                 <div class="admin-avatar-large">
@@ -402,3 +402,4 @@
 
 </body>
 </html>
+

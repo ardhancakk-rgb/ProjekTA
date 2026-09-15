@@ -72,5 +72,6 @@ Route::post('/logout', [AuthController::class, 'logout'])
 
 Route::post('/pengajuan', [AuthController::class, 'pengajuan'])
     ->name('pengajuan');
+    
 // CRUD Hewan
 Route::resource('hewan', HewanController::class);
