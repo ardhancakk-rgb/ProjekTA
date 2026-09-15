@@ -2,9 +2,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Hewan;
+use App\Models\Kategori;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use App\Models\Kategori;
+
 
 class HewanController extends Controller
 {
@@ -15,10 +16,11 @@ class HewanController extends Controller
     }
 
     public function create()
-    {
-        $kategori = Kategori::all();
-        return view('hewan.create', compact('kategori'));
-    }
+{
+    $kategori = Kategori::all();
+
+    return view('hewan.create', compact('kategori'));
+}
 
     public function store(Request $request)
     {
@@ -48,7 +50,7 @@ class HewanController extends Controller
 
     public function edit(Hewan $hewan)
     {
-        $kategori = KategoriHewan::all();
+        $kategori = Kategori::all();
         return view('hewan.edit', compact('hewan', 'kategori'));
     }
 

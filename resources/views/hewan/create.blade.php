@@ -20,16 +20,19 @@
             </div>
 
             <div class="col-md-6 mb-3">
-                <label class="form-label">Kategori Hewan</label>
-                <select name="id_kategori" class="form-select" required>
-                    <option value="">-- Pilih Kategori --</option>
-                    @foreach ($kategori as $kat)
-                        <option value="{{ $kat->id_kategori }}" {{ old('id_kategori') == $kat->id_kategori ? 'selected' : '' }}>
-                            {{ $kat->nama_kategori }}
-                        </option>
-                    @endforeach
-                </select>
-            </div>
+    <label class="form-label">Kategori Hewan</label>
+
+    <select name="id_kategori" class="form-select" required>
+        <option value="">-- Pilih Kategori --</option>
+
+        @foreach ($kategori as $kat)
+            <option value="{{ $kat->id_kategori }}"
+                {{ old('id_kategori') == $kat->id_kategori ? 'selected' : '' }}>
+                {{ $kat->nama_kategori }}
+            </option>
+        @endforeach
+    </select>
+</div>
 
             <div class="col-md-6 mb-3">
                 <label class="form-label">Jenis</label>

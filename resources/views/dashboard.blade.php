@@ -102,7 +102,6 @@
         }
     </style>
 </head>
-
 <body class="navbar">
     <nav class="nav">
         <a href="{{ url('/contact') }}">Contact</a>
@@ -114,5 +113,4 @@
         <p class="p">Selamat datang, {{ Auth::user()->name }}!</p>
     </div>
 </body>
-
 </html>
