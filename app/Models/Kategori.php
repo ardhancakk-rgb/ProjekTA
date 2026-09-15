@@ -2,15 +2,15 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Kategori extends Model
 {
-    use HasFactory;
     protected $table = 'kategori_hewan';
+
     protected $primaryKey = 'id_kategori';
+
     protected $fillable = [
         'nama_kategori',
         'deskripsi',
@@ -18,9 +18,6 @@ class Kategori extends Model
 
     public function hewan(): HasMany
     {
-
-        return $this->hasMany(Hewan::class);
         return $this->hasMany(Hewan::class, 'id_kategori', 'id_kategori');
-
     }
 }

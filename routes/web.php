@@ -1,10 +1,9 @@
 <?php
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PetController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HewanController;
 
 Route::get('/', function () {
     return view('home');
@@ -42,7 +41,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware('auth');
 
-//auth
+// Auth
 Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
@@ -51,7 +50,8 @@ Route::get('/admindash', function () {
     return view('admindash.dashboard');
 })->name('admindash.dashboard');
 
-Route::post('/login', [AuthController::class, 'login'])->name('login.process');
+Route::post('/login', [AuthController::class, 'login'])
+    ->name('login.process');
 
 Route::get('/register', function () {
     return view('auth.register');
@@ -62,7 +62,7 @@ Route::get('/logout', function () {
 })->name('logout');
 
 Route::get('/pets', [PetController::class, 'index'])
-->name('pets.index');
+    ->name('pets.index');
 
 Route::post('/register', [AuthController::class, 'register'])
     ->name('register.process');
@@ -72,6 +72,6 @@ Route::post('/logout', [AuthController::class, 'logout'])
 
 Route::post('/pengajuan', [AuthController::class, 'pengajuan'])
     ->name('pengajuan');
-
-
+// CRUD Hewan
+Route::resource('hewan', HewanController::class);
 
