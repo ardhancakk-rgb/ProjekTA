@@ -6,6 +6,6 @@
     <title>Contact</title>
 </head>
 <body>
-    contact me!!!!
+    Ini Halaman Contact
 </body>
 </html>
