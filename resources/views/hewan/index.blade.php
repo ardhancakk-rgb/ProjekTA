@@ -23,10 +23,10 @@
                     <th>Foto</th>
                     <th>Nama</th>
                     <th>Kategori</th>
-                    <th>Jenis</th>
                     <th>Ras</th>
                     <th>Umur</th>
                     <th>Gender</th>
+                    <th>Status Kesehatan</th>
                     <th>Status</th>
                     <th>Aksi</th>
                 </tr>
@@ -35,21 +35,21 @@
                 @forelse ($hewan as $item)
                     <tr>
                         <td>
-                            @if ($item->foto)
-                                <img src="{{ asset('storage/' . $item->foto) }}" alt="{{ $item->nama_hewan }}" width="60" height="60" class="rounded object-fit-cover">
+                            @if ($item->gambar)
+                                <img src="{{ asset('storage/' . $item->gambar) }}" alt="{{ $item->nama }}" width="60" height="60" class="rounded object-fit-cover">
                             @else
                                 <span class="text-muted">No foto</span>
                             @endif
                         </td>
-                        <td><strong>{{ $item->nama_hewan }}</strong></td>
+                        <td><strong>{{ $item->nama }}</strong></td>
                         <td>{{ $item->kategori->nama_kategori ?? '-' }}</td>
-                        <td>{{ $item->jenis }}</td>
                         <td>{{ $item->ras ?? '-' }}</td>
                         <td>{{ $item->umur }} th/bln</td>
                         <td>{{ ucfirst($item->jenis_kelamin) }}</td>
+                        <td>{{ $item->kondisi_kesehatan ?? '-' }}</td>
                         <td>
-                            <span class="badge {{ $item->status_adopsi == 'tersedia' ? 'bg-success' : ($item->status_adopsi == 'diproses' ? 'bg-warning' : 'bg-secondary') }}">
-                                {{ ucfirst($item->status_adopsi) }}
+                            <span class="badge {{ $item->status == 'tersedia' ? 'bg-success' : ($item->status == 'diproses' ? 'bg-warning' : 'bg-secondary') }}">
+                                {{ ucfirst($item->status) }}
                             </span>
                         </td>
                         <td>

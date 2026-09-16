@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Kategori;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -17,11 +18,14 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-
         User::factory()->create([
             'name' => 'Admin',
             'email' => 'admin@gmail.com',
             'password' => bcrypt('admin123'),
         ]);
+
+        foreach (['Kucing', 'Anjing', 'Burung', 'Lainnya'] as $namaKategori) {
+            Kategori::firstOrCreate(['nama_kategori' => $namaKategori]);
+        }
     }
 }
