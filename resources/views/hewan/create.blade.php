@@ -26,18 +26,13 @@
         <option value="">-- Pilih Kategori --</option>
 
         @foreach ($kategori as $kat)
-            <option value="{{ $kat->id_kategori }}"
-                {{ old('id_kategori') == $kat->id_kategori ? 'selected' : '' }}>
+            <option value="{{ $kat->id }}"
+                {{ old('id_kategori') == $kat->id ? 'selected' : '' }}>
                 {{ $kat->nama_kategori }}
             </option>
         @endforeach
     </select>
 </div>
-
-            <div class="col-md-6 mb-3">
-                <label class="form-label">Jenis</label>
-                <input type="text" name="jenis" class="form-control" placeholder="Contoh: Mamalia / Kucing" value="{{ old('jenis') }}" required>
-            </div>
 
             <div class="col-md-6 mb-3">
                 <label class="form-label">Ras</label>
@@ -79,11 +74,6 @@
             <div class="col-md-6 mb-3">
                 <label class="form-label">Status Kesehatan</label>
                 <input type="text" name="status_kesehatan" class="form-control" value="{{ old('status_kesehatan') }}">
-            </div>
-
-            <div class="col-md-12 mb-3">
-                <label class="form-label">Deskripsi</label>
-                <textarea name="deskripsi" class="form-control" rows="3">{{ old('deskripsi') }}</textarea>
             </div>
 
             <div class="col-md-12 mb-3">

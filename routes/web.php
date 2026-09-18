@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\KategoriController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PetController;
 use App\Http\Controllers\AuthController;
@@ -75,3 +76,6 @@ Route::post('/pengajuan', [AuthController::class, 'pengajuan'])
     
 // CRUD Hewan
 Route::resource('hewan', HewanController::class);
+
+Route::get('/kategori', [KategoriController::class, 'index'])
+    ->name('kategori');

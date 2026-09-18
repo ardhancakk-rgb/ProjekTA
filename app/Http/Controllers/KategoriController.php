@@ -13,7 +13,7 @@ class KategoriController extends Controller
     public function index()
     {
         $kategori = Kategori::all();
-        return view('kategori.index', compact('kategori'));
+        return view('admindash.kategori', compact('kategori'));
     }
 
     /**
@@ -21,7 +21,7 @@ class KategoriController extends Controller
      */
     public function create()
     {
-        return view('kategori.create');
+        return view('admindash.kategori');
     }
 
     /**
@@ -31,7 +31,6 @@ class KategoriController extends Controller
     {
         $request->validate([
             'nama_kategori' => 'required|string|max:255',
-            'deskripsi' => 'nullable|string',
         ]);
 
         Kategori::create($request->all());
