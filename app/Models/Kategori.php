@@ -11,7 +11,6 @@ class Kategori extends Model
 
     protected $fillable = [
         'nama_kategori',
-        'deskripsi',
     ];
 
     public function hewan(): HasMany

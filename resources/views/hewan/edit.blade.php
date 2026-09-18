@@ -74,11 +74,6 @@
             </div>
 
             <div class="col-md-12 mb-3">
-                <label class="form-label">Deskripsi</label>
-                <textarea name="deskripsi" class="form-control" rows="3">{{ old('deskripsi', $hewan->deskripsi) }}</textarea>
-            </div>
-
-            <div class="col-md-12 mb-3">
                 <label class="form-label">Ganti Foto (opsional)</label>
                 <input type="file" name="foto" class="form-control mb-2">
                 @if ($hewan->gambar)

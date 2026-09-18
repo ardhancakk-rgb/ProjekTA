@@ -35,7 +35,6 @@ class HewanController extends Controller
             'status_kesehatan' => 'nullable|string|max:255',
             'status_vaksin' => 'nullable|string|max:255',
             'foto' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
-            'deskripsi' => 'nullable|string',
             'status_adopsi' => 'required|in:tersedia,diproses,diadopsi',
         ]);
 
@@ -53,7 +52,6 @@ class HewanController extends Controller
             'kondisi_kesehatan' => $validatedData['status_kesehatan'] ?? null,
             'status_vaksin' => $validatedData['status_vaksin'] ?? null,
             'gambar' => $validatedData['foto'] ?? null,
-            'deskripsi' => $validatedData['deskripsi'] ?? null,
             'status' => $validatedData['status_adopsi'],
         ]);
 
@@ -79,7 +77,6 @@ class HewanController extends Controller
             'status_kesehatan' => 'nullable|string|max:255',
             'status_vaksin' => 'nullable|string|max:255',
             'foto' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
-            'deskripsi' => 'nullable|string',
             'status_adopsi' => 'required|in:tersedia,diproses,diadopsi',
         ]);
 
@@ -100,7 +97,6 @@ class HewanController extends Controller
             'kondisi_kesehatan' => $validatedData['status_kesehatan'] ?? null,
             'status_vaksin' => $validatedData['status_vaksin'] ?? null,
             'gambar' => $validatedData['foto'] ?? $hewan->gambar,
-            'deskripsi' => $validatedData['deskripsi'] ?? null,
             'status' => $validatedData['status_adopsi'],
         ]);
 

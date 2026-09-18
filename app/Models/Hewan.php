@@ -26,7 +26,6 @@ class Hewan extends Model
         'kondisi_kesehatan',
         'status_vaksin',
         'gambar',
-        'deskripsi',
         'status',
     ];
 
