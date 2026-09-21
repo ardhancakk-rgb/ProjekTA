@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PetController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HewanController;
 
 Route::get('/', function () {
     return view('home');
@@ -72,4 +73,6 @@ Route::post('/logout', [AuthController::class, 'logout'])
 
 Route::post('/pengajuan', [AuthController::class, 'pengajuan'])
     ->name('pengajuan');
+
+Route::resource('hewan', HewanController::class);
 

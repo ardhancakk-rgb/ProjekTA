@@ -109,9 +109,9 @@
         }
 
         .hero {
-            width: 100%;
+            width: auto;
             height: 100vh;
-            min-height: 600px;
+            min-height: 200px;
             background-image: linear-gradient(rgba(0, 0, 0, 0.45)), url('{{ asset('images/hero-bg.jpg') }}');
             background-size: cover;
             background-position: center;
@@ -336,7 +336,7 @@
         .footer {
             background-color: #452817;
             color: white;
-            padding: 40px 50px;
+            padding: 30px 50px;
         }
 
         .footer-container {
