@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Kategori extends Model
 {
-    protected $table = 'kategori';
+    protected $table = 'kategori_hewan';
 
     protected $primaryKey = 'id';
 
