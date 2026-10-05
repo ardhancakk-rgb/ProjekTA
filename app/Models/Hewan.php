@@ -10,26 +10,28 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Hewan extends Model
 {
     use HasFactory;
+
     protected $table = 'hewan';
+
     protected $primaryKey = 'id_hewan';
+
     protected $fillable = [
-        'id_kategori',
-        'nama_hewan',
-        'jenis',
+        'kategori_id',
+        'nama',
         'ras',
         'umur',
         'jenis_kelamin',
         'berat',
-        'status_kesehatan',
+        'warna',
+        'kondisi_kesehatan',
         'status_vaksin',
-        'foto',
-        'deskripsi',
-        'status_adopsi',
+        'gambar',
+        'status',
     ];
 
     public function kategori(): BelongsTo
     {
-        return $this->belongsTo(Kategori::class, 'id_kategori','id_kategori');
+        return $this->belongsTo(Kategori::class, 'kategori_id', 'id');
     }
 
     public function pengajuanAdopsi(): HasMany
