@@ -12,7 +12,8 @@ class KategoriController extends Controller
      */
     public function index()
     {
-        $kategori = Kategori::all();
+        $kategori = Kategori::withCount('hewan')->get();
+
         return view('admindash.kategori', compact('kategori'));
     }
 
@@ -21,7 +22,7 @@ class KategoriController extends Controller
      */
     public function create()
     {
-        return view('admindash.kategori');
+        return $this->index();
     }
 
     /**
@@ -65,8 +66,17 @@ class KategoriController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Kategori $kategori)
     {
-        //
+        if ($kategori->hewan()->exists()) {
+            return redirect()->route('kategori.index')->with(
+                'error',
+                'Kategori tidak dapat dihapus karena masih digunakan oleh data hewan.'
+            );
+        }
+
+        $kategori->delete();
+
+        return redirect()->route('kategori.index')->with('success', 'Kategori berhasil dihapus.');
     }
 }
