@@ -195,7 +195,6 @@
             min-height: 100vh;
             padding: 30px;
         }
-<<<<<<< HEAD
 
         .hero {
     margin-left: 210px;
@@ -388,11 +387,8 @@
         </a>
 
         <a href="{{ url('/hewan') }}"
-<<<<<<< HEAD
            class="{{ request()->is('pets*') ? 'active' : '' }}">
-=======
            class="{{ request()->is('hewan*') || request()->is('pets*') ? 'active' : '' }}">
->>>>>>> 6e8f3ead6906a6e5dcec43610514393484f46453
             <i class="fa-solid fa-paw"></i>
             <span>Data Hewan</span>
         </a>
@@ -424,10 +420,6 @@
         </a>
     </div>
 </aside>
-<<<<<<< HEAD
-=======
-
->>>>>>> 6e8f3ead6906a6e5dcec43610514393484f46453
 <main class="main-content">
     @hasSection('content')
         @yield('content')
@@ -505,12 +497,9 @@
         </div>
     @endif
 </main>
-<<<<<<< HEAD
 <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-=======
 
 </body>
 </html>
 
->>>>>>> 6e8f3ead6906a6e5dcec43610514393484f46453
