@@ -76,8 +76,13 @@ Route::post('/pengajuan', [AuthController::class, 'pengajuan'])
 
 Route::resource('hewan', HewanController::class);
 
+Route::resource('hewan', HewanController::class);
+Route::get('/kategori', [KategoriController::class, 'index'])
+    ->name('kategori');
+
 Route::resource('kategori', KategoriController::class)->except(['show']);
 
 Route::get('/kembali', function () {
     return redirect()->route('admindash.kategori');
 })->name('kembali');
+

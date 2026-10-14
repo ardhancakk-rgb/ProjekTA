@@ -11,7 +11,9 @@ class HewanController extends Controller
 {
     public function index()
     {
-        $hewan = Hewan::with('kategori')->latest('id_hewan')->get();
+        $hewan = Hewan::with('kategori')
+            ->latest('id_hewan')
+            ->get();
 
         return view('hewan.index', compact('hewan'));
     }
@@ -26,36 +28,30 @@ class HewanController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'id_kategori' => 'required|exists:kategori,id',
-            'nama_hewan' => 'required|string|max:255',
+            'kategori_id' => 'required|exists:kategori,id',
+            'nama' => 'required|string|max:255',
             'ras' => 'nullable|string|max:255',
             'umur' => 'required|integer|min:0',
             'jenis_kelamin' => 'required|in:jantan,betina',
-            'berat' => 'nullable|numeric',
-            'status_kesehatan' => 'nullable|string|max:255',
+            'berat' => 'nullable|numeric|min:0',
+            'lokasi' => 'required|string|max:255',
+            'kondisi_kesehatan' => 'nullable|string|max:255',
             'status_vaksin' => 'nullable|string|max:255',
-            'foto' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
-            'status_adopsi' => 'required|in:tersedia,diproses,diadopsi',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'deskripsi' => 'nullable|string',
+            'status' => 'required|in:tersedia,diproses,diadopsi',
         ]);
 
-        if ($request->hasFile('foto')) {
-            $validatedData['foto'] = $request->file('foto')->store('hewan', 'public');
+        if ($request->hasFile('gambar')) {
+            $validatedData['gambar'] = $request->file('gambar')
+                ->store('hewan', 'public');
         }
 
-        Hewan::create([
-            'kategori_id' => $validatedData['id_kategori'],
-            'nama' => $validatedData['nama_hewan'],
-            'ras' => $validatedData['ras'] ?? null,
-            'umur' => $validatedData['umur'],
-            'jenis_kelamin' => $validatedData['jenis_kelamin'],
-            'berat' => $validatedData['berat'] ?? null,
-            'kondisi_kesehatan' => $validatedData['status_kesehatan'] ?? null,
-            'status_vaksin' => $validatedData['status_vaksin'] ?? null,
-            'gambar' => $validatedData['foto'] ?? null,
-            'status' => $validatedData['status_adopsi'],
-        ]);
+        Hewan::create($validatedData);
 
-        return redirect()->route('hewan.index')->with('success', 'Data hewan berhasil ditambahkan!');
+        return redirect()
+            ->route('hewan.index')
+            ->with('success', 'Data hewan berhasil ditambahkan!');
     }
 
     public function edit(Hewan $hewan)
@@ -68,49 +64,46 @@ class HewanController extends Controller
     public function update(Request $request, Hewan $hewan)
     {
         $validatedData = $request->validate([
-            'id_kategori' => 'required|exists:kategori,id',
-            'nama_hewan' => 'required|string|max:255',
+            'kategori_id' => 'required|exists:kategori,id',
+            'nama' => 'required|string|max:255',
             'ras' => 'nullable|string|max:255',
             'umur' => 'required|integer|min:0',
             'jenis_kelamin' => 'required|in:jantan,betina',
-            'berat' => 'nullable|numeric',
-            'status_kesehatan' => 'nullable|string|max:255',
+            'berat' => 'nullable|numeric|min:0',
+            'lokasi' => 'required|string|max:255',
+            'kondisi_kesehatan' => 'nullable|string|max:255',
             'status_vaksin' => 'nullable|string|max:255',
-            'foto' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
-            'status_adopsi' => 'required|in:tersedia,diproses,diadopsi',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
+            'deskripsi' => 'nullable|string',
+            'status' => 'required|in:tersedia,diproses,diadopsi',
         ]);
 
-        if ($request->hasFile('foto')) {
-            if ($hewan->foto) {
-                Storage::disk('public')->delete($hewan->foto);
+        if ($request->hasFile('gambar')) {
+            if ($hewan->gambar) {
+                Storage::disk('public')->delete($hewan->gambar);
             }
-            $validatedData['foto'] = $request->file('foto')->store('hewan', 'public');
+
+            $validatedData['gambar'] = $request->file('gambar')
+                ->store('hewan', 'public');
         }
 
-        $hewan->update([
-            'kategori_id' => $validatedData['id_kategori'],
-            'nama' => $validatedData['nama_hewan'],
-            'ras' => $validatedData['ras'] ?? null,
-            'umur' => $validatedData['umur'],
-            'jenis_kelamin' => $validatedData['jenis_kelamin'],
-            'berat' => $validatedData['berat'] ?? null,
-            'kondisi_kesehatan' => $validatedData['status_kesehatan'] ?? null,
-            'status_vaksin' => $validatedData['status_vaksin'] ?? null,
-            'gambar' => $validatedData['foto'] ?? $hewan->gambar,
-            'status' => $validatedData['status_adopsi'],
-        ]);
+        $hewan->update($validatedData);
 
-        return redirect()->route('hewan.index')->with('success', 'Data hewan berhasil diperbarui!');
+        return redirect()
+            ->route('hewan.index')
+            ->with('success', 'Data hewan berhasil diperbarui!');
     }
 
     public function destroy(Hewan $hewan)
     {
-        if ($hewan->foto) {
-            Storage::disk('public')->delete($hewan->foto);
+        if ($hewan->gambar) {
+            Storage::disk('public')->delete($hewan->gambar);
         }
 
         $hewan->delete();
 
-        return redirect()->route('hewan.index')->with('success', 'Data hewan berhasil dihapus!');
+        return redirect()
+            ->route('hewan.index')
+            ->with('success', 'Data hewan berhasil dihapus!');
     }
 }

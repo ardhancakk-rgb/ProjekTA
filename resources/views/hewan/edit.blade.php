@@ -6,7 +6,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="container py-4">
-
+    <h3>Edit Data Hewan: {{ $hewan->nama_hewan }}</h3>
     <h3>Edit Data Hewan: {{ $hewan->nama }}</h3>
     <a href="{{ route('hewan.index') }}" class="btn btn-secondary mb-3">Kembali</a>
 
@@ -17,6 +17,7 @@
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label class="form-label">Nama Hewan</label>
+                <input type="text" name="nama_hewan" class="form-control" value="{{ old('nama_hewan', $hewan->nama_hewan) }}" required>
                 <input type="text" name="nama_hewan" class="form-control" value="{{ old('nama_hewan', $hewan->nama) }}" required>
             </div>
 
@@ -24,6 +25,7 @@
                 <label class="form-label">Kategori Hewan</label>
                 <select name="id_kategori" class="form-select" required>
                     @foreach ($kategori as $kat)
+                        <option value="{{ $kat->id_kategori }}" {{ old('id_kategori', $hewan->id_kategori) == $kat->id_kategori ? 'selected' : '' }}>
                         <option value="{{ $kat->id }}" {{ old('id_kategori', $hewan->kategori_id) == $kat->id ? 'selected' : '' }}>
                             {{ $kat->nama_kategori }}
                         </option>
@@ -32,6 +34,12 @@
             </div>
 
             <div class="col-md-6 mb-3">
+                <label class="form-label">Jenis</label>
+                <input type="text" name="jenis" class="form-control" value="{{ old('jenis', $hewan->jenis) }}" required>
+            </div>
+
+            <div class="col-md-6 mb-3">
+
                 <label class="form-label">Ras</label>
                 <input type="text" name="ras" class="form-control" value="{{ old('ras', $hewan->ras) }}">
             </div>
@@ -57,6 +65,9 @@
             <div class="col-md-3 mb-3">
                 <label class="form-label">Status Adopsi</label>
                 <select name="status_adopsi" class="form-select" required>
+                    <option value="tersedia" {{ old('status_adopsi', $hewan->status_adopsi) == 'tersedia' ? 'selected' : '' }}>Tersedia</option>
+                    <option value="diproses" {{ old('status_adopsi', $hewan->status_adopsi) == 'diproses' ? 'selected' : '' }}>Diproses</option>
+                    <option value="diadopsi" {{ old('status_adopsi', $hewan->status_adopsi) == 'diadopsi' ? 'selected' : '' }}>Diadopsi</option>
                     <option value="tersedia" {{ old('status_adopsi', $hewan->status) == 'tersedia' ? 'selected' : '' }}>Tersedia</option>
                     <option value="diproses" {{ old('status_adopsi', $hewan->status) == 'diproses' ? 'selected' : '' }}>Diproses</option>
                     <option value="diadopsi" {{ old('status_adopsi', $hewan->status) == 'diadopsi' ? 'selected' : '' }}>Diadopsi</option>
@@ -70,12 +81,20 @@
 
             <div class="col-md-6 mb-3">
                 <label class="form-label">Status Kesehatan</label>
+                <input type="text" name="status_kesehatan" class="form-control" value="{{ old('status_kesehatan', $hewan->status_kesehatan) }}">
+            </div>
+
+            <div class="col-md-12 mb-3">
+                <label class="form-label">Deskripsi</label>
+                <textarea name="deskripsi" class="form-control" rows="3">{{ old('deskripsi', $hewan->deskripsi) }}</textarea>
                 <input type="text" name="status_kesehatan" class="form-control" value="{{ old('status_kesehatan', $hewan->kondisi_kesehatan) }}">
             </div>
 
             <div class="col-md-12 mb-3">
                 <label class="form-label">Ganti Foto (opsional)</label>
                 <input type="file" name="foto" class="form-control mb-2">
+                @if ($hewan->foto)
+                    <img src="{{ asset('storage/' . $hewan->foto) }}" width="100" class="rounded">
                 @if ($hewan->gambar)
                     <img src="{{ asset('storage/' . $hewan->gambar) }}" width="100" class="rounded">
                 @endif
@@ -84,6 +103,5 @@
 
         <button type="submit" class="btn btn-primary">Perbarui Data</button>
     </form>
-
 </body>
 </html>

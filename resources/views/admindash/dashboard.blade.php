@@ -18,6 +18,98 @@
             color: #333333;
         }
 
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 250px;
+        height: 100vh;
+        background: #ffffff;
+        border-right: 1px solid #e5e7eb;
+        display: flex;
+        flex-direction: column;
+        padding: 25px 15px;
+        z-index: 1000;
+    }
+
+    .sidebar-logo {
+        padding: 10px 15px 35px;
+        font-size: 22px;
+        font-weight: 700;
+        color: #2563eb;
+    }
+
+    .sidebar-logo span {
+        color: #111827;
+    }
+
+    .sidebar-menu {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .sidebar-menu a {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 13px 15px;
+        color: #6b7280;
+        text-decoration: none;
+        border-radius: 10px;
+        font-size: 15px;
+        transition: 0.2s;
+    }
+
+    .sidebar-menu a i {
+        width: 20px;
+        text-align: center;
+        font-size: 16px;
+    }
+
+    .sidebar-menu a:hover {
+        background: #eff6ff;
+        color: #2563eb;
+    }
+
+    .sidebar-menu a.active {
+        background: #2563eb;
+        color: #ffffff;
+    }
+
+    .sidebar-divider {
+        height: 1px;
+        background: #e5e7eb;
+        margin: 20px 5px;
+    }
+
+    .sidebar-bottom {
+        margin-top: auto;
+    }
+
+    .sidebar-bottom a {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 13px 15px;
+        color: red;
+        text-decoration: none;
+        border-radius: 10px;
+        transition: 0.2s;
+    }
+
+    .sidebar-bottom a:hover {
+        background: #fef2f2;
+    }
+
+    .main-content {
+        margin-left: 250px;
+        min-height: 100vh;
+        padding: 30px;
+    }
+
+    @media (max-width: 768px) {
+
         .sidebar {
             position: fixed;
             top: 0;
@@ -104,7 +196,13 @@
             padding: 30px;
         }
 
-        /* Mockup Profile Header */
+        .hero {
+    margin-left: 210px;
+    width: calc(100% - 210px);
+    padding: 40px;
+    box-sizing: border-box;
+}
+    }
         .profile-section {
             background: #ffffff;
             border: 1px solid #e5e7eb;
@@ -289,6 +387,7 @@
         </a>
 
         <a href="{{ url('/hewan') }}"
+           class="{{ request()->is('pets*') ? 'active' : '' }}">
            class="{{ request()->is('hewan*') || request()->is('pets*') ? 'active' : '' }}">
             <i class="fa-solid fa-paw"></i>
             <span>Data Hewan</span>
@@ -321,7 +420,6 @@
         </a>
     </div>
 </aside>
-
 <main class="main-content">
     @hasSection('content')
         @yield('content')
@@ -399,6 +497,8 @@
         </div>
     @endif
 </main>
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 </body>
 </html>
