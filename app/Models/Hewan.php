@@ -23,6 +23,7 @@ class Hewan extends Model
         'jenis_kelamin',
         'berat',
         'warna',
+        'deskripsi',
         'kondisi_kesehatan',
         'status_vaksin',
         'gambar',

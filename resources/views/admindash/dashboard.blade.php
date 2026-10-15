@@ -388,7 +388,7 @@
 
         <a href="{{ url('/hewan') }}"
            class="{{ request()->is('pets*') ? 'active' : '' }}">
-           class="{{ request()->is('hewan*') || request()->is('pets*') ? 'active' : '' }}">
+
             <i class="fa-solid fa-paw"></i>
             <span>Data Hewan</span>
         </a>

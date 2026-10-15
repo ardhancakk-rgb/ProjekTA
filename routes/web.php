@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PetController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HewanController;
+use App\Http\Controllers\PengajuanAdopsiController;
 
 Route::get('/', function () {
     return view('home');
@@ -40,7 +41,7 @@ Route::get('/Kategori', function () {
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware('auth');
+})->middleware('dashboard');
 
 // Auth
 Route::get('/login', function () {
@@ -85,4 +86,15 @@ Route::resource('kategori', KategoriController::class)->except(['show']);
 Route::get('/kembali', function () {
     return redirect()->route('admindash.kategori');
 })->name('kembali');
+
+Route::middleware('auth')->group(function () {
+    
+    Route::get('/adopsi/{id_hewan}',
+        [PengajuanAdopsiController::class, 'create']
+    )->name('adopsi.create');
+
+    Route::post('/adopsi/{id_hewan}',
+        [PengajuanAdopsiController::class, 'store']
+    )->name('adopsi.store');
+});
 
