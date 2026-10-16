@@ -41,7 +41,7 @@ Route::get('/Kategori', function () {
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware('dashboard');
+})->name('dashboard');
 
 // Auth
 Route::get('/login', function () {
