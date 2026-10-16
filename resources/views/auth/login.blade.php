@@ -171,7 +171,7 @@
                 </div>
             @endforeach
         @endif
-        <form method="POST" action="{{ route('login.process') }}">
+        <form method="POST" action="{{ route('login') }}">
             @csrf
             <div class="form-group">
                 <label>Email</label>

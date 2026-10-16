@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -20,20 +19,26 @@
             color: #3d3028;
         }
 
+        a {
+            text-decoration: none;
+        }
+
         .navbar {
-            height: 70px;
+            min-height: 70px;
             background: white;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 7%;
+            padding: 15px 7%;
             border-bottom: 1px solid #eee5dc;
+            gap: 20px;
         }
 
         .logo {
             font-size: 26px;
             font-weight: bold;
             color: #5b3c2e;
+            white-space: nowrap;
         }
 
         .logo span {
@@ -42,14 +47,14 @@
 
         .nav-menu {
             display: flex;
-            gap: 30px;
+            align-items: center;
+            gap: 25px;
         }
 
         .nav-menu a {
-            text-decoration: none;
             color: #776a61;
             font-size: 14px;
-            transition: 0.2s;
+            transition: .2s;
         }
 
         .nav-menu a:hover,
@@ -66,30 +71,28 @@
         }
 
         .user-avatar {
-            width: 36px;
-            height: 36px;
+            width: 38px;
+            height: 38px;
             border-radius: 50%;
             background: #c89668;
             color: white;
-
             display: flex;
             align-items: center;
             justify-content: center;
-
             font-weight: bold;
         }
 
         .container {
             width: 90%;
             max-width: 1000px;
-            margin: 50px auto;
+            margin: 45px auto;
         }
 
         .page-title {
             margin-bottom: 25px;
         }
 
-        .page-title .small-title {
+        .small-title {
             color: #b07849;
             font-size: 11px;
             font-weight: bold;
@@ -99,11 +102,32 @@
 
         .page-title h1 {
             font-size: 34px;
-            margin-bottom: 7px;
+            margin-bottom: 8px;
         }
 
         .page-title p {
             color: #8b7d73;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .alert-success {
+            padding: 15px 18px;
+            background: #e7f5e9;
+            color: #347742;
+            border: 1px solid #c7e8cd;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .alert-error {
+            padding: 15px 18px;
+            background: #fff0ed;
+            color: #a33c2c;
+            border: 1px solid #f1c9c1;
+            border-radius: 10px;
+            margin-bottom: 20px;
             font-size: 14px;
         }
 
@@ -111,54 +135,41 @@
             background: white;
             border-radius: 16px;
             overflow: hidden;
-
-            box-shadow: 0 8px 30px rgba(60, 40, 25, 0.08);
+            box-shadow: 0 8px 30px rgba(60, 40, 25, .08);
         }
 
         .profile-header {
-            background: linear-gradient(
-                120deg,
-                #5d4235,
-                #84604a
-            );
-
+            background: linear-gradient(120deg, #5d4235, #84604a);
             padding: 32px 35px;
-
             display: flex;
             align-items: center;
-
             gap: 18px;
-
             color: white;
         }
 
         .profile-photo {
             width: 85px;
             height: 85px;
-
             border-radius: 50%;
-
             background: #d5a06e;
-
-            border: 4px solid rgba(255,255,255,0.8);
-
+            border: 4px solid rgba(255,255,255,.8);
             display: flex;
             align-items: center;
             justify-content: center;
-
             font-size: 32px;
             font-weight: bold;
-
             flex-shrink: 0;
         }
 
         .profile-name {
             flex: 1;
+            min-width: 0;
         }
 
         .profile-name h2 {
             font-size: 25px;
-            margin-bottom: 5px;
+            margin-bottom: 7px;
+            overflow-wrap: anywhere;
         }
 
         .profile-name p {
@@ -167,21 +178,16 @@
         }
 
         .edit-btn {
-            border: 1px solid rgba(255,255,255,0.6);
-
-            background: rgba(255,255,255,0.12);
-
+            display: inline-block;
+            border: 1px solid rgba(255,255,255,.6);
+            background: rgba(255,255,255,.12);
             color: white;
-
-            padding: 10px 16px;
-
+            padding: 11px 16px;
             border-radius: 8px;
-
             cursor: pointer;
-
             font-size: 13px;
-
-            transition: 0.2s;
+            transition: .2s;
+            white-space: nowrap;
         }
 
         .edit-btn:hover {
@@ -199,36 +205,31 @@
 
         .section-title h3 {
             font-size: 19px;
-            margin-bottom: 5px;
+            margin-bottom: 7px;
         }
 
         .section-title p {
             color: #91847b;
             font-size: 13px;
+            line-height: 1.6;
         }
 
         .info-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-
             gap: 14px;
-
             margin-bottom: 35px;
         }
 
         .info-box {
             background: #faf8f5;
-
             border: 1px solid #eee5dc;
-
             border-radius: 9px;
-
-            padding: 16px 18px;
-
+            padding: 17px 18px;
             display: flex;
             flex-direction: column;
-
-            gap: 7px;
+            gap: 9px;
+            min-width: 0;
         }
 
         .info-box.full {
@@ -237,41 +238,33 @@
 
         .label {
             font-size: 11px;
-
             color: #998b81;
-
             text-transform: uppercase;
-
-            letter-spacing: 0.5px;
+            letter-spacing: .5px;
         }
 
         .value {
             font-size: 14px;
-
             color: #44362e;
-
             font-weight: 500;
+            overflow-wrap: anywhere;
+            line-height: 1.6;
         }
 
         .account-section {
             border-top: 1px solid #eee7df;
-
             padding-top: 30px;
         }
 
         .account-list {
             border: 1px solid #eee5dc;
-
             border-radius: 9px;
-
             overflow: hidden;
         }
 
         .account-item {
-            padding: 16px 18px;
-
+            padding: 17px 18px;
             background: #faf8f5;
-
             border-bottom: 1px solid #eee5dc;
         }
 
@@ -281,62 +274,91 @@
 
         .account-item > div {
             display: flex;
-
             align-items: center;
-
             justify-content: space-between;
+            gap: 15px;
         }
 
         .account-label {
             color: #74665d;
-
             font-size: 14px;
-
             font-weight: 500;
         }
 
         .status {
+            display: inline-block;
             background: #e7f5e9;
-
             color: #43834b;
-
-            padding: 5px 12px;
-
+            padding: 6px 12px;
             border-radius: 20px;
-
             font-size: 11px;
-
             font-weight: bold;
+        }
+
+        .feature-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .feature-card {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 22px;
+            background: #faf8f5;
+            border: 1px solid #eee5dc;
+            border-radius: 12px;
+            color: #44362e;
+            transition: .2s;
+        }
+
+        .feature-card:hover {
+            border-color: #c89668;
+            transform: translateY(-2px);
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            flex-shrink: 0;
+            border-radius: 10px;
+            background: #f0e3d5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 23px;
+        }
+
+        .feature-text h4 {
+            font-size: 14px;
+            margin-bottom: 7px;
+        }
+
+        .feature-text p {
+            font-size: 12px;
+            color: #91847b;
+            line-height: 1.6;
         }
 
         .logout-section {
             margin-top: 30px;
-
             padding-top: 25px;
-
             border-top: 1px solid #eee7df;
-
             display: flex;
-
             justify-content: flex-end;
         }
 
         .logout-btn {
             border: 1px solid #d9b8a9;
-
             background: white;
-
             color: #a65743;
-
-            padding: 10px 16px;
-
+            padding: 11px 17px;
             border-radius: 8px;
-
             cursor: pointer;
-
             font-size: 13px;
-
-            transition: 0.2s;
+            transition: .2s;
         }
 
         .logout-btn:hover {
@@ -345,18 +367,22 @@
         }
 
         @media (max-width: 700px) {
-
             .navbar {
-                padding: 0 5%;
+                flex-wrap: wrap;
+                padding: 15px 5%;
             }
 
             .nav-menu {
-                display: none;
+                order: 3;
+                width: 100%;
+                justify-content: center;
+                gap: 22px;
+                padding-top: 10px;
             }
 
             .container {
                 width: 92%;
-                margin: 35px auto;
+                margin: 30px auto;
             }
 
             .page-title h1 {
@@ -368,15 +394,21 @@
                 flex-wrap: wrap;
             }
 
+            .profile-name h2 {
+                font-size: 21px;
+            }
+
             .edit-btn {
                 width: 100%;
+                text-align: center;
             }
 
             .profile-content {
-                padding: 25px;
+                padding: 23px;
             }
 
-            .info-grid {
+            .info-grid,
+            .feature-section {
                 grid-template-columns: 1fr;
             }
 
@@ -386,22 +418,24 @@
         }
     </style>
 </head>
+
 <body>
+
+    {{-- NAVBAR --}}
     <nav class="navbar">
-        <div class="logo">
+        <a href="{{ url('/') }}" class="logo">
             <span>Pet</span>Nest
-        </div>
+        </a>
+
         <div class="nav-menu">
             <a href="{{ url('/') }}">Beranda</a>
-            <a href="#">
-                Hewan
-            </a>
-            <a href="{{ url('/profile') }}" class="active">
+            <a href="{{ url('/pets') }}">Hewan</a>
+            <a href="{{ route('profile.index') }}" class="active">
                 Profil
             </a>
         </div>
-        <div class="nav-user">
 
+        <div class="nav-user">
             <div class="user-avatar">
                 {{ strtoupper(substr(auth()->user()->name ?? 'U', 0, 1)) }}
             </div>
@@ -409,118 +443,131 @@
             <span>
                 {{ auth()->user()->name ?? 'User' }}
             </span>
-
         </div>
-
     </nav>
+
+    {{-- KONTEN UTAMA --}}
     <main class="container">
+
         <div class="page-title">
-            <div class="small-title">
-                AKUN SAYA
-            </div>
-            <h1>
-                Profil Saya
-            </h1>
+            <div class="small-title">AKUN SAYA</div>
+            <h1>Profil Saya</h1>
             <p>
-                Kelola informasi akun dan data pribadi kamu.
+                Kelola informasi akun dan pantau perjalanan adopsi
+                hewan kesayanganmu di PetNest.
             </p>
         </div>
+
+        {{-- NOTIFIKASI BERHASIL --}}
+        @if (session('success'))
+            <div class="alert-success">
+                ✓ {{ session('success') }}
+            </div>
+        @endif
+
+        {{-- NOTIFIKASI ERROR --}}
+        @if ($errors->any())
+            <div class="alert-error">
+                Ada data yang belum valid. Silakan periksa kembali.
+            </div>
+        @endif
+
         <section class="profile-card">
+
+            {{-- HEADER PROFIL --}}
             <div class="profile-header">
+
                 <div class="profile-photo">
                     {{ strtoupper(substr(auth()->user()->name ?? 'U', 0, 1)) }}
                 </div>
+
                 <div class="profile-name">
                     <h2>
                         {{ auth()->user()->name ?? 'User' }}
                     </h2>
-                    <p>
-                        Pengguna PetNest
-                    </p>
+
+                    <p>Pengguna PetNest</p>
                 </div>
-                <button
-                    type="button"
-                    class="edit-btn"
-                    onclick="alert('Fitur edit profil akan segera tersedia.')">
+
+                <a href="{{ route('profile.edit') }}" class="edit-btn">
                     ✎ Edit Profil
-                </button>
+                </a>
+
             </div>
+
             <div class="profile-content">
+
+                {{-- INFORMASI PRIBADI --}}
                 <div class="section-title">
-                    <h3>
-                        Informasi Pribadi
-                    </h3>
+                    <h3>Informasi Pribadi</h3>
                     <p>
-                        Informasi akun yang terdaftar di PetNest.
+                        Pastikan data kamu selalu benar dan terbaru.
                     </p>
                 </div>
+
                 <div class="info-grid">
+
                     <div class="info-box">
-                        <span class="label">
-                            Nama Lengkap
-                        </span>
+                        <span class="label">Nama Lengkap</span>
                         <span class="value">
                             {{ auth()->user()->name ?? '-' }}
                         </span>
                     </div>
+
                     <div class="info-box">
-                        <span class="label">
-                            Username
-                        </span>
+                        <span class="label">Username</span>
                         <span class="value">
                             {{ auth()->user()->username ?? '-' }}
                         </span>
                     </div>
+
                     <div class="info-box">
-                        <span class="label">
-                            Email
-                        </span>
+                        <span class="label">Email</span>
                         <span class="value">
                             {{ auth()->user()->email ?? '-' }}
                         </span>
                     </div>
+
                     <div class="info-box">
-                        <span class="label">
-                            Nomor Telepon
-                        </span>
+                        <span class="label">Nomor Telepon</span>
                         <span class="value">
-                            {{ auth()->user()->no_hp ?? '-' }}
+                            {{ auth()->user()->no_hp ?: '-' }}
                         </span>
                     </div>
+
                     <div class="info-box full">
-                        <span class="label">
-                            Alamat
-                        </span>
+                        <span class="label">Alamat</span>
                         <span class="value">
-                            {{ auth()->user()->alamat ?? '-' }}
+                            {{ auth()->user()->alamat ?: 'Alamat belum diisi.' }}
                         </span>
                     </div>
+
                 </div>
+
+                {{-- INFORMASI AKUN --}}
                 <div class="account-section">
+
                     <div class="section-title">
-                        <h3>
-                            Informasi Akun
-                        </h3>
-                        <p>
-                            Status akun kamu di PetNest.
-                        </p>
+                        <h3>Informasi Akun</h3>
+                        <p>Status dan informasi akun kamu di PetNest.</p>
                     </div>
+
                     <div class="account-list">
+
                         <div class="account-item">
                             <div>
-                                <span class="account-label">
-                                    Status Akun
-                                </span>
+                                <span class="account-label">Status Akun</span>
+
                                 <span class="status">
                                     {{ ucfirst(auth()->user()->status ?? 'Aktif') }}
                                 </span>
                             </div>
                         </div>
+
                         <div class="account-item">
                             <div>
-                                <span class="account-label">
-                                    Bergabung Sejak
-                                </span>
+                                <span class="account-label">Bergabung Sejak</span>
+
                                 <span>
                                     {{ auth()->user()->created_at
                                         ? auth()->user()->created_at->format('d F Y')
@@ -528,22 +575,63 @@
                                 </span>
                             </div>
                         </div>
+
                     </div>
+
                 </div>
+
+                {{-- MENU FITUR --}}
+                <div class="feature-section">
+
+                    <a href="{{ route('profile.edit') }}"
+                       class="feature-card">
+
+                        <div class="feature-icon">✎</div>
+
+                        <div class="feature-text">
+                            <h4>Edit Profil</h4>
+                            <p>
+                                Perbarui nama, email, nomor telepon,
+                                dan alamat kamu.
+                            </p>
+                        </div>
+
+                    </a>
+
+                    <a href="{{ route('profile.riwayat') }}"
+                       class="feature-card">
+
+                        <div class="feature-icon">📋</div>
+
+                        <div class="feature-text">
+                            <h4>Riwayat Pengajuan</h4>
+                            <p>
+                                Pantau status pengajuan adopsi
+                                hewan kamu.
+                            </p>
+                        </div>
+
+                    </a>
+
+                </div>
+
+                {{-- LOGOUT --}}
                 <div class="logout-section">
-                    <form
-                        action="{{ route('logout') }}"
-                        method="POST">
+
+                    <form action="{{ route('logout') }}" method="POST">
                         @csrf
-                        <button
-                            type="submit"
-                            class="logout-btn">
+
+                        <button type="submit" class="logout-btn">
                             Keluar dari Akun
                         </button>
                     </form>
+
                 </div>
+
             </div>
         </section>
     </main>
+
 </body>
 </html>
+```

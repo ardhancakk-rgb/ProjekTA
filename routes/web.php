@@ -6,6 +6,7 @@ use App\Http\Controllers\PetController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HewanController;
 use App\Http\Controllers\PengajuanAdopsiController;
+use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
     return view('home');
@@ -39,10 +40,6 @@ Route::get('/Kategori', function () {
     return view('Kategori');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
-
 // Auth
 Route::get('/login', function () {
     return view('auth.login');
@@ -52,8 +49,11 @@ Route::get('/admindash', function () {
     return view('admindash.dashboard');
 })->name('admindash.dashboard');
 
-Route::post('/login', [AuthController::class, 'login'])
-    ->name('login.process');
+
+Route::get('/login', [AuthController::class, 'showLogin'])
+    ->name('login');
+
+Route::post('/login', [AuthController::class, 'login']);
 
 Route::get('/register', function () {
     return view('auth.register');
@@ -96,5 +96,19 @@ Route::middleware('auth')->group(function () {
     Route::post('/adopsi/{id_hewan}',
         [PengajuanAdopsiController::class, 'store']
     )->name('adopsi.store');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'index'])
+        ->name('profile.index');
+
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])
+        ->name('profile.edit');
+
+    Route::put('/profile', [ProfileController::class, 'update'])
+        ->name('profile.update');
+
+    Route::get('/profile/riwayat', [ProfileController::class, 'riwayat'])
+        ->name('profile.riwayat');
 });
 

@@ -32,7 +32,7 @@ class Hewan extends Model
 
     public function kategori(): BelongsTo
     {
-        return $this->belongsTo(Kategori::class, 'kategori_id', 'id');
+        return $this->belongsTo(Kategori::class, 'kategori_id', 'id_kategori');
     }
 
     public function pengajuanAdopsi(): HasMany
