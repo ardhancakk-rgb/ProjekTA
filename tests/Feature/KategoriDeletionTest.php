@@ -25,8 +25,8 @@ test('an unused category can be deleted', function () {
 test('a category used by an animal cannot be deleted', function () {
     $kategori = Kategori::create(['nama_kategori' => 'Kucing']);
     $hewan = Hewan::create([
-        'kategori_id' => $kategori->id,
-        'nama' => 'Milo',
+        'id_kategori' => $kategori->id_kategori,
+        'nama_hewan' => 'Milo',
         'umur' => 2,
         'jenis_kelamin' => 'jantan',
     ]);

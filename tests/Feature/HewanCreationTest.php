@@ -18,7 +18,7 @@ test('hewan can be created without jenis lokasi or deskripsi', function () {
         ->assertDontSee('Deskripsi');
 
     $this->post(route('hewan.store'), [
-        'kategori_id' => $kategori->id,
+        'kategori_id' => $kategori->id_kategori,
         'nama' => 'Milo',
         'ras' => 'Persia',
         'umur' => 2,
@@ -28,7 +28,7 @@ test('hewan can be created without jenis lokasi or deskripsi', function () {
         ->assertRedirect(route('hewan.index'))
         ->assertSessionHas('success');
 
-    expect(Hewan::query()->where('nama', 'Milo')->exists())->toBeTrue();
+    expect(Hewan::query()->where('nama_hewan', 'Milo')->exists())->toBeTrue();
 });
 
 test('edit form shows existing hewan data and updates it without clearing deskripsi', function () {
@@ -36,16 +36,16 @@ test('edit form shows existing hewan data and updates it without clearing deskri
         'nama_kategori' => 'Kucing',
     ]);
     $hewan = Hewan::create([
-        'kategori_id' => $kategori->id,
+        'kategori_id' => $kategori->id_kategori,
         'nama' => 'Milo',
         'ras' => 'Persia',
         'umur' => 2,
         'jenis_kelamin' => 'jantan',
         'berat' => 3.5,
-        'kondisi_kesehatan' => 'Sehat',
+        'status_kesehatan' => 'Sehat',
         'status_vaksin' => 'Lengkap',
         'deskripsi' => 'Deskripsi lama',
-        'status' => 'tersedia',
+        'status_adopsi' => 'tersedia',
     ]);
 
     $this->get(route('hewan.edit', $hewan))
@@ -59,8 +59,8 @@ test('edit form shows existing hewan data and updates it without clearing deskri
         ->assertDontSee('name="deskripsi"', false);
 
     $this->put(route('hewan.update', $hewan), [
-        'kategori_id' => $kategori->id,
-        'nama' => 'Milo Baru',
+        'kategori_id' => $kategori->id_kategori,
+        'nama_hewan' => 'Milo Baru',
         'ras' => 'Persia',
         'umur' => 3,
         'jenis_kelamin' => 'jantan',

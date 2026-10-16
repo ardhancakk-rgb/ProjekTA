@@ -12,12 +12,8 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/pets', function () {
-    return view('pets');
-});
-
 Route::get('/about-us', function () {
-    return view('about-us');
+    return redirect('/');
 });
 
 Route::get('/contact', function () {
@@ -25,30 +21,31 @@ Route::get('/contact', function () {
 });
 
 Route::get('/help', function () {
-    return view('help');
+    return redirect('/contact');
 });
 
 Route::get('/Hewan', function () {
-    return view('Hewan');
+    return redirect()->route('hewan.index');
 });
 
 Route::get('/PengajuanAdopsi', function () {
-    return view('PengajuanAdopsi');
+    return redirect()->route('pets.index');
 });
 
 Route::get('/Kategori', function () {
-    return view('Kategori');
+    return redirect()->route('kategori.index');
 });
 
 // Auth
-Route::get('/login', function () {
-    return view('auth.login');
-})->name('login');
-
 Route::get('/admindash', function () {
     return view('admindash.dashboard');
 })->name('admindash.dashboard');
 
+Route::get('/dashboard', function () {
+    return auth()->user()->role === 'admin'
+        ? redirect()->route('admindash.dashboard')
+        : view('dashboard');
+})->middleware('auth')->name('dashboard');
 
 Route::get('/login', [AuthController::class, 'showLogin'])
     ->name('login');
@@ -59,10 +56,6 @@ Route::get('/register', function () {
     return view('auth.register');
 })->name('register');
 
-Route::get('/logout', function () {
-    return view('auth.logout');
-})->name('logout');
-
 Route::get('/pets', [PetController::class, 'index'])
     ->name('pets.index');
 
@@ -72,23 +65,18 @@ Route::post('/register', [AuthController::class, 'register'])
 Route::post('/logout', [AuthController::class, 'logout'])
     ->name('logout');
 
-Route::post('/pengajuan', [AuthController::class, 'pengajuan'])
-    ->name('pengajuan');
-
 Route::resource('hewan', HewanController::class);
-
-Route::resource('hewan', HewanController::class);
-Route::get('/kategori', [KategoriController::class, 'index'])
-    ->name('kategori');
 
 Route::resource('kategori', KategoriController::class)->except(['show']);
 
 Route::get('/kembali', function () {
-    return redirect()->route('admindash.kategori');
+    return redirect()->route('kategori.index');
 })->name('kembali');
 
 Route::middleware('auth')->group(function () {
-    
+    Route::get('/pengajuan', [PengajuanAdopsiController::class, 'index'])
+        ->name('pengajuan.index');
+
     Route::get('/adopsi/{id_hewan}',
         [PengajuanAdopsiController::class, 'create']
     )->name('adopsi.create');

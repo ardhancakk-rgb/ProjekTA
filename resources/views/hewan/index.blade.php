@@ -36,10 +36,10 @@
                 @forelse ($hewan as $item)
                     <tr>
                         <td>
-                            @if ($item->gambar)
+                            @if ($item->foto)
                                 <img
-                                    src="{{ asset('storage/' . $item->gambar) }}"
-                                    alt="{{ $item->nama }}"
+                                    src="{{ asset('storage/' . $item->foto) }}"
+                                    alt="{{ $item->nama_hewan }}"
                                     width="60"
                                     height="60"
                                     class="rounded object-fit-cover"
@@ -48,15 +48,15 @@
                                 <span class="text-muted">No foto</span>
                             @endif
                         </td>
-                        <td><strong>{{ $item->nama }}</strong></td>
+                        <td><strong>{{ $item->nama_hewan }}</strong></td>
                         <td>{{ $item->kategori->nama_kategori ?? '-' }}</td>
                         <td>{{ $item->ras ?? '-' }}</td>
                         <td>{{ $item->umur }} tahun</td>
                         <td>{{ ucfirst($item->jenis_kelamin) }}</td>
-                        <td>{{ $item->kondisi_kesehatan ?? '-' }}</td>
+                        <td>{{ $item->status_kesehatan ?? '-' }}</td>
                         <td>
-                            <span class="badge {{ $item->status == 'tersedia' ? 'bg-success' : ($item->status == 'diproses' ? 'bg-warning text-dark' : 'bg-secondary') }}">
-                                {{ ucfirst($item->status) }}
+                            <span class="badge {{ $item->status_adopsi == 'tersedia' ? 'bg-success' : ($item->status_adopsi == 'diproses' ? 'bg-warning text-dark' : 'bg-secondary') }}">
+                                {{ ucfirst($item->status_adopsi) }}
                             </span>
                         </td>
                         <td>

@@ -27,8 +27,8 @@ class HewanController extends Controller
 
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'kategori_id' => 'required|exists:kategori,id',
+        $data = $request->validate([
+            'kategori_id' => 'required|exists:kategori_hewan,id_kategori',
             'nama' => 'required|string|max:255',
             'ras' => 'nullable|string|max:255',
             'umur' => 'required|integer|min:0',
@@ -41,12 +41,26 @@ class HewanController extends Controller
             'status' => 'required|in:tersedia,diproses,diadopsi',
         ]);
 
+        $data['id_kategori'] = $data['kategori_id'];
+        $data['nama_hewan'] = $data['nama'];
+        $data['status_kesehatan'] = $data['kondisi_kesehatan'] ?? null;
+        $data['status_adopsi'] = $data['status'];
+
+        unset(
+            $data['kategori_id'],
+            $data['nama'],
+            $data['kondisi_kesehatan'],
+            $data['status']
+        );
+
         if ($request->hasFile('gambar')) {
-            $validatedData['gambar'] = $request->file('gambar')
+            $data['foto'] = $request->file('gambar')
                 ->store('hewan', 'public');
         }
 
-        Hewan::create($validatedData);
+        unset($data['gambar']);
+
+        Hewan::create($data);
 
         return redirect()
             ->route('hewan.index')
@@ -62,8 +76,8 @@ class HewanController extends Controller
 
     public function update(Request $request, Hewan $hewan)
     {
-        $validatedData = $request->validate([
-            'kategori_id' => 'required|exists:kategori,id',
+        $data = $request->validate([
+            'kategori_id' => 'required|exists:kategori_hewan,id_kategori',
             'nama' => 'required|string|max:255',
             'ras' => 'nullable|string|max:255',
             'umur' => 'required|integer|min:0',
@@ -76,16 +90,30 @@ class HewanController extends Controller
             'status' => 'required|in:tersedia,diproses,diadopsi',
         ]);
 
+        $data['id_kategori'] = $data['kategori_id'];
+        $data['nama_hewan'] = $data['nama'];
+        $data['status_kesehatan'] = $data['kondisi_kesehatan'] ?? null;
+        $data['status_adopsi'] = $data['status'];
+
+        unset(
+            $data['kategori_id'],
+            $data['nama'],
+            $data['kondisi_kesehatan'],
+            $data['status']
+        );
+
         if ($request->hasFile('gambar')) {
-            if ($hewan->gambar) {
-                Storage::disk('public')->delete($hewan->gambar);
+            if ($hewan->foto) {
+                Storage::disk('public')->delete($hewan->foto);
             }
 
-            $validatedData['gambar'] = $request->file('gambar')
+            $data['foto'] = $request->file('gambar')
                 ->store('hewan', 'public');
         }
 
-        $hewan->update($validatedData);
+        unset($data['gambar']);
+
+        $hewan->update($data);
 
         return redirect()
             ->route('hewan.index')
@@ -94,8 +122,8 @@ class HewanController extends Controller
 
     public function destroy(Hewan $hewan)
     {
-        if ($hewan->gambar) {
-            Storage::disk('public')->delete($hewan->gambar);
+        if ($hewan->foto) {
+            Storage::disk('public')->delete($hewan->foto);
         }
 
         $hewan->delete();

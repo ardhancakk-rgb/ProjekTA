@@ -6,37 +6,38 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\Kategori;
 
 class Hewan extends Model
 {
     use HasFactory;
+
 
     protected $table = 'hewan';
 
     protected $primaryKey = 'id_hewan';
 
     protected $fillable = [
-        'kategori_id',
-        'nama',
+        'id_kategori',
+        'nama_hewan',
         'ras',
         'umur',
         'jenis_kelamin',
         'berat',
-        'warna',
-        'deskripsi',
-        'kondisi_kesehatan',
+        'status_kesehatan',
         'status_vaksin',
-        'gambar',
-        'status',
+        'foto',
+        'deskripsi',
+        'status_adopsi',
     ];
 
-    public function kategori(): BelongsTo
+    public function kategori()
     {
-        return $this->belongsTo(Kategori::class, 'kategori_id', 'id_kategori');
+        return $this->belongsTo(
+            Kategori::class,
+            'id_kategori',
+            'id_kategori'
+        );
     }
 
-    public function pengajuanAdopsi(): HasMany
-    {
-        return $this->hasMany(PengajuanAdopsi::class, 'id_hewan', 'id_hewan');
-    }
 }

@@ -4,10 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Models\Hewan;
 use App\Models\PengajuanAdopsi;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
 class PengajuanAdopsiController extends Controller
 {
+    public function index(): View
+    {
+        abort_unless(auth()->user()->role === 'admin', 403);
+
+        return view('admindash.pengajuan', [
+            'pengajuan' => PengajuanAdopsi::with(['user', 'hewan'])
+                ->latest('tanggal_pengajuan')
+                ->get(),
+        ]);
+    }
+
     // Menampilkan formulir adopsi
     public function create($id_hewan)
     {
@@ -23,7 +35,7 @@ class PengajuanAdopsiController extends Controller
         $hewan = Hewan::where('id_hewan', $id_hewan)
             ->firstOrFail();
 
-        if ($hewan->status !== 'tersedia') {
+        if ($hewan->status_adopsi !== 'tersedia') {
             return back()->with(
                 'error',
                 'Hewan ini tidak tersedia untuk diadopsi.'
@@ -33,7 +45,7 @@ class PengajuanAdopsiController extends Controller
         $sudahMengajukan = PengajuanAdopsi::where(
             'id_user', auth()->id()
         )->where('id_hewan', $hewan->id_hewan)
-         ->where('status', 'pending')
+         ->where('status_pengajuan', 'pending')
          ->exists();
 
         if ($sudahMengajukan) {
@@ -47,7 +59,7 @@ class PengajuanAdopsiController extends Controller
             'id_user' => auth()->id(),
             'id_hewan' => $hewan->id_hewan,
             'tanggal_pengajuan' => now(),
-            'status' => 'pending',
+            'status_pengajuan' => 'pending',
         ]);
 
         return redirect()->route('adopsi.create', $hewan->id_hewan)

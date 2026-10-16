@@ -37,7 +37,7 @@
 <body class="py-4">
     <main class="container">
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h1 class="h3 mb-0 fw-semibold">Edit Data Hewan: {{ $hewan->nama }}</h1>
+            <h1 class="h3 mb-0 fw-semibold">Edit Data Hewan: {{ $hewan->nama_hewan }}</h1>
             <a href="{{ route('hewan.index') }}" class="btn btn-outline-secondary">Kembali</a>
         </div>
 
@@ -59,7 +59,7 @@
             <div class="row g-4">
                 <div class="col-md-6">
                     <label for="nama" class="form-label">Nama Hewan</label>
-                    <input id="nama" type="text" name="nama" class="form-control" value="{{ old('nama', $hewan->nama) }}" required>
+                    <input id="nama" type="text" name="nama" class="form-control" value="{{ old('nama', $hewan->nama_hewan) }}" required>
                 </div>
 
                 <div class="col-md-6">
@@ -67,7 +67,7 @@
                     <select id="kategori_id" name="kategori_id" class="form-select" required>
                         <option value="">-- Pilih Kategori --</option>
                         @foreach ($kategori as $kat)
-                            <option value="{{ $kat->id }}" {{ old('kategori_id', $hewan->kategori_id) == $kat->id ? 'selected' : '' }}>
+                            <option value="{{ $kat->id_kategori }}" {{ old('kategori_id', $hewan->id_kategori) == $kat->id_kategori ? 'selected' : '' }}>
                                 {{ $kat->nama_kategori }}
                             </option>
                         @endforeach
@@ -100,9 +100,9 @@
                 <div class="col-md-6">
                     <label for="status" class="form-label">Status Adopsi</label>
                     <select id="status" name="status" class="form-select" required>
-                        <option value="tersedia" {{ old('status', $hewan->status) == 'tersedia' ? 'selected' : '' }}>Tersedia</option>
-                        <option value="diproses" {{ old('status', $hewan->status) == 'diproses' ? 'selected' : '' }}>Diproses</option>
-                        <option value="diadopsi" {{ old('status', $hewan->status) == 'diadopsi' ? 'selected' : '' }}>Diadopsi</option>
+                        <option value="tersedia" {{ old('status', $hewan->status_adopsi) == 'tersedia' ? 'selected' : '' }}>Tersedia</option>
+                        <option value="diproses" {{ old('status', $hewan->status_adopsi) == 'diproses' ? 'selected' : '' }}>Diproses</option>
+                        <option value="diadopsi" {{ old('status', $hewan->status_adopsi) == 'diadopsi' ? 'selected' : '' }}>Diadopsi</option>
                     </select>
                 </div>
 
@@ -113,14 +113,14 @@
 
                 <div class="col-md-6">
                     <label for="kondisi_kesehatan" class="form-label">Status Kesehatan</label>
-                    <input id="kondisi_kesehatan" type="text" name="kondisi_kesehatan" class="form-control" value="{{ old('kondisi_kesehatan', $hewan->kondisi_kesehatan) }}">
+                    <input id="kondisi_kesehatan" type="text" name="kondisi_kesehatan" class="form-control" value="{{ old('kondisi_kesehatan', $hewan->status_kesehatan) }}">
                 </div>
 
                 <div class="col-12">
                     <label for="gambar" class="form-label">Ganti Foto (opsional)</label>
                     <input id="gambar" type="file" name="gambar" accept="image/*" class="form-control">
-                    @if ($hewan->gambar)
-                        <img src="{{ asset('storage/' . $hewan->gambar) }}" alt="Foto {{ $hewan->nama }}" width="100" class="rounded mt-2">
+                    @if ($hewan->foto)
+                        <img src="{{ asset('storage/' . $hewan->foto) }}" alt="Foto {{ $hewan->nama_hewan }}" width="100" class="rounded mt-2">
                     @endif
                 </div>
             </div>

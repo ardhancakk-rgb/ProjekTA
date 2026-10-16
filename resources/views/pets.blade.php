@@ -64,6 +64,23 @@
         .nav a:hover {
             color: #aaa9a9;
         }
+
+        .nav form {
+            margin-right: 20px;
+        }
+
+        .nav button {
+            padding: 0;
+            border: 0;
+            background: transparent;
+            color: #fff;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        .nav button:hover {
+            color: #aaa9a9;
+        }
     </style>
 </head>
 
@@ -85,18 +102,21 @@
             <tbody>
                 @foreach($hewan as $item)
                     <tr>
-                        <td>{{ $item->id }}</td>
-                        <td>{{ $item->nama }}</td>
-                        <td>{{ $item->kategori_id }}</td>
-                        <td>{{ $item->usia ?? '-' }}</td>
+                        <td>{{ $item->id_hewan }}</td>
+                        <td>{{ $item->nama_hewan }}</td>
+                        <td>{{ $item->kategori?->nama_kategori ?? '-' }}</td>
+                        <td>{{ $item->umur }}</td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
     @endif
     <header class="nav">
-        <a href="{{ route('dashboard') }}"><i class="fa-solid fa-house"></i></a>
-        <a href="{{ route('logout') }}"><i class="fa-solid fa-right-from-bracket"></i></a>
+        <a href="{{ route('dashboard') }}" aria-label="Dashboard"><i class="fa-solid fa-house"></i></a>
+        <form action="{{ route('logout') }}" method="POST">
+            @csrf
+            <button type="submit" aria-label="Logout"><i class="fa-solid fa-right-from-bracket"></i></button>
+        </form>
     </header>
 </body>
 

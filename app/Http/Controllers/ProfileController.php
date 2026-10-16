@@ -68,7 +68,7 @@ class ProfileController extends Controller
             ->where('pengajuan_adopsi.id_user', Auth::id())
             ->select(
                 'pengajuan_adopsi.*',
-                'hewan.nama as nama_hewan'
+                'hewan.nama_hewan as nama_hewan'
             )
             ->orderByDesc('pengajuan_adopsi.tanggal_pengajuan')
             ->get();

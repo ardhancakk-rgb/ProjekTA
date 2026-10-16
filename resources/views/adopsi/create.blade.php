@@ -56,17 +56,17 @@
             <p class="error">{{ session('error') }}</p>
         @endif
 
-        @if ($hewan->gambar)
-            <img src="{{ asset('storage/' . $hewan->gambar) }}" alt="{{ $hewan->nama }}">
+        @if ($hewan->foto)
+            <img src="{{ asset('storage/' . $hewan->foto) }}" alt="{{ $hewan->nama_hewan }}">
         @endif
 
-        <h2>{{ $hewan->nama }}</h2>
+        <h2>{{ $hewan->nama_hewan }}</h2>
         <p>Ras: {{ $hewan->ras ?? '-' }}</p>
         <p>Umur: {{ $hewan->umur }} tahun</p>
         <p>Jenis kelamin: {{ ucfirst($hewan->jenis_kelamin) }}</p>
-        <p>Status: {{ ucfirst($hewan->status) }}</p>
+        <p>Status: {{ ucfirst($hewan->status_adopsi) }}</p>
 
-        @if ($hewan->status === 'tersedia')
+        @if ($hewan->status_adopsi === 'tersedia')
             <form action="{{ route('adopsi.store', $hewan->id_hewan) }}" method="POST">
                 @csrf
                 <p>

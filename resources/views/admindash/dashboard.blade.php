@@ -98,7 +98,27 @@
         transition: 0.2s;
     }
 
+    .sidebar-bottom button {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        width: 100%;
+        padding: 13px 15px;
+        border: 0;
+        background: transparent;
+        color: red;
+        text-align: left;
+        cursor: pointer;
+        border-radius: 10px;
+        transition: 0.2s;
+        font: inherit;
+    }
+
     .sidebar-bottom a:hover {
+        background: #fef2f2;
+    }
+
+    .sidebar-bottom button:hover {
         background: #fef2f2;
     }
 
@@ -399,7 +419,7 @@
             <span>Kategori</span>
         </a>
 
-        <a href="{{ url('/pengajuan') }}"
+        <a href="{{ route('pengajuan.index') }}"
            class="{{ request()->is('pengajuan*') ? 'active' : '' }}">
             <i class="fa-solid fa-file-lines"></i>
             <span>Pengajuan Adopsi</span>
@@ -407,17 +427,20 @@
 
         <div class="sidebar-divider"></div>
 
-        <a href="{{ url('/profil') }}"
-           class="{{ request()->is('profil*') ? 'active' : '' }}">
+          <a href="{{ url('/profile') }}"
+              class="{{ request()->is('profile*') ? 'active' : '' }}">
             <i class="fa-solid fa-user"></i>
             <span>Profil</span>
         </a>
     </nav>
     <div class="sidebar-bottom">
-        <a href="{{ url('/logout') }}">
-            <i class="fa-solid fa-right-from-bracket"></i>
-            <span>Logout</span>
-        </a>
+        <form action="{{ route('logout') }}" method="POST">
+            @csrf
+            <button type="submit">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span>Logout</span>
+            </button>
+        </form>
     </div>
 </aside>
 <main class="main-content">

@@ -8,7 +8,8 @@ class PetController extends Controller
 {
     public function index()
     {
-        $hewan = Hewan::all();
+        $hewan = Hewan::with('kategori')->get();
+
         return view('pets', compact('hewan'));
     }
 }
