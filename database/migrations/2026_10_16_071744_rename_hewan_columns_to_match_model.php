@@ -11,13 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('hewan', function (Blueprint $table) {
-            $table->renameColumn('kategori_id', 'id_kategori');
-            $table->renameColumn('nama', 'nama_hewan');
-            $table->renameColumn('kondisi_kesehatan', 'status_kesehatan');
-            $table->renameColumn('status', 'status_adopsi');
-            $table->renameColumn('gambar', 'foto');
-        });
+        
     }
 
     /**
