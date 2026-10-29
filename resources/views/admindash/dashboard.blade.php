@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,118 +18,6 @@
             background: #f4f4f4;
             color: #333333;
         }
-
-    .sidebar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 250px;
-        height: 100vh;
-        background: #ffffff;
-        border-right: 1px solid #e5e7eb;
-        display: flex;
-        flex-direction: column;
-        padding: 25px 15px;
-        z-index: 1000;
-    }
-
-    .sidebar-logo {
-        padding: 10px 15px 35px;
-        font-size: 22px;
-        font-weight: 700;
-        color: #2563eb;
-    }
-
-    .sidebar-logo span {
-        color: #111827;
-    }
-
-    .sidebar-menu {
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
-    }
-
-    .sidebar-menu a {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        padding: 13px 15px;
-        color: #6b7280;
-        text-decoration: none;
-        border-radius: 10px;
-        font-size: 15px;
-        transition: 0.2s;
-    }
-
-    .sidebar-menu a i {
-        width: 20px;
-        text-align: center;
-        font-size: 16px;
-    }
-
-    .sidebar-menu a:hover {
-        background: #eff6ff;
-        color: #2563eb;
-    }
-
-    .sidebar-menu a.active {
-        background: #2563eb;
-        color: #ffffff;
-    }
-
-    .sidebar-divider {
-        height: 1px;
-        background: #e5e7eb;
-        margin: 20px 5px;
-    }
-
-    .sidebar-bottom {
-        margin-top: auto;
-    }
-
-    .sidebar-bottom a {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        padding: 13px 15px;
-        color: red;
-        text-decoration: none;
-        border-radius: 10px;
-        transition: 0.2s;
-    }
-
-    .sidebar-bottom button {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        width: 100%;
-        padding: 13px 15px;
-        border: 0;
-        background: transparent;
-        color: red;
-        text-align: left;
-        cursor: pointer;
-        border-radius: 10px;
-        transition: 0.2s;
-        font: inherit;
-    }
-
-    .sidebar-bottom a:hover {
-        background: #fef2f2;
-    }
-
-    .sidebar-bottom button:hover {
-        background: #fef2f2;
-    }
-
-    .main-content {
-        margin-left: 250px;
-        min-height: 100vh;
-        padding: 30px;
-    }
-
-    @media (max-width: 768px) {
 
         .sidebar {
             position: fixed;
@@ -148,6 +37,10 @@
             padding: 10px 15px 35px;
             font-size: 22px;
             font-weight: 700;
+            color: #2563eb;
+        }
+
+        .sidebar-logo span {
             color: #111827;
         }
 
@@ -176,12 +69,12 @@
         }
 
         .sidebar-menu a:hover {
-            background: #f0f0f0;
-            color: #111827;
+            background: #eff6ff;
+            color: #2563eb;
         }
 
         .sidebar-menu a.active {
-            background: #333333;
+            background: #2563eb;
             color: #ffffff;
         }
 
@@ -200,14 +93,34 @@
             align-items: center;
             gap: 12px;
             padding: 13px 15px;
-            color: #333333;
+            color: red;
             text-decoration: none;
             border-radius: 10px;
             transition: 0.2s;
         }
 
+        .sidebar-bottom button {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+            padding: 13px 15px;
+            border: 0;
+            background: transparent;
+            color: red;
+            text-align: left;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: 0.2s;
+            font: inherit;
+        }
+
         .sidebar-bottom a:hover {
-            background: #e5e5e5;
+            background: #fef2f2;
+        }
+
+        .sidebar-bottom button:hover {
+            background: #fef2f2;
         }
 
         .main-content {
@@ -216,13 +129,102 @@
             padding: 30px;
         }
 
-        .hero {
-    margin-left: 210px;
-    width: calc(100% - 210px);
-    padding: 40px;
-    box-sizing: border-box;
-}
-    }
+        @media (max-width: 768px) {
+
+            .sidebar {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 250px;
+                height: 100vh;
+                background: #ffffff;
+                border-right: 1px solid #e5e7eb;
+                display: flex;
+                flex-direction: column;
+                padding: 25px 15px;
+                z-index: 1000;
+            }
+
+            .sidebar-logo {
+                padding: 10px 15px 35px;
+                font-size: 22px;
+                font-weight: 700;
+                color: #111827;
+            }
+
+            .sidebar-menu {
+                display: flex;
+                flex-direction: column;
+                gap: 6px;
+            }
+
+            .sidebar-menu a {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                padding: 13px 15px;
+                color: #6b7280;
+                text-decoration: none;
+                border-radius: 10px;
+                font-size: 15px;
+                transition: 0.2s;
+            }
+
+            .sidebar-menu a i {
+                width: 20px;
+                text-align: center;
+                font-size: 16px;
+            }
+
+            .sidebar-menu a:hover {
+                background: #f0f0f0;
+                color: #111827;
+            }
+
+            .sidebar-menu a.active {
+                background: #333333;
+                color: #ffffff;
+            }
+
+            .sidebar-divider {
+                height: 1px;
+                background: #e5e7eb;
+                margin: 20px 5px;
+            }
+
+            .sidebar-bottom {
+                margin-top: auto;
+            }
+
+            .sidebar-bottom a {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                padding: 13px 15px;
+                color: #333333;
+                text-decoration: none;
+                border-radius: 10px;
+                transition: 0.2s;
+            }
+
+            .sidebar-bottom a:hover {
+                background: #e5e5e5;
+            }
+
+            .main-content {
+                margin-left: 250px;
+                min-height: 100vh;
+                padding: 30px;
+            }
+
+            .hero {
+                margin-left: 210px;
+                width: calc(100% - 210px);
+                padding: 40px;
+                box-sizing: border-box;
+            }
+        }
+
         .profile-section {
             background: #ffffff;
             border: 1px solid #e5e7eb;
@@ -392,137 +394,134 @@
         }
     </style>
 </head>
+
 <body>
 
-<aside class="sidebar">
-    <div class="sidebar-logo">
-        <span>Pet Nest</span>
-    </div>
-    <nav class="sidebar-menu">
-
-        <a href="{{ url('/dashboard') }}"
-           class="{{ request()->is('dashboard*') ? 'active' : '' }}">
-            <i class="fa-solid fa-house"></i>
-            <span>Dashboard</span>
-        </a>
-
-        <a href="{{ url('/hewan') }}"
-           class="{{ request()->is('pets*') ? 'active' : '' }}">
-
-            <i class="fa-solid fa-paw"></i>
-            <span>Data Hewan</span>
-        </a>
-
-        <a href="{{ url('/kategori') }}"
-           class="{{ request()->is('kategori*') ? 'active' : '' }}">
-            <i class="fa-solid fa-layer-group"></i>
-            <span>Kategori</span>
-        </a>
-
-        <a href="{{ route('pengajuan.index') }}"
-           class="{{ request()->is('pengajuan*') ? 'active' : '' }}">
-            <i class="fa-solid fa-file-lines"></i>
-            <span>Pengajuan Adopsi</span>
-        </a>
-
-        <div class="sidebar-divider"></div>
-
-          <a href="{{ url('/profile') }}"
-              class="{{ request()->is('profile*') ? 'active' : '' }}">
-            <i class="fa-solid fa-user"></i>
-            <span>Profil</span>
-        </a>
-    </nav>
-    <div class="sidebar-bottom">
-        <form action="{{ route('logout') }}" method="POST">
-            @csrf
-            <button type="submit">
-                <i class="fa-solid fa-right-from-bracket"></i>
-                <span>Logout</span>
-            </button>
-        </form>
-    </div>
-</aside>
-<main class="main-content">
-    @hasSection('content')
-        @yield('content')
-    @else
-
-        <section class="profile-section">
-            <div class="profile-info">
-                <div class="admin-avatar-large">
-                    <i class="fa-solid fa-user"></i>
-                </div>
-                <div class="admin-details">
-                    <h1>Admin Pet Nest</h1>
-                    <p>admin@gmail.com</p>
-                </div>
-            </div>
-            <button class="btn"><i class="fa-solid fa-pen"></i> Edit Profil</button>
-        </section>
-
-        <div class="section-header">
-            <h2>Ringkasan Data</h2>
-            <div style="display: flex; gap: 10px;">
-                <input type="text" class="search-bar" placeholder="Cari data...">
-                <button class="btn"><i class="fa-solid fa-plus"></i> Tambah Data</button>
-            </div>
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <span>Pet Nest</span>
         </div>
+        <nav class="sidebar-menu">
 
-        <div class="cards-grid">
-            <div class="card-item">
-                <div class="card-image-placeholder">
-                    <i class="fa-solid fa-image fa-2x"></i>
-                </div>
-                <div class="card-content">
-                    <h3>Kucing Persi</h3>
-                    <p>Kategori: Kucing</p>
-                    <p>Status: Tersedia</p>
-                </div>
-                <div class="card-actions">
-                    <button class="btn"><i class="fa-solid fa-eye"></i> Detail</button>
-                    <button class="btn"><i class="fa-solid fa-pen"></i> Edit</button>
-                    <button class="btn"><i class="fa-solid fa-trash"></i> Hapus</button>
-                </div>
-            </div>
+            <a href="{{ url('/dashboard') }}" class="{{ request()->is('dashboard*') ? 'active' : '' }}">
+                <i class="fa-solid fa-house"></i>
+                <span>Dashboard</span>
+            </a>
 
-            <div class="card-item">
-                <div class="card-image-placeholder">
-                    <i class="fa-solid fa-image fa-2x"></i>
-                </div>
-                <div class="card-content">
-                    <h3>Anjing Golden</h3>
-                    <p>Kategori: Anjing</p>
-                    <p>Status: Teradopsi</p>
-                </div>
-                <div class="card-actions">
-                    <button class="btn"><i class="fa-solid fa-eye"></i> Detail</button>
-                    <button class="btn"><i class="fa-solid fa-pen"></i> Edit</button>
-                    <button class="btn"><i class="fa-solid fa-trash"></i> Hapus</button>
-                </div>
-            </div>
+            <a href="{{ url('/hewan') }}" class="{{ request()->is('pets*') ? 'active' : '' }}">
 
-            <div class="card-item">
-                <div class="card-image-placeholder">
-                    <i class="fa-solid fa-image fa-2x"></i>
-                </div>
-                <div class="card-content">
-                    <h3>Kelinci Anggora</h3>
-                    <p>Kategori: Kelinci</p>
-                    <p>Status: Tersedia</p>
-                </div>
-                <div class="card-actions">
-                    <button class="btn"><i class="fa-solid fa-eye"></i> Detail</button>
-                    <button class="btn"><i class="fa-solid fa-pen"></i> Edit</button>
-                    <button class="btn"><i class="fa-solid fa-trash"></i> Hapus</button>
-                </div>
-            </div>
+                <i class="fa-solid fa-paw"></i>
+                <span>Data Hewan</span>
+            </a>
+
+            <a href="{{ url('/kategori') }}" class="{{ request()->is('kategori*') ? 'active' : '' }}">
+                <i class="fa-solid fa-layer-group"></i>
+                <span>Kategori</span>
+            </a>
+
+
+            <a href="{{ route('admin.pengajuan.index') }}" class="sidebar-link">
+                <i class="fas fa-clipboard-list"></i>
+                <span>Pengajuan Adopsi</span>
+            </a>
+
+
+            <div class="sidebar-divider"></div>
+
+            <a href="{{ url('/profile') }}" class="{{ request()->is('profile*') ? 'active' : '' }}">
+                <i class="fa-solid fa-user"></i>
+                <span>Profil</span>
+            </a>
+        </nav>
+        <div class="sidebar-bottom">
+            <form action="{{ route('logout') }}" method="POST">
+                @csrf
+                <button type="submit">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <span>Logout</span>
+                </button>
+            </form>
         </div>
-    @endif
-</main>
-<link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    </aside>
+    <main class="main-content">
+        @hasSection('content')
+            @yield('content')
+        @else
+
+            <section class="profile-section">
+                <div class="profile-info">
+                    <div class="admin-avatar-large">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <div class="admin-details">
+                        <h1>Admin Pet Nest</h1>
+                        <p>admin@gmail.com</p>
+                    </div>
+                </div>
+                <button class="btn"><i class="fa-solid fa-pen"></i> Edit Profil</button>
+            </section>
+
+            <div class="section-header">
+                <h2>Ringkasan Data</h2>
+                <div style="display: flex; gap: 10px;">
+                    <input type="text" class="search-bar" placeholder="Cari data...">
+                    <button class="btn"><i class="fa-solid fa-plus"></i> Tambah Data</button>
+                </div>
+            </div>
+
+            <div class="cards-grid">
+                <div class="card-item">
+                    <div class="card-image-placeholder">
+                        <i class="fa-solid fa-image fa-2x"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Kucing Persi</h3>
+                        <p>Kategori: Kucing</p>
+                        <p>Status: Tersedia</p>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn"><i class="fa-solid fa-eye"></i> Detail</button>
+                        <button class="btn"><i class="fa-solid fa-pen"></i> Edit</button>
+                        <button class="btn"><i class="fa-solid fa-trash"></i> Hapus</button>
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-image-placeholder">
+                        <i class="fa-solid fa-image fa-2x"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Anjing Golden</h3>
+                        <p>Kategori: Anjing</p>
+                        <p>Status: Teradopsi</p>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn"><i class="fa-solid fa-eye"></i> Detail</button>
+                        <button class="btn"><i class="fa-solid fa-pen"></i> Edit</button>
+                        <button class="btn"><i class="fa-solid fa-trash"></i> Hapus</button>
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-image-placeholder">
+                        <i class="fa-solid fa-image fa-2x"></i>
+                    </div>
+                    <div class="card-content">
+                        <h3>Kelinci Anggora</h3>
+                        <p>Kategori: Kelinci</p>
+                        <p>Status: Tersedia</p>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn"><i class="fa-solid fa-eye"></i> Detail</button>
+                        <button class="btn"><i class="fa-solid fa-pen"></i> Edit</button>
+                        <button class="btn"><i class="fa-solid fa-trash"></i> Hapus</button>
+                    </div>
+                </div>
+            </div>
+        @endif
+    </main>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 </body>
-</html>
 
+</html>

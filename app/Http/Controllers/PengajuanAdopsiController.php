@@ -4,65 +4,76 @@ namespace App\Http\Controllers;
 
 use App\Models\Hewan;
 use App\Models\PengajuanAdopsi;
-use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PengajuanAdopsiController extends Controller
 {
-    public function index(): View
-    {
-        abort_unless(auth()->user()->role === 'admin', 403);
-
-        return view('admindash.pengajuan', [
-            'pengajuan' => PengajuanAdopsi::with(['user', 'hewan'])
-                ->latest('tanggal_pengajuan')
-                ->get(),
-        ]);
-    }
-
-    // Menampilkan formulir adopsi
     public function create($id_hewan)
     {
-        $hewan = Hewan::where('id_hewan', $id_hewan)
-            ->firstOrFail();
-
-        return view('adopsi.create', compact('hewan'));
-    }
-
-    // Menyimpan pengajuan ke database
-    public function store(Request $request, $id_hewan)
-    {
-        $hewan = Hewan::where('id_hewan', $id_hewan)
-            ->firstOrFail();
+        $hewan = Hewan::findOrFail($id_hewan);
 
         if ($hewan->status_adopsi !== 'tersedia') {
-            return back()->with(
-                'error',
-                'Hewan ini tidak tersedia untuk diadopsi.'
-            );
+            return redirect()
+                ->route('pets.index')
+                ->with('error', 'Hewan ini tidak tersedia untuk diadopsi.');
         }
 
-        $sudahMengajukan = PengajuanAdopsi::where(
-            'id_user', auth()->id()
-        )->where('id_hewan', $hewan->id_hewan)
-         ->where('status_pengajuan', 'pending')
-         ->exists();
+        return view('pengajuan.create', compact('hewan'));
+    }
 
-        if ($sudahMengajukan) {
-            return back()->with(
-                'error',
-                'Kamu sudah mengajukan adopsi hewan ini.'
-            );
-        }
-
-        PengajuanAdopsi::create([
-            'id_user' => auth()->id(),
-            'id_hewan' => $hewan->id_hewan,
-            'tanggal_pengajuan' => now(),
-            'status_pengajuan' => 'pending',
+    public function store(Request $request, $id_hewan)
+    {
+        $data = $request->validate([
+            'telepon_pemohon' => 'required|string|max:20',
+            'alamat_pemohon' => 'required|string|max:1000',
+            'alasan_adopsi' => 'required|string|max:2000',
         ]);
 
-        return redirect()->route('adopsi.create', $hewan->id_hewan)
-            ->with('success', 'Pengajuan adopsi berhasil dikirim.');
+        $hasil = DB::transaction(function () use ($id_hewan, $data) {
+            $hewan = Hewan::where('id_hewan', $id_hewan)
+                ->lockForUpdate()
+                ->firstOrFail();
+
+            if ($hewan->status_adopsi !== 'tersedia') {
+                return false;
+            }
+
+            PengajuanAdopsi::create([
+                'id_user' => auth()->id(),
+                'id_hewan' => $hewan->id_hewan,
+                'tanggal_pengajuan' => now()->toDateString(),
+                'status_pengajuan' => 'pending',
+                'telepon_pemohon' => $data['telepon_pemohon'],
+                'alamat_pemohon' => $data['alamat_pemohon'],
+                'alasan_adopsi' => $data['alasan_adopsi'],
+            ]);
+
+            $hewan->update([
+                'status_adopsi' => 'diproses',
+            ]);
+
+            return true;
+        });
+
+        if (! $hasil) {
+            return redirect()
+                ->route('pets.index')
+                ->with('error', 'Hewan sudah diproses atau tidak tersedia.');
+        }
+
+        return redirect()
+            ->route('pengajuan.riwayat')
+            ->with('success', 'Pengajuan adopsi berhasil dikirim!');
+    }
+
+    public function riwayat()
+    {
+        $pengajuan = PengajuanAdopsi::with('hewan')
+            ->where('id_user', auth()->id())
+            ->latest('id_pengajuan')
+            ->get();
+
+        return view('pengajuan.riwayat', compact('pengajuan'));
     }
 }

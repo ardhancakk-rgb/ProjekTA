@@ -409,6 +409,7 @@
             <a href="/pets">Pets</a>
             <a href="/about-us">About Us</a>
             <a href="/contact">Contact</a>
+            <a href="{{ route('submission.index') }}">Submission</a>
         </nav>
 
         <div class="nav-auth">
@@ -605,6 +606,9 @@
                 </a><br>
                 <a href="/contact">
                     Contact
+                </a><br>
+                <a href="{{ route('submission.index') }}">
+                    Submission
                 </a><br>
             </div>
             <div class="footer-column">

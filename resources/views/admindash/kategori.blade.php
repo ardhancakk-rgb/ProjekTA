@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tambah Kategori - PetNest</title>
+    <title>Kategori Hewan - PetNest</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
@@ -407,25 +407,35 @@
 
     <div class="card">
 
+        @if ($errors->any())
+            <div class="notice notice-error" role="alert">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <form action="{{ route('kategori.store') }}" method="POST">
             @csrf
 
             <div class="form-group">
 
-                <label>
+                <label for="nama_kategori">
                     Nama Kategori
                     <span class="required">*</span>
                 </label>
 
-                <input type="text" name="nama_kategori" class="form-control" placeholder="Masukkan nama kategori"
-                    required>
+                <input id="nama_kategori" type="text" name="nama_kategori" class="form-control"
+                    placeholder="Masukkan nama kategori" value="{{ old('nama_kategori') }}" required>
 
             </div>
 
 
             <div class="button-container">
 
-                <a href="#" class="btn btn-cancel">
+                <a href="{{ route('kategori.index') }}" class="btn btn-cancel">
                     <i class="fa-solid fa-xmark"></i>
                     Batal
                 </a>

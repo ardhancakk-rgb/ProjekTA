@@ -55,10 +55,8 @@ class AuthController extends Controller
             'password' => ['required', 'min:6', 'confirmed'],
         ]);
 
-        // Membuat username dari nama
         $username = $validated['name'];
 
-        // Jika username sudah dipakai, tambahkan angka
         $baseUsername = $username;
         $counter = 1;
 
@@ -82,7 +80,6 @@ class AuthController extends Controller
         );
     }
 
-    // Proses logout
     public function logout(Request $request)
     {
         Auth::logout();

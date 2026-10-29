@@ -31,13 +31,22 @@ test('hewan can be created without jenis lokasi or deskripsi', function () {
     expect(Hewan::query()->where('nama_hewan', 'Milo')->exists())->toBeTrue();
 });
 
+test('animal management page provides a link to add an animal', function () {
+    $this->get(route('hewan.index'))
+        ->assertOk()
+        ->assertSee('Data Hewan')
+        ->assertSee('+ Tambah Hewan')
+        ->assertSee(route('hewan.create'))
+        ->assertDontSee('Submission');
+});
+
 test('edit form shows existing hewan data and updates it without clearing deskripsi', function () {
     $kategori = Kategori::create([
         'nama_kategori' => 'Kucing',
     ]);
     $hewan = Hewan::create([
-        'kategori_id' => $kategori->id_kategori,
-        'nama' => 'Milo',
+        'id_kategori' => $kategori->id_kategori,
+        'nama_hewan' => 'Milo',
         'ras' => 'Persia',
         'umur' => 2,
         'jenis_kelamin' => 'jantan',
@@ -60,7 +69,7 @@ test('edit form shows existing hewan data and updates it without clearing deskri
 
     $this->put(route('hewan.update', $hewan), [
         'kategori_id' => $kategori->id_kategori,
-        'nama_hewan' => 'Milo Baru',
+        'nama' => 'Milo Baru',
         'ras' => 'Persia',
         'umur' => 3,
         'jenis_kelamin' => 'jantan',
@@ -74,7 +83,7 @@ test('edit form shows existing hewan data and updates it without clearing deskri
 
     $this->assertDatabaseHas('hewan', [
         'id_hewan' => $hewan->id_hewan,
-        'nama' => 'Milo Baru',
+        'nama_hewan' => 'Milo Baru',
         'umur' => 3,
         'deskripsi' => 'Deskripsi lama',
     ]);

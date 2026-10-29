@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
-use Illuminate\Support\Facades\DB;
 
 class ProfileController extends Controller
 {
@@ -53,28 +52,5 @@ class ProfileController extends Controller
         return redirect()
             ->route('profile.index')
             ->with('success', 'Profil berhasil diperbarui!');
-    }
-
-    // Menampilkan riwayat pengajuan adopsi
-    public function riwayat()
-    {
-        $riwayat = DB::table('pengajuan_adopsi')
-            ->leftJoin(
-                'hewan',
-                'pengajuan_adopsi.id_hewan',
-                '=',
-                'hewan.id_hewan'
-            )
-            ->where('pengajuan_adopsi.id_user', Auth::id())
-            ->select(
-                'pengajuan_adopsi.*',
-                'hewan.nama_hewan as nama_hewan'
-            )
-            ->orderByDesc('pengajuan_adopsi.tanggal_pengajuan')
-            ->get();
-
-        return view('profile.riwayat', [
-            'riwayat' => $riwayat,
-        ]);
     }
 }

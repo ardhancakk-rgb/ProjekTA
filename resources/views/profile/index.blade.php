@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -152,7 +153,7 @@
             height: 85px;
             border-radius: 50%;
             background: #d5a06e;
-            border: 4px solid rgba(255,255,255,.8);
+            border: 4px solid rgba(255, 255, 255, .8);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -179,8 +180,8 @@
 
         .edit-btn {
             display: inline-block;
-            border: 1px solid rgba(255,255,255,.6);
-            background: rgba(255,255,255,.12);
+            border: 1px solid rgba(255, 255, 255, .6);
+            background: rgba(255, 255, 255, .12);
             color: white;
             padding: 11px 16px;
             border-radius: 8px;
@@ -272,7 +273,7 @@
             border-bottom: none;
         }
 
-        .account-item > div {
+        .account-item>div {
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -421,7 +422,6 @@
 
 <body>
 
-    {{-- NAVBAR --}}
     <nav class="navbar">
         <a href="{{ url('/') }}" class="logo">
             <span>Pet</span>Nest
@@ -429,7 +429,9 @@
 
         <div class="nav-menu">
             <a href="{{ url('/') }}">Beranda</a>
-            <a href="{{ url('/pets') }}">Hewan</a>
+            <a href="{{ route('pengajuan.riwayat') }}" class="btn btn-dark">
+                Riwayat Adopsi
+            </a>
             <a href="{{ route('profile.index') }}" class="active">
                 Profil
             </a>
@@ -446,26 +448,21 @@
         </div>
     </nav>
 
-    {{-- KONTEN UTAMA --}}
     <main class="container">
 
         <div class="page-title">
             <div class="small-title">AKUN SAYA</div>
             <h1>Profil Saya</h1>
             <p>
-                Kelola informasi akun dan pantau perjalanan adopsi
-                hewan kesayanganmu di PetNest.
+                Kelola informasi akun PetNest kamu.
             </p>
         </div>
 
-        {{-- NOTIFIKASI BERHASIL --}}
         @if (session('success'))
             <div class="alert-success">
                 ✓ {{ session('success') }}
             </div>
         @endif
-
-        {{-- NOTIFIKASI ERROR --}}
         @if ($errors->any())
             <div class="alert-error">
                 Ada data yang belum valid. Silakan periksa kembali.
@@ -474,7 +471,6 @@
 
         <section class="profile-card">
 
-            {{-- HEADER PROFIL --}}
             <div class="profile-header">
 
                 <div class="profile-photo">
@@ -497,7 +493,6 @@
 
             <div class="profile-content">
 
-                {{-- INFORMASI PRIBADI --}}
                 <div class="section-title">
                     <h3>Informasi Pribadi</h3>
                     <p>
@@ -544,7 +539,6 @@
 
                 </div>
 
-                {{-- INFORMASI AKUN --}}
                 <div class="account-section">
 
                     <div class="section-title">
@@ -569,9 +563,7 @@
                                 <span class="account-label">Bergabung Sejak</span>
 
                                 <span>
-                                    {{ auth()->user()->created_at
-                                        ? auth()->user()->created_at->format('d F Y')
-                                        : '-' }}
+                                    {{ auth()->user()->created_at ? auth()->user()->created_at->format('d F Y'): '-' }}
                                 </span>
                             </div>
                         </div>
@@ -580,11 +572,9 @@
 
                 </div>
 
-                {{-- MENU FITUR --}}
                 <div class="feature-section">
 
-                    <a href="{{ route('profile.edit') }}"
-                       class="feature-card">
+                    <a href="{{ route('profile.edit') }}" class="feature-card">
 
                         <div class="feature-icon">✎</div>
 
@@ -598,24 +588,8 @@
 
                     </a>
 
-                    <a href="{{ route('profile.riwayat') }}"
-                       class="feature-card">
-
-                        <div class="feature-icon">📋</div>
-
-                        <div class="feature-text">
-                            <h4>Riwayat Pengajuan</h4>
-                            <p>
-                                Pantau status pengajuan adopsi
-                                hewan kamu.
-                            </p>
-                        </div>
-
-                    </a>
-
                 </div>
 
-                {{-- LOGOUT --}}
                 <div class="logout-section">
 
                     <form action="{{ route('logout') }}" method="POST">
@@ -633,5 +607,6 @@
     </main>
 
 </body>
+
 </html>
 ```

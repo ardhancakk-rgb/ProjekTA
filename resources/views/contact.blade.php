@@ -365,6 +365,7 @@
             <a href="/pets">Pets</a>
             <a href="/about-us">About Us</a>
             <a href="/contact" class="active">Contact</a>
+            <a href="{{ route('submission.index') }}">Submission</a><br>
         </nav>
 
         <div class="nav-auth">
@@ -401,7 +402,7 @@
                         <div>
                             <h4>WhatsApp / Telepon</h4>
                             <p>+62 858-5028-8189</p>
-                            <p>+62 858-5028-8189</p>
+                            <p>+62 857-3244-7718</p>
                         </div>
                     </div>
 
@@ -481,6 +482,7 @@
                 <a href="/pets">Pets</a><br>
                 <a href="/about-us">About Us</a><br>
                 <a href="/contact">Contact</a><br>
+                <a href="{{ route('submission.index') }}">Submission</a><br>
             </div>
             <div class="footer-column">
                 <h3>Help</h3><br>

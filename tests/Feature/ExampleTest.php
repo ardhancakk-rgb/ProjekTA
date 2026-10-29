@@ -20,15 +20,104 @@ test('the pets page renders with valid navigation', function () {
         ->assertSee('Daftar Hewan Peliharaan');
 });
 
+test('the pets page lists animals and provides an adoption link', function () {
+    $kategori = Kategori::create(['nama_kategori' => 'Kucing']);
+    $hewan = Hewan::create([
+        'id_kategori' => $kategori->id_kategori,
+        'nama_hewan' => 'Milo',
+        'umur' => 2,
+        'jenis_kelamin' => 'jantan',
+        'status_adopsi' => 'tersedia',
+    ]);
+
+    $this->get(route('pets.index'))
+        ->assertOk()
+        ->assertSee('Milo')
+        ->assertSee(route('adopsi.create', $hewan->id_hewan));
+});
+
 test('legacy pages redirect to available pages', function () {
     $this->get('/about-us')->assertRedirect('/');
     $this->get('/help')->assertRedirect('/contact');
     $this->get('/Hewan')->assertRedirect(route('hewan.index'));
     $this->get('/PengajuanAdopsi')->assertRedirect(route('pets.index'));
+    $this->get(route('submission.index'))->assertRedirect(route('pets.index'));
     $this->get('/Kategori')->assertRedirect(route('kategori.index'));
 });
 
-test('a user can submit an adoption request with the migration status column', function () {
+test('a customer can open an adoption submission form', function () {
+    $kategori = Kategori::create(['nama_kategori' => 'Kucing']);
+    $hewan = Hewan::create([
+        'id_kategori' => $kategori->id_kategori,
+        'nama_hewan' => 'Milo',
+        'umur' => 2,
+        'jenis_kelamin' => 'jantan',
+        'status_adopsi' => 'tersedia',
+    ]);
+    $customer = User::factory()->create(['role' => 'customer']);
+
+    $this->actingAs($customer)
+        ->get(route('adopsi.create', $hewan->id_hewan))
+        ->assertOk()
+        ->assertSee('Formulir Pengajuan Adopsi')
+        ->assertSee('Milo');
+});
+
+test('a customer can submit an adoption application', function () {
+    $kategori = Kategori::create(['nama_kategori' => 'Kucing']);
+    $hewan = Hewan::create([
+        'id_kategori' => $kategori->id_kategori,
+        'nama_hewan' => 'Milo',
+        'umur' => 2,
+        'jenis_kelamin' => 'jantan',
+        'status_adopsi' => 'tersedia',
+    ]);
+    $customer = User::factory()->create(['role' => 'customer']);
+
+    $this->actingAs($customer)
+        ->post(route('adopsi.store', $hewan->id_hewan), [
+            'telepon_pemohon' => '081234567890',
+            'alamat_pemohon' => 'Jalan Mawar 10',
+            'alasan_adopsi' => 'Saya siap merawat Milo.',
+        ])
+        ->assertRedirect(route('pengajuan.riwayat'))
+        ->assertSessionHas('success');
+
+    $this->assertDatabaseHas('pengajuan_adopsi', [
+        'id_user' => $customer->id,
+        'id_hewan' => $hewan->id_hewan,
+        'status_pengajuan' => 'pending',
+        'telepon_pemohon' => '081234567890',
+    ]);
+
+    $this->assertDatabaseHas('hewan', [
+        'id_hewan' => $hewan->id_hewan,
+        'status_adopsi' => 'diproses',
+    ]);
+
+    $this->actingAs($customer)
+        ->get(route('pengajuan.riwayat'))
+        ->assertOk()
+        ->assertSee('Milo')
+        ->assertSee('Menunggu');
+
+    $admin = User::factory()->create(['role' => 'admin']);
+
+    $this->actingAs($admin)
+        ->get(route('admin.pengajuan.index'))
+        ->assertOk()
+        ->assertSee('Milo')
+        ->assertSee('Saya siap merawat Milo.');
+});
+
+test('only admins can open the adoption management page', function () {
+    $customer = User::factory()->create(['role' => 'customer']);
+
+    $this->actingAs($customer)
+        ->get(route('admin.pengajuan.index'))
+        ->assertForbidden();
+
+    $admin = User::factory()->create(['role' => 'admin']);
     $kategori = Kategori::create(['nama_kategori' => 'Kucing']);
     $hewan = Hewan::create([
         'id_kategori' => $kategori->id_kategori,
@@ -36,18 +125,19 @@ test('a user can submit an adoption request with the migration status column', f
         'umur' => 2,
         'jenis_kelamin' => 'jantan',
     ]);
-    $user = User::factory()->create();
 
-    $this->actingAs($user)
-        ->post(route('adopsi.store', $hewan->id_hewan))
-        ->assertRedirect(route('adopsi.create', $hewan->id_hewan))
-        ->assertSessionHas('success');
-
-    $this->assertDatabaseHas('pengajuan_adopsi', [
-        'id_user' => $user->id,
+    PengajuanAdopsi::create([
+        'id_user' => $customer->id,
         'id_hewan' => $hewan->id_hewan,
+        'tanggal_pengajuan' => now()->toDateString(),
         'status_pengajuan' => 'pending',
     ]);
+
+    $this->actingAs($admin)
+        ->get(route('admin.pengajuan.index'))
+        ->assertOk()
+        ->assertSee('Pengajuan Adopsi')
+        ->assertSee('Milo');
 });
 
 test('registration stores a generated username', function () {
@@ -85,32 +175,4 @@ test('profile contact fields can be updated', function () {
         'no_hp' => '081234567890',
         'alamat' => 'Jalan Mawar 10',
     ]);
-});
-
-test('admins can view adoption requests', function () {
-    $kategori = Kategori::create(['nama_kategori' => 'Kucing']);
-    $hewan = Hewan::create([
-        'id_kategori' => $kategori->id_kategori,
-        'nama_hewan' => 'Milo',
-        'umur' => 2,
-        'jenis_kelamin' => 'jantan',
-    ]);
-    $user = User::factory()->create([
-        'name' => 'Adopter',
-        'role' => 'admin',
-    ]);
-
-    PengajuanAdopsi::create([
-        'id_user' => $user->id,
-        'id_hewan' => $hewan->id_hewan,
-        'tanggal_pengajuan' => now(),
-        'status_pengajuan' => 'pending',
-    ]);
-
-    $this->actingAs($user)
-        ->get(route('pengajuan.index'))
-        ->assertOk()
-        ->assertSee('Adopter')
-        ->assertSee('Milo')
-        ->assertSee('Pending');
 });

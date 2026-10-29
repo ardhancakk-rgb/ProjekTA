@@ -30,11 +30,11 @@ class KategoriController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $data = $request->validate([
             'nama_kategori' => 'required|string|max:255',
         ]);
 
-        Kategori::create($request->all());
+        Kategori::create($data);
 
         return redirect()->route('kategori.index')->with('success', 'Kategori berhasil ditambahkan.');
     }
