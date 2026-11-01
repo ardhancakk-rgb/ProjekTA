@@ -118,10 +118,10 @@
                 </div>
 
                 <div class="col-md-6">
-                    <label for="status_vaksin" class="form-label">Status Vaksin</label>
+                  <label for="status_vaksin" class="form-label">Status Vaksin</label>
                     <input id="status_vaksin" type="text" name="status_vaksin" class="form-control"
                         value="{{ old('status_vaksin') }}">
-                </div>
+                </div>  
 
                 <div class="col-md-6">
                     <label for="kondisi_kesehatan" class="form-label">Status Kesehatan</label>

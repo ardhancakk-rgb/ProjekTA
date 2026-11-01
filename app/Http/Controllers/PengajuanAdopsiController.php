@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\Models\Hewan;
 use App\Models\PengajuanAdopsi;
 use Illuminate\Http\Request;
@@ -18,7 +16,6 @@ class PengajuanAdopsiController extends Controller
                 ->route('pets.index')
                 ->with('error', 'Hewan ini tidak tersedia untuk diadopsi.');
         }
-
         return view('pengajuan.create', compact('hewan'));
     }
 

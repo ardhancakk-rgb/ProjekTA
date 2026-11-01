@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
     <title>Login - PetNest</title>
-
     <style>
         * {
             margin: 0;
@@ -16,22 +17,26 @@
 
         body {
             min-height: 100vh;
-            font-family: sans-serif;
-            background-image: linear-gradient(rgba(0, 0, 0, 0.56), rgba(0, 0, 0, 0.75)), url('{{ asset('images/login-bg.jpg') }}');
+            min-height: 100dvh;
+            width: 100%;
+            font-family: "Outfit", sans-serif;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.56),rgba(0, 0, 0, 0.75)),url('{{ asset('images/login-bg.jpg') }}');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             display: flex;
             justify-content: center;
             align-items: center;
+            padding: 40px 20px;
         }
 
         .login-card {
-            width: 320px;
-            min-height: 500px;
+            width: 100%;
+            max-width: 480px;
+            min-height: 560px;
             background: rgba(0, 0, 0, 0.46);
-            border-radius: 15px;
-            padding: 28px 24px;
+            border-radius: 20px;
+            padding: 45px 40px;
             color: white;
             box-shadow: 0 8px 30px rgba(45, 92, 44, 0.73);
         }
@@ -42,37 +47,37 @@
         }
 
         .login-title h1 {
-            font-size: 40px;
-            font-weight: bold;
+            font-size: 48px;
             font-weight: normal;
         }
 
         .login-subtitle {
             text-align: center;
-            font-size: 10px;
-            margin-bottom: 25px;
+            font-size: 20px;
+            line-height: 1.7;
+            margin-bottom: 35px;
             color: #eeeeee;
         }
 
         .form-group {
-            margin-bottom: 25px;
+            margin-bottom: 28px;
         }
 
         .form-group label {
             display: block;
-            font-size: 25px;
-            margin-bottom: 7px;
+            font-size: 20px;
+            margin-bottom: 10px;
         }
 
         .form-group input {
             width: 100%;
-            height: 31px;
+            height: 45px;
             border: none;
             border-radius: 9px;
-            padding: 6px 10px;
+            padding: 10px 13px;
             background: #eeeeee;
             font-family: sans-serif;
-            font-size: 13px;
+            font-size: 20px;
         }
 
         .form-group input:focus {
@@ -83,16 +88,16 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            =margin-top: 7px;
-            margin-bottom: 16px;
-            font-size: 10px;
+            margin-top: 7px;
+            margin-bottom: 25px;
+            gap: 10px;
         }
 
         .remember {
             display: flex;
             align-items: center;
-            gap: 5px;
-            font-size: 15px;
+            gap: 8px;
+            font-size: 13px;
         }
 
         .remember:hover {
@@ -101,8 +106,8 @@
         }
 
         .remember input {
-            width: 11px;
-            height: 11px;
+            width: 15px;
+            height: 15px;
         }
 
         .forgot-password {
@@ -116,46 +121,79 @@
         }
 
         .btn-login {
-            width: 100px;
-            height: 30px;
-            border: none;
-            border-radius: 10px;
-            background: #704A2E;
-            color: white;
-            font-family: sans-serif;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 130px;
+            height: 42px;
+            border: 1px solid #452817;
+            border-radius: 8px;
+            background: #452817;
+            color: #fff;
+            font-family: "Outfit", sans-serif;
             font-size: 20px;
+            font-weight: 700;
             cursor: pointer;
+            transition: background 0.2s ease;
         }
 
         .btn-login:hover {
-            background: #8a5b35;
+            background: #70482f;
         }
 
         .register {
             text-align: center;
-
-            margin-top: 22px;
-
-            font-size: 11px;
+            margin-top: 30px;
+            font-size: 20px;
         }
 
         .register a {
-            color: #36b9e8;
-            text-decoration: underline;
+            color: #418aeb;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s ease;
         }
 
         .register a:hover {
-            color: #7ddcff;
+            color: #250f63;
+            text-decoration: underline;
         }
 
         .error {
             color: #ff8f8f;
-            font-size: 11px;
-            margin-bottom: 8px;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 20px 16px;
+            }
+
+            .login-card {
+                min-height: auto;
+                padding: 35px 25px;
+                border-radius: 16px;
+            }
+
+            .login-title h1 {
+                font-size: 40px;
+            }
+
+            .login-subtitle {
+                margin-bottom: 28px;
+            }
+
+            .form-group label {
+                font-size: 18px;
+            }
+
+            .login-options {
+                flex-wrap: wrap;
+            }
         }
     </style>
 </head>
-
 <body>
     <div class="login-card">
         <div class="login-title">
@@ -179,7 +217,8 @@
             </div>
             <div class="form-group">
                 <label>Password</label>
-                <input type="password" name="password" autocomplete="new-password" value="" placeholder="Enter your password">
+                <input type="password" name="password" autocomplete="new-password" value=""
+                    placeholder="Enter your password">
             </div>
             <div class="login-options">
                 <label class="remember">
@@ -198,5 +237,4 @@
         </div>
     </div>
 </body>
-
 </html>

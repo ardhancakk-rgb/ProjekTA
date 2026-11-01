@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use App\Models\Hewan;
 use App\Models\PengajuanAdopsi;
 use Illuminate\Http\Request;

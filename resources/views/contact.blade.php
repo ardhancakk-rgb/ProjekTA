@@ -110,7 +110,7 @@
             position: relative;
             height: 55vh;
             min-height: 350px;
-            background-image: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url('{{ asset('images/hero-bg.jpg') }}');
+            background-image: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url('{{ asset('images/hero-bg.png') }}');
             background-size: cover;
             background-position: center;
             display: flex;
@@ -349,6 +349,61 @@
                 margin-left: 0;
             }
         }
+
+        header.navbar .nav-right {
+            display: flex !important;
+            align-items: center !important;
+            gap: 12px !important;
+            flex-shrink: 0;
+        }
+
+        header.navbar .nav-right a.btn-login {
+            display: inline-flex !important;
+            align-items: center;
+            justify-content: center;
+            padding: 9px 16px !important;
+            border: 1px solid rgba(255, 247, 247, 0.5) !important;
+            border-radius: 8px !important;
+            background: rgba(255, 255, 255, 0.1) !important;
+            color: #fff7f7 !important;
+            font-family: "Outfit", sans-serif !important;
+            font-size: 30px !important;
+            font-weight: 700 !important;
+            text-decoration: none !important;
+            white-space: nowrap;
+        }
+
+        header.navbar .nav-right a.btn-login:hover {
+            color: #e2702f !important;
+            border-color: #e2702f !important;
+        }
+
+        header.navbar .nav-right form {
+            display: inline-flex !important;
+            margin: 0 !important;
+        }
+
+        header.navbar .nav-right button.btn-register {
+            display: inline-flex !important;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 15px !important;
+            border: 1px solid #452817 !important;
+            border-radius: 8px !important;
+            background: #452817 !important;
+            color: #fff !important;
+            font-family: "Outfit", sans-serif !important;
+            font-size: 30px !important;
+            font-weight: 700 !important;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: background 0.2s ease;
+        }
+
+        header.navbar .nav-right button.btn-register:hover {
+            background: #70482f !important;
+            border-color: #70482f !important;
+        }
     </style>
 </head>
 
@@ -363,14 +418,31 @@
         <nav class="nav-menu">
             <a href="/">Home</a>
             <a href="/pets">Pets</a>
-            <a href="/about-us">About Us</a>
+            <a href="/profile">Profile</a>
             <a href="/contact" class="active">Contact</a>
             <a href="{{ route('submission.index') }}">Submission</a><br>
         </nav>
 
-        <div class="nav-auth">
-            <a href="/login" class="login">Login</a>
-            <a href="/register" class="register">Daftar</a>
+        <div class="nav-right">
+            @auth
+                <a href="{{ route('profile.index') }}" class="btn-login">
+                    {{ auth()->user()->username ?? auth()->user()->name }}
+                </a>
+
+                <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+                    @csrf
+                    <button type="submit" class="btn-register">
+                        Logout
+                    </button>
+                </form>
+            @else
+                <a href="{{ route('login') }}" class="btn-login">
+                    Login
+                </a>
+                <a href="{{ route('register') }}" class="btn-register">
+                    Daftar
+                </a>
+            @endauth
         </div>
     </header>
 

@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Profil Saya - PetNest</title>
 
     <style>
@@ -18,25 +16,27 @@
             font-family: Arial, Helvetica, sans-serif;
             background: #f7f4ef;
             color: #3d3028;
+            min-height: 100vh;
         }
 
         a {
             text-decoration: none;
         }
 
+        /* NAVBAR */
         .navbar {
-            min-height: 70px;
+            min-height: 82px;
             background: white;
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 15px 7%;
             border-bottom: 1px solid #eee5dc;
-            gap: 20px;
+            gap: 25px;
         }
 
         .logo {
-            font-size: 26px;
+            font-size: 32px;
             font-weight: bold;
             color: #5b3c2e;
             white-space: nowrap;
@@ -49,13 +49,13 @@
         .nav-menu {
             display: flex;
             align-items: center;
-            gap: 25px;
+            gap: 35px;
         }
 
         .nav-menu a {
             color: #776a61;
-            font-size: 14px;
-            transition: .2s;
+            font-size: 16px;
+            transition: 0.2s;
         }
 
         .nav-menu a:hover,
@@ -66,14 +66,14 @@
         .nav-user {
             display: flex;
             align-items: center;
-            gap: 10px;
-            font-size: 14px;
+            gap: 12px;
+            font-size: 16px;
             font-weight: 600;
         }
 
         .user-avatar {
-            width: 38px;
-            height: 38px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
             background: #c89668;
             color: white;
@@ -81,83 +81,89 @@
             align-items: center;
             justify-content: center;
             font-weight: bold;
+            font-size: 19px;
+            flex-shrink: 0;
         }
 
+        /* KONTEN UTAMA */
         .container {
-            width: 90%;
-            max-width: 1000px;
-            margin: 45px auto;
+            width: 88%;
+            max-width: 1280px;
+            margin: 60px auto;
         }
 
         .page-title {
-            margin-bottom: 25px;
+            margin-bottom: 32px;
         }
 
         .small-title {
             color: #b07849;
-            font-size: 11px;
+            font-size: 13px;
             font-weight: bold;
-            letter-spacing: 2px;
-            margin-bottom: 7px;
+            letter-spacing: 2.5px;
+            margin-bottom: 10px;
         }
 
         .page-title h1 {
-            font-size: 34px;
-            margin-bottom: 8px;
+            font-size: 42px;
+            margin-bottom: 10px;
         }
 
         .page-title p {
             color: #8b7d73;
-            font-size: 14px;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        /* NOTIFIKASI */
+        .alert-success,
+        .alert-error {
+            padding: 18px 22px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            font-size: 16px;
             line-height: 1.6;
         }
 
         .alert-success {
-            padding: 15px 18px;
             background: #e7f5e9;
             color: #347742;
             border: 1px solid #c7e8cd;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            font-size: 14px;
         }
 
         .alert-error {
-            padding: 15px 18px;
             background: #fff0ed;
             color: #a33c2c;
             border: 1px solid #f1c9c1;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            font-size: 14px;
         }
 
+        /* KARTU PROFIL */
         .profile-card {
             background: white;
-            border-radius: 16px;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 8px 30px rgba(60, 40, 25, .08);
+            box-shadow: 0 10px 35px rgba(60, 40, 25, 0.09);
         }
 
         .profile-header {
             background: linear-gradient(120deg, #5d4235, #84604a);
-            padding: 32px 35px;
+            padding: 42px 45px;
             display: flex;
             align-items: center;
-            gap: 18px;
+            gap: 25px;
             color: white;
         }
 
         .profile-photo {
-            width: 85px;
-            height: 85px;
+            width: 105px;
+            height: 105px;
             border-radius: 50%;
             background: #d5a06e;
-            border: 4px solid rgba(255, 255, 255, .8);
+            border: 4px solid rgba(255, 255, 255, 0.8);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 32px;
+            font-size: 40px;
             font-weight: bold;
             flex-shrink: 0;
         }
@@ -168,26 +174,26 @@
         }
 
         .profile-name h2 {
-            font-size: 25px;
-            margin-bottom: 7px;
+            font-size: 30px;
+            margin-bottom: 8px;
             overflow-wrap: anywhere;
         }
 
         .profile-name p {
             color: #eadfd7;
-            font-size: 14px;
+            font-size: 16px;
         }
 
         .edit-btn {
             display: inline-block;
-            border: 1px solid rgba(255, 255, 255, .6);
-            background: rgba(255, 255, 255, .12);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.12);
             color: white;
-            padding: 11px 16px;
-            border-radius: 8px;
+            padding: 13px 20px;
+            border-radius: 9px;
             cursor: pointer;
-            font-size: 13px;
-            transition: .2s;
+            font-size: 15px;
+            transition: 0.2s;
             white-space: nowrap;
         }
 
@@ -196,40 +202,42 @@
             color: #5d4235;
         }
 
+        /* ISI PROFIL */
         .profile-content {
-            padding: 35px;
+            padding: 45px;
         }
 
         .section-title {
-            margin-bottom: 18px;
+            margin-bottom: 24px;
         }
 
         .section-title h3 {
-            font-size: 19px;
-            margin-bottom: 7px;
+            font-size: 25px;
+            margin-bottom: 8px;
         }
 
         .section-title p {
             color: #91847b;
-            font-size: 13px;
-            line-height: 1.6;
+            font-size: 15px;
+            line-height: 1.7;
         }
 
+        /* INFORMASI PRIBADI */
         .info-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 14px;
-            margin-bottom: 35px;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+            margin-bottom: 42px;
         }
 
         .info-box {
             background: #faf8f5;
             border: 1px solid #eee5dc;
-            border-radius: 9px;
-            padding: 17px 18px;
+            border-radius: 12px;
+            padding: 23px 25px;
             display: flex;
             flex-direction: column;
-            gap: 9px;
+            gap: 10px;
             min-width: 0;
         }
 
@@ -238,33 +246,34 @@
         }
 
         .label {
-            font-size: 11px;
+            font-size: 13px;
             color: #998b81;
             text-transform: uppercase;
-            letter-spacing: .5px;
+            letter-spacing: 0.8px;
         }
 
         .value {
-            font-size: 14px;
+            font-size: 17px;
             color: #44362e;
             font-weight: 500;
             overflow-wrap: anywhere;
-            line-height: 1.6;
+            line-height: 1.7;
         }
 
+        /* INFORMASI AKUN */
         .account-section {
             border-top: 1px solid #eee7df;
-            padding-top: 30px;
+            padding-top: 38px;
         }
 
         .account-list {
             border: 1px solid #eee5dc;
-            border-radius: 9px;
+            border-radius: 12px;
             overflow: hidden;
         }
 
         .account-item {
-            padding: 17px 18px;
+            padding: 22px 25px;
             background: #faf8f5;
             border-bottom: 1px solid #eee5dc;
         }
@@ -282,7 +291,7 @@
 
         .account-label {
             color: #74665d;
-            font-size: 14px;
+            font-size: 16px;
             font-weight: 500;
         }
 
@@ -290,29 +299,31 @@
             display: inline-block;
             background: #e7f5e9;
             color: #43834b;
-            padding: 6px 12px;
+            padding: 7px 15px;
             border-radius: 20px;
-            font-size: 11px;
+            font-size: 13px;
             font-weight: bold;
         }
 
+        /* KARTU FITUR */
         .feature-section {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-top: 30px;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+            margin-top: 35px;
         }
 
         .feature-card {
             display: flex;
             align-items: center;
-            gap: 15px;
-            padding: 22px;
+            gap: 18px;
+            padding: 27px;
             background: #faf8f5;
             border: 1px solid #eee5dc;
-            border-radius: 12px;
+            border-radius: 14px;
             color: #44362e;
-            transition: .2s;
+            transition: 0.2s;
+            min-width: 0;
         }
 
         .feature-card:hover {
@@ -321,31 +332,32 @@
         }
 
         .feature-icon {
-            width: 48px;
-            height: 48px;
+            width: 58px;
+            height: 58px;
             flex-shrink: 0;
-            border-radius: 10px;
+            border-radius: 12px;
             background: #f0e3d5;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 23px;
+            font-size: 27px;
         }
 
         .feature-text h4 {
-            font-size: 14px;
-            margin-bottom: 7px;
+            font-size: 17px;
+            margin-bottom: 8px;
         }
 
         .feature-text p {
-            font-size: 12px;
+            font-size: 14px;
             color: #91847b;
-            line-height: 1.6;
+            line-height: 1.7;
         }
 
+        /* LOGOUT */
         .logout-section {
-            margin-top: 30px;
-            padding-top: 25px;
+            margin-top: 38px;
+            padding-top: 30px;
             border-top: 1px solid #eee7df;
             display: flex;
             justify-content: flex-end;
@@ -355,16 +367,41 @@
             border: 1px solid #d9b8a9;
             background: white;
             color: #a65743;
-            padding: 11px 17px;
-            border-radius: 8px;
+            padding: 13px 20px;
+            border-radius: 9px;
             cursor: pointer;
-            font-size: 13px;
-            transition: .2s;
+            font-size: 15px;
+            transition: 0.2s;
         }
 
         .logout-btn:hover {
             background: #a65743;
             color: white;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            .navbar {
+                padding: 15px 5%;
+                gap: 18px;
+            }
+
+            .nav-menu {
+                gap: 20px;
+            }
+
+            .container {
+                width: 92%;
+                margin: 40px auto;
+            }
+
+            .profile-header {
+                padding: 32px;
+            }
+
+            .profile-content {
+                padding: 32px;
+            }
         }
 
         @media (max-width: 700px) {
@@ -373,12 +410,31 @@
                 padding: 15px 5%;
             }
 
+            .logo {
+                font-size: 28px;
+            }
+
             .nav-menu {
                 order: 3;
                 width: 100%;
                 justify-content: center;
                 gap: 22px;
                 padding-top: 10px;
+                flex-wrap: wrap;
+            }
+
+            .nav-menu a {
+                font-size: 14px;
+            }
+
+            .nav-user {
+                font-size: 14px;
+            }
+
+            .user-avatar {
+                width: 38px;
+                height: 38px;
+                font-size: 16px;
             }
 
             .container {
@@ -387,16 +443,31 @@
             }
 
             .page-title h1 {
-                font-size: 28px;
+                font-size: 32px;
+            }
+
+            .page-title p {
+                font-size: 14px;
             }
 
             .profile-header {
-                padding: 25px;
+                padding: 25px 22px;
                 flex-wrap: wrap;
+                gap: 18px;
+            }
+
+            .profile-photo {
+                width: 82px;
+                height: 82px;
+                font-size: 31px;
             }
 
             .profile-name h2 {
-                font-size: 21px;
+                font-size: 23px;
+            }
+
+            .profile-name p {
+                font-size: 14px;
             }
 
             .edit-btn {
@@ -405,16 +476,91 @@
             }
 
             .profile-content {
-                padding: 23px;
+                padding: 25px 20px;
+            }
+
+            .section-title h3 {
+                font-size: 22px;
+            }
+
+            .section-title p {
+                font-size: 14px;
             }
 
             .info-grid,
             .feature-section {
                 grid-template-columns: 1fr;
+                gap: 15px;
             }
 
+            .info-box,
             .info-box.full {
                 grid-column: auto;
+                padding: 19px;
+            }
+
+            .label {
+                font-size: 12px;
+            }
+
+            .value {
+                font-size: 15px;
+            }
+
+            .account-item {
+                padding: 18px;
+            }
+
+            .account-label {
+                font-size: 14px;
+            }
+
+            .status {
+                font-size: 11px;
+            }
+
+            .feature-card {
+                padding: 22px;
+            }
+
+            .feature-icon {
+                width: 48px;
+                height: 48px;
+                font-size: 23px;
+            }
+
+            .feature-text h4 {
+                font-size: 16px;
+            }
+
+            .feature-text p {
+                font-size: 13px;
+            }
+
+            .logout-btn {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .nav-menu {
+                gap: 14px;
+            }
+
+            .nav-menu a {
+                font-size: 13px;
+            }
+
+            .profile-content {
+                padding: 20px 15px;
+            }
+
+            .profile-name h2 {
+                font-size: 20px;
+            }
+
+            .account-item>div {
+                align-items: flex-start;
             }
         }
     </style>
@@ -433,7 +579,7 @@
                 Riwayat Adopsi
             </a>
             <a href="{{ route('profile.index') }}" class="active">
-                Profil
+                Profile
             </a>
         </div>
 
@@ -486,7 +632,7 @@
                 </div>
 
                 <a href="{{ route('profile.edit') }}" class="edit-btn">
-                    ✎ Edit Profil
+                     Edit Profil
                 </a>
 
             </div>
@@ -563,7 +709,7 @@
                                 <span class="account-label">Bergabung Sejak</span>
 
                                 <span>
-                                    {{ auth()->user()->created_at ? auth()->user()->created_at->format('d F Y'): '-' }}
+                                    {{ auth()->user()->created_at ? auth()->user()->created_at->format('d F Y') : '-' }}
                                 </span>
                             </div>
                         </div>
@@ -599,14 +745,9 @@
                             Keluar dari Akun
                         </button>
                     </form>
-
                 </div>
-
             </div>
         </section>
     </main>
-
 </body>
-
 </html>
-```

@@ -22,7 +22,6 @@ class AuthController extends Controller
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
-
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
@@ -59,12 +58,10 @@ class AuthController extends Controller
 
         $baseUsername = $username;
         $counter = 1;
-
         while (User::where('username', $username)->exists()) {
             $username = $baseUsername . $counter;
             $counter++;
         }
-
         User::create([
             'name' => $validated['name'],
             'username' => $username,
@@ -73,7 +70,6 @@ class AuthController extends Controller
             'role' => 'customer',
             'status' => 'active',
         ]);
-
         return redirect('/login')->with(
             'success',
             'Registrasi berhasil! Silakan login.'

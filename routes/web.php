@@ -8,13 +8,19 @@ use App\Http\Controllers\PengajuanAdopsiController;
 use App\Http\Controllers\PetController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Models\Hewan;   
 
 Route::get('/', function () {
-    return view('home');
+    $hewans = Hewan::latest('id_hewan')
+        ->limit(4)
+        ->get();
+
+    return view('home', compact('hewans'));
 });
 
-Route::get('/about-us', function () {
-    return redirect('/');
+
+Route::get('/profile', function () {
+    return redirect('profile');
 });
 
 Route::get('/contact', function () {
@@ -114,3 +120,4 @@ Route::middleware('auth')->group(function () {
 Route::get('/kembali', function () {
     return redirect()->route('kategori.index');
 })->name('kembali');
+
