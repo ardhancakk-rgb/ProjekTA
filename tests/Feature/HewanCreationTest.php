@@ -2,11 +2,14 @@
 
 use App\Models\Hewan;
 use App\Models\Kategori;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 uses(RefreshDatabase::class);
 
 test('hewan can be created without jenis lokasi or deskripsi', function () {
+    $this->actingAs(User::factory()->create(['role' => 'admin']));
+
     $kategori = Kategori::create([
         'nama_kategori' => 'Kucing',
     ]);
@@ -32,6 +35,8 @@ test('hewan can be created without jenis lokasi or deskripsi', function () {
 });
 
 test('animal management page provides a link to add an animal', function () {
+    $this->actingAs(User::factory()->create(['role' => 'admin']));
+
     $this->get(route('hewan.index'))
         ->assertOk()
         ->assertSee('Data Hewan')
@@ -41,6 +46,8 @@ test('animal management page provides a link to add an animal', function () {
 });
 
 test('edit form shows existing hewan data and updates it without clearing deskripsi', function () {
+    $this->actingAs(User::factory()->create(['role' => 'admin']));
+
     $kategori = Kategori::create([
         'nama_kategori' => 'Kucing',
     ]);

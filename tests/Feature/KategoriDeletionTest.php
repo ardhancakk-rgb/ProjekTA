@@ -2,11 +2,14 @@
 
 use App\Models\Hewan;
 use App\Models\Kategori;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 uses(RefreshDatabase::class);
 
 test('an unused category can be deleted', function () {
+    $this->actingAs(User::factory()->create(['role' => 'admin']));
+
     $kategori = Kategori::create(['nama_kategori' => 'Kucing']);
 
     $this->get(route('kategori.index'))
@@ -23,6 +26,8 @@ test('an unused category can be deleted', function () {
 });
 
 test('a category used by an animal cannot be deleted', function () {
+    $this->actingAs(User::factory()->create(['role' => 'admin']));
+
     $kategori = Kategori::create(['nama_kategori' => 'Kucing']);
     $hewan = Hewan::create([
         'id_kategori' => $kategori->id_kategori,

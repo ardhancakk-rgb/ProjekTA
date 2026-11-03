@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="id">
 
@@ -27,6 +28,11 @@
             margin-bottom: 0.5rem;
             color: #1f2937;
             font-weight: 600;
+        }
+
+        .deskripsi-hewan {
+            min-height: 150px;
+            resize: vertical;
         }
 
         .btn-simpan {
@@ -59,38 +65,37 @@
             @csrf
 
             <div class="row g-4">
+
                 <div class="col-md-6">
                     <label for="nama" class="form-label">Nama Hewan</label>
-                    <input id="nama" type="text" name="nama" class="form-control" value="{{ old('nama') }}" required>
+                    <input id="nama" type="text" name="nama" class="form-control"
+                        value="{{ old('nama') }}" required>
                 </div>
-
 
                 <div class="col-md-6">
                     <label for="kategori_id" class="form-label">Kategori Hewan</label>
-
                     <select id="kategori_id" name="kategori_id" class="form-select" required>
                         <option value="">-- Pilih Kategori --</option>
-
                         @foreach ($kategori as $kat)
-                            <option value="{{ $kat->id_kategori }}" {{ old('kategori_id') == $kat->id_kategori ? 'selected' : '' }}>
+                            <option value="{{ $kat->id_kategori }}"
+                                {{ old('kategori_id') == $kat->id_kategori ? 'selected' : '' }}>
                                 {{ $kat->nama_kategori }}
                             </option>
                         @endforeach
                     </select>
                 </div>
 
-
-
                 <div class="col-md-6">
                     <label for="ras" class="form-label">Ras</label>
-                    <input id="ras" type="text" name="ras" class="form-control" placeholder="Contoh: Persia, Poodle"
+                    <input id="ras" type="text" name="ras" class="form-control"
+                        placeholder="Contoh: Persia, Poodle"
                         value="{{ old('ras') }}">
                 </div>
 
                 <div class="col-md-6">
                     <label for="umur" class="form-label">Umur (tahun)</label>
-                    <input id="umur" type="number" name="umur" min="0" class="form-control" value="{{ old('umur') }}"
-                        required>
+                    <input id="umur" type="number" name="umur" min="0"
+                        class="form-control" value="{{ old('umur') }}" required>
                 </div>
 
                 <div class="col-md-6">
@@ -103,40 +108,51 @@
 
                 <div class="col-md-6">
                     <label for="berat" class="form-label">Berat (kg)</label>
-                    <input id="berat" type="number" step="0.01" min="0" name="berat" class="form-control"
-                        value="{{ old('berat') }}">
+                    <input id="berat" type="number" step="0.01" min="0"
+                        name="berat" class="form-control" value="{{ old('berat') }}">
                 </div>
 
                 <div class="col-md-6">
                     <label for="status" class="form-label">Status Adopsi</label>
                     <select id="status" name="status" class="form-select" required>
-                        <option value="tersedia" {{ old('status', 'tersedia') == 'tersedia' ? 'selected' : '' }}>Tersedia
+                        <option value="tersedia" {{ old('status', 'tersedia') == 'tersedia' ? 'selected' : '' }}>
+                            Tersedia
                         </option>
-                        <option value="diproses" {{ old('status') == 'diproses' ? 'selected' : '' }}>Diproses</option>
-                        <option value="diadopsi" {{ old('status') == 'diadopsi' ? 'selected' : '' }}>Diadopsi</option>
+                        <option value="diproses" {{ old('status') == 'diproses' ? 'selected' : '' }}>
+                            Diproses
+                        </option>
+                        <option value="diadopsi" {{ old('status') == 'diadopsi' ? 'selected' : '' }}>
+                            Diadopsi
+                        </option>
                     </select>
                 </div>
 
                 <div class="col-md-6">
-                  <label for="status_vaksin" class="form-label">Status Vaksin</label>
-                    <input id="status_vaksin" type="text" name="status_vaksin" class="form-control"
-                        value="{{ old('status_vaksin') }}">
-                </div>  
-
-                <div class="col-md-6">
                     <label for="kondisi_kesehatan" class="form-label">Status Kesehatan</label>
-                    <input id="kondisi_kesehatan" type="text" name="kondisi_kesehatan" class="form-control"
-                        value="{{ old('kondisi_kesehatan') }}">
+                    <input id="kondisi_kesehatan" type="text" name="kondisi_kesehatan"
+                        class="form-control" value="{{ old('kondisi_kesehatan') }}">
+                </div>
+
+                <div class="col-12">
+                    <label for="deskripsi" class="form-label">Deskripsi Hewan</label>
+                    <textarea id="deskripsi" name="deskripsi"
+                        class="form-control deskripsi-hewan"
+                        placeholder="Tuliskan deskripsi hewan, karakteristik, sifat, kebiasaan, dan informasi lainnya..."
+                        rows="5">{{ old('deskripsi') }}</textarea>
                 </div>
 
                 <div class="col-12">
                     <label for="gambar" class="form-label">Foto Hewan</label>
-                    <input id="gambar" type="file" name="gambar" accept="image/*" class="form-control">
+                    <input id="gambar" type="file" name="gambar"
+                        accept="image/*" class="form-control">
                 </div>
+
             </div>
 
             <div class="d-flex justify-content-end mt-4">
-                <button type="submit" class="btn btn-primary btn-simpan">Simpan Data</button>
+                <button type="submit" class="btn btn-primary btn-simpan">
+                    Simpan Data
+                </button>
             </div>
         </form>
     </main>

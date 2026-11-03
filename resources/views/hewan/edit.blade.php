@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -28,16 +29,25 @@
             font-weight: 600;
         }
 
+        .deskripsi-hewan {
+            min-height: 150px;
+            resize: vertical;
+        }
+
         .btn-simpan {
             min-width: 180px;
             border-radius: 12px;
         }
     </style>
 </head>
+
 <body class="py-4">
     <main class="container">
+
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h1 class="h3 mb-0 fw-semibold">Edit Data Hewan: {{ $hewan->nama_hewan }}</h1>
+            <h1 class="h3 mb-0 fw-semibold">
+                Edit Data Hewan: {{ $hewan->nama_hewan }}
+            </h1>
             <a href="{{ route('hewan.index') }}" class="btn btn-outline-secondary">Kembali</a>
         </div>
 
@@ -52,14 +62,21 @@
             </div>
         @endif
 
-        <form action="{{ route('hewan.update', $hewan->id_hewan) }}" method="POST" enctype="multipart/form-data" class="card-form p-4 shadow-sm bg-white">
+        <form action="{{ route('hewan.update', $hewan->id_hewan) }}"
+            method="POST"
+            enctype="multipart/form-data"
+            class="card-form p-4 shadow-sm bg-white">
+
             @csrf
             @method('PUT')
 
             <div class="row g-4">
+
                 <div class="col-md-6">
                     <label for="nama" class="form-label">Nama Hewan</label>
-                    <input id="nama" type="text" name="nama" class="form-control" value="{{ old('nama', $hewan->nama_hewan) }}" required>
+                    <input id="nama" type="text" name="nama"
+                        class="form-control"
+                        value="{{ old('nama', $hewan->nama_hewan) }}" required>
                 </div>
 
                 <div class="col-md-6">
@@ -67,7 +84,8 @@
                     <select id="kategori_id" name="kategori_id" class="form-select" required>
                         <option value="">-- Pilih Kategori --</option>
                         @foreach ($kategori as $kat)
-                            <option value="{{ $kat->id_kategori }}" {{ old('kategori_id', $hewan->id_kategori) == $kat->id_kategori ? 'selected' : '' }}>
+                            <option value="{{ $kat->id_kategori }}"
+                                {{ old('kategori_id', $hewan->id_kategori) == $kat->id_kategori ? 'selected' : '' }}>
                                 {{ $kat->nama_kategori }}
                             </option>
                         @endforeach
@@ -76,58 +94,94 @@
 
                 <div class="col-md-6">
                     <label for="ras" class="form-label">Ras</label>
-                    <input id="ras" type="text" name="ras" class="form-control" placeholder="Contoh: Persia, Poodle" value="{{ old('ras', $hewan->ras) }}">
+                    <input id="ras" type="text" name="ras"
+                        class="form-control"
+                        placeholder="Contoh: Persia, Poodle"
+                        value="{{ old('ras', $hewan->ras) }}">
                 </div>
 
                 <div class="col-md-6">
                     <label for="umur" class="form-label">Umur (tahun)</label>
-                    <input id="umur" type="number" name="umur" min="0" class="form-control" value="{{ old('umur', $hewan->umur) }}" required>
+                    <input id="umur" type="number" name="umur" min="0"
+                        class="form-control"
+                        value="{{ old('umur', $hewan->umur) }}" required>
                 </div>
 
                 <div class="col-md-6">
                     <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
-                    <select id="jenis_kelamin" name="jenis_kelamin" class="form-select" required>
-                        <option value="jantan" {{ old('jenis_kelamin', $hewan->jenis_kelamin) == 'jantan' ? 'selected' : '' }}>Jantan</option>
-                        <option value="betina" {{ old('jenis_kelamin', $hewan->jenis_kelamin) == 'betina' ? 'selected' : '' }}>Betina</option>
+                    <select id="jenis_kelamin" name="jenis_kelamin"
+                        class="form-select" required>
+                        <option value="jantan"
+                            {{ old('jenis_kelamin', $hewan->jenis_kelamin) == 'jantan' ? 'selected' : '' }}>
+                            Jantan
+                        </option>
+                        <option value="betina"
+                            {{ old('jenis_kelamin', $hewan->jenis_kelamin) == 'betina' ? 'selected' : '' }}>
+                            Betina
+                        </option>
                     </select>
                 </div>
 
                 <div class="col-md-6">
                     <label for="berat" class="form-label">Berat (kg)</label>
-                    <input id="berat" type="number" step="0.01" min="0" name="berat" class="form-control" value="{{ old('berat', $hewan->berat) }}">
+                    <input id="berat" type="number" step="0.01" min="0"
+                        name="berat" class="form-control"
+                        value="{{ old('berat', $hewan->berat) }}">
                 </div>
 
                 <div class="col-md-6">
                     <label for="status" class="form-label">Status Adopsi</label>
                     <select id="status" name="status" class="form-select" required>
-                        <option value="tersedia" {{ old('status', $hewan->status_adopsi) == 'tersedia' ? 'selected' : '' }}>Tersedia</option>
-                        <option value="diproses" {{ old('status', $hewan->status_adopsi) == 'diproses' ? 'selected' : '' }}>Diproses</option>
-                        <option value="diadopsi" {{ old('status', $hewan->status_adopsi) == 'diadopsi' ? 'selected' : '' }}>Diadopsi</option>
+                        <option value="tersedia"
+                            {{ old('status', $hewan->status_adopsi) == 'tersedia' ? 'selected' : '' }}>
+                            Tersedia
+                        </option>
+                        <option value="diproses"
+                            {{ old('status', $hewan->status_adopsi) == 'diproses' ? 'selected' : '' }}>
+                            Diproses
+                        </option>
+                        <option value="diadopsi"
+                            {{ old('status', $hewan->status_adopsi) == 'diadopsi' ? 'selected' : '' }}>
+                            Diadopsi
+                        </option>
                     </select>
                 </div>
 
                 <div class="col-md-6">
-                    <label for="status_vaksin" class="form-label">Status Vaksin</label>
-                    <input id="status_vaksin" type="text" name="status_vaksin" class="form-control" value="{{ old('status_vaksin', $hewan->status_vaksin) }}">
+                    <label for="kondisi_kesehatan" class="form-label">Status Kesehatan</label>
+                    <input id="kondisi_kesehatan" type="text"
+                        name="kondisi_kesehatan" class="form-control"
+                        value="{{ old('kondisi_kesehatan', $hewan->status_kesehatan) }}">
                 </div>
 
-                <div class="col-md-6">
-                    <label for="kondisi_kesehatan" class="form-label">Status Kesehatan</label>
-                    <input id="kondisi_kesehatan" type="text" name="kondisi_kesehatan" class="form-control" value="{{ old('kondisi_kesehatan', $hewan->status_kesehatan) }}">
+                <div class="col-12">
+                    <label for="deskripsi" class="form-label">Deskripsi Hewan</label>
+                    <textarea id="deskripsi" name="deskripsi"
+                        class="form-control deskripsi-hewan"
+                        placeholder="Tuliskan deskripsi hewan, karakteristik, sifat, kebiasaan, dan informasi lainnya..."
+                        rows="5">{{ old('deskripsi', $hewan->deskripsi) }}</textarea>
                 </div>
 
                 <div class="col-12">
                     <label for="gambar" class="form-label">Ganti Foto (opsional)</label>
-                    <input id="gambar" type="file" name="gambar" accept="image/*" class="form-control">
+                    <input id="gambar" type="file" name="gambar"
+                        accept="image/*" class="form-control">
+
                     @if ($hewan->foto)
-                        <img src="{{ asset('storage/' . $hewan->foto) }}" alt="Foto {{ $hewan->nama_hewan }}" width="100" class="rounded mt-2">
+                        <img src="{{ asset('storage/' . $hewan->foto) }}"
+                            alt="Foto {{ $hewan->nama_hewan }}"
+                            width="100" class="rounded mt-2">
                     @endif
                 </div>
+
             </div>
 
             <div class="d-flex justify-content-end mt-4">
-                <button type="submit" class="btn btn-primary btn-simpan">Perbarui Data</button>
+                <button type="submit" class="btn btn-primary btn-simpan">
+                    Perbarui Data
+                </button>
             </div>
+
         </form>
     </main>
 </body>

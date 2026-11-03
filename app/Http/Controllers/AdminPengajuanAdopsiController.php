@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Http\Controllers;
+
 use App\Models\Hewan;
 use App\Models\PengajuanAdopsi;
 use Illuminate\Http\Request;
@@ -23,40 +25,40 @@ class AdminPengajuanAdopsiController extends Controller
         abort_unless(auth()->user()->role === 'admin', 403);
 
         $data = $request->validate([
-            'status_pengajuan' => 'required|in:disetujui,ditolak',
+            'status_pengajuan' => 'required|in:pending,dikirim,ditolak',
             'catatan_admin' => 'nullable|string|max:2000',
         ]);
 
         $berhasil = DB::transaction(function () use ($id_pengajuan, $data) {
+
             $item = PengajuanAdopsi::where('id_pengajuan', $id_pengajuan)
                 ->lockForUpdate()
                 ->firstOrFail();
-
-            if ($item->status_pengajuan !== 'pending') {
-                return false;
-            }
 
             $hewan = Hewan::where('id_hewan', $item->id_hewan)
                 ->lockForUpdate()
                 ->firstOrFail();
 
-            if (
-                $data['status_pengajuan'] === 'disetujui'
-                && $hewan->status_adopsi !== 'diproses'
-            ) {
-                return false;
-            }
-
+            // Memperbarui keputusan pengajuan
             $item->update([
                 'status_pengajuan' => $data['status_pengajuan'],
                 'catatan_admin' => $data['catatan_admin'] ?? null,
             ]);
 
-            $hewan->update([
-                'status_adopsi' => $data['status_pengajuan'] === 'disetujui'
-                    ? 'diadopsi'
-                    : 'tersedia',
-            ]);
+            // Memperbarui status hewan
+            if ($data['status_pengajuan'] === 'dikirim') {
+                $hewan->update([
+                    'status_adopsi' => 'diproses',
+                ]);
+            } elseif ($data['status_pengajuan'] === 'ditolak') {
+                $hewan->update([
+                    'status_adopsi' => 'tersedia',
+                ]);
+            } else {
+                $hewan->update([
+                    'status_adopsi' => 'diproses',
+                ]);
+            }
 
             return true;
         });
@@ -64,11 +66,11 @@ class AdminPengajuanAdopsiController extends Controller
         if (! $berhasil) {
             return redirect()
                 ->route('admin.pengajuan.index')
-                ->with('error', 'Pengajuan sudah diproses atau status hewan sudah berubah.');
+                ->with('error', 'Keputusan pengajuan gagal diperbarui.');
         }
 
         return redirect()
             ->route('admin.pengajuan.index')
-            ->with('success', 'Status pengajuan berhasil diperbarui.');
+            ->with('success', 'Keputusan pengajuan berhasil diperbarui.');
     }
 }
