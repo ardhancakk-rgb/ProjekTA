@@ -25,11 +25,11 @@ class AdminPengajuanAdopsiController extends Controller
         abort_unless(auth()->user()->role === 'admin', 403);
 
         $data = $request->validate([
-            'status_pengajuan' => 'required|in:pending,dikirim,ditolak',
+            'status_pengajuan' => 'required|in:pending,disetujui,ditolak',
             'catatan_admin' => 'nullable|string|max:2000',
         ]);
 
-        $berhasil = DB::transaction(function () use ($id_pengajuan, $data) {
+        DB::transaction(function () use ($id_pengajuan, $data) {
 
             $item = PengajuanAdopsi::where('id_pengajuan', $id_pengajuan)
                 ->lockForUpdate()
@@ -39,16 +39,14 @@ class AdminPengajuanAdopsiController extends Controller
                 ->lockForUpdate()
                 ->firstOrFail();
 
-            // Memperbarui keputusan pengajuan
             $item->update([
                 'status_pengajuan' => $data['status_pengajuan'],
                 'catatan_admin' => $data['catatan_admin'] ?? null,
             ]);
 
-            // Memperbarui status hewan
-            if ($data['status_pengajuan'] === 'dikirim') {
+            if ($data['status_pengajuan'] === 'disetujui') {
                 $hewan->update([
-                    'status_adopsi' => 'diproses',
+                    'status_adopsi' => 'diadopsi',
                 ]);
             } elseif ($data['status_pengajuan'] === 'ditolak') {
                 $hewan->update([
@@ -59,15 +57,7 @@ class AdminPengajuanAdopsiController extends Controller
                     'status_adopsi' => 'diproses',
                 ]);
             }
-
-            return true;
         });
-
-        if (! $berhasil) {
-            return redirect()
-                ->route('admin.pengajuan.index')
-                ->with('error', 'Keputusan pengajuan gagal diperbarui.');
-        }
 
         return redirect()
             ->route('admin.pengajuan.index')

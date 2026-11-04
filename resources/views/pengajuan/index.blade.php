@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="id">
 
@@ -137,9 +138,9 @@
                                             Pending
                                         </span>
 
-                                    @elseif ($item->status_pengajuan == 'dikirim')
+                                    @elseif ($item->status_pengajuan == 'disetujui')
                                         <span class="badge bg-success">
-                                            Dikirim
+                                            Disetujui
                                         </span>
 
                                     @elseif ($item->status_pengajuan == 'ditolak')
@@ -178,9 +179,9 @@
                                                 Pending
                                             </option>
 
-                                            <option value="dikirim"
-                                                {{ old('status_pengajuan', $item->status_pengajuan) == 'dikirim' ? 'selected' : '' }}>
-                                                Dikirim
+                                            <option value="disetujui"
+                                                {{ old('status_pengajuan', $item->status_pengajuan) == 'disetujui' ? 'selected' : '' }}>
+                                                Disetujui
                                             </option>
 
                                             <option value="ditolak"

@@ -595,6 +595,8 @@
                                         <span class="badge bg-warning text-dark">Menunggu</span>
                                     @elseif ($item->status_pengajuan === 'disetujui')
                                         <span class="badge bg-success">Disetujui</span>
+                                    @elseif ($item->status_pengajuan === 'disetujui')
+                                        <span class="badge bg-success">Disetujui</span>
                                     @else
                                         <span class="badge bg-danger">Ditolak</span>
                                     @endif
