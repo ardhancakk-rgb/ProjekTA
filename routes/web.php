@@ -73,9 +73,17 @@ Route::get('/dashboard', function () {
 
 // Dashboard admin
 Route::get('/admindash', function () {
-    return view('admindash.dashboard');
+    $hewans = Hewan::latest('id_hewan')
+        ->take(6)
+        ->get();
+    return view('admindash.dashboard', compact('hewans'));
 })->middleware(['auth', 'admin'])
     ->name('admindash.dashboard');
+
+//profil admin
+Route::get('/admin/profile', function () {
+    return view('admindash.adminprofile');
+})->name('admin.profile');
 
 // Semua route yang membutuhkan login
 Route::middleware('auth')->group(function () {

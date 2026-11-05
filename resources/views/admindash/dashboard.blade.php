@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Admin - Pet Nest</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all
+.min.css">
     <style>
         * {
             margin: 0;
@@ -403,7 +404,8 @@
         </div>
         <nav class="sidebar-menu">
 
-            <a href="{{ url('/dashboard') }}" class="{{ request()->is('dashboard*') ? 'active' : '' }}">
+            <a href="{{ url('/dashboard') }}" class="{{ request()->is('dashboard*') ? 'active' : '
+' }}">
                 <i class="fa-solid fa-house"></i>
                 <span>Dashboard</span>
             </a>
@@ -414,7 +416,8 @@
                 <span>Data Hewan</span>
             </a>
 
-            <a href="{{ url('/kategori') }}" class="{{ request()->is('kategori*') ? 'active' : '' }}">
+            <a href="{{ url('/kategori') }}" class="{{ request()->is('kategori*') ? 'active' : '' 
+}}">
                 <i class="fa-solid fa-layer-group"></i>
                 <span>Kategori</span>
             </a>
@@ -428,7 +431,8 @@
 
             <div class="sidebar-divider"></div>
 
-            <a href="{{ url('/profile') }}" class="{{ request()->is('profile*') ? 'active' : '' }}">
+            <a href="{{ url('/profile') }}" class="{{ request()->is('profile*') ? 'active' : '' }}
+">
                 <i class="fa-solid fa-user"></i>
                 <span>Profil</span>
             </a>
@@ -520,7 +524,8 @@
             </div>
         @endif
     </main>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all
+.min.css">
 
 </body>
 
