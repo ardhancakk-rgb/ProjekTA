@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Admin - Pet Nest</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all
-.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -393,46 +392,255 @@
                 gap: 15px;
             }
         }
+
+        /* PETNEST ADMIN DASHBOARD REDESIGN */
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5eee5;
+            color: #493522;
+            font-size: 16px;
+        }
+
+        .sidebar {
+            background: #68482d;
+            border-right: none;
+            padding: 28px 16px;
+            box-shadow: 4px 0 18px rgba(60, 38, 20, .08);
+        }
+
+        .sidebar-logo {
+            color: #fff;
+            font-size: 27px;
+            padding: 12px 15px 40px;
+            letter-spacing: .5px;
+        }
+
+        .sidebar-logo span {
+            color: #fff;
+        }
+
+        .sidebar-menu {
+            gap: 9px;
+        }
+
+        .sidebar-menu a {
+            color: #e8d9c8;
+            font-size: 16px;
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .sidebar-menu a i {
+            font-size: 18px;
+        }
+
+        .sidebar-menu a:hover {
+            background: #856344;
+            color: #fff;
+        }
+
+        .sidebar-menu a.active {
+            background: #f5eee5;
+            color: #68482d;
+            font-weight: 700;
+        }
+
+        .sidebar-divider {
+            background: rgba(255, 255, 255, .2);
+        }
+
+        .sidebar-bottom button {
+            color: #ffe1d9;
+            font-size: 16px;
+            padding: 15px;
+        }
+
+        .sidebar-bottom button:hover {
+            background: #856344;
+            color: #fff;
+        }
+
+        .main-content {
+            padding: 35px;
+            background: #f5eee5;
+        }
+
+        .profile-section {
+            background: #fff;
+            border: 1px solid #eadfd2;
+            border-radius: 16px;
+            padding: 28px 32px;
+            margin-bottom: 32px;
+            box-shadow: 0 5px 20px rgba(83, 57, 32, .06);
+        }
+
+        .admin-avatar-large {
+            width: 82px;
+            height: 82px;
+            background: #795638;
+            font-size: 32px;
+        }
+
+        .admin-details h1 {
+            color: #593d25;
+            font-size: 27px;
+            font-weight: 700;
+        }
+
+        .admin-details p {
+            color: #9b8976;
+            font-size: 16px;
+        }
+
+        .btn {
+            background: #795638;
+            color: #fff;
+            border: none;
+            border-radius: 9px;
+            padding: 12px 19px;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .btn:hover {
+            background: #593d25;
+            color: #fff;
+        }
+
+        .section-header {
+            margin-bottom: 25px;
+        }
+
+        .section-header h2 {
+            font-size: 26px;
+            color: #593d25;
+            font-weight: 700;
+        }
+
+        .search-bar {
+            width: 250px;
+            padding: 12px 15px;
+            border: 1px solid #e7d8c6;
+            border-radius: 9px;
+            font-size: 15px;
+            background: #fff;
+        }
+
+        .cards-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 25px;
+        }
+
+        .card-item {
+            background: #fff;
+            border: 1px solid #eadfd2;
+            border-radius: 15px;
+            padding: 15px;
+            gap: 14px;
+            box-shadow: 0 5px 18px rgba(83, 57, 32, .06);
+            transition: .25s;
+        }
+
+        .card-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(83, 57, 32, .12);
+        }
+
+        .card-image-placeholder {
+            height: 220px;
+            background: #f1e8dc;
+            border-radius: 11px;
+            overflow: hidden;
+        }
+
+        .card-image-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-content h3 {
+            font-size: 19px;
+            color: #593d25;
+            font-weight: 700;
+            margin-bottom: 9px;
+        }
+
+        .card-content p {
+            font-size: 15px;
+            color: #8b7864;
+            margin-bottom: 6px;
+        }
+
+        .card-actions {
+            gap: 8px;
+        }
+
+        .card-actions .btn {
+            font-size: 13px;
+            padding: 10px 6px;
+        }
+
+        @media (max-width: 992px) {
+            .cards-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 75px;
+                padding: 20px 10px;
+            }
+
+            .main-content {
+                margin-left: 75px;
+                padding: 20px;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-section {
+                align-items: flex-start;
+            }
+
+            .section-header {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+
+            .search-bar {
+                width: 100%;
+            }
+        }
     </style>
 </head>
-
 <body>
-
     <aside class="sidebar">
         <div class="sidebar-logo">
             <span>Pet Nest</span>
         </div>
         <nav class="sidebar-menu">
-
-            <a href="{{ url('/dashboard') }}" class="{{ request()->is('dashboard*') ? 'active' : '
-' }}">
+            <a href="{{ url('/dashboard') }}" class="{{ request()->is('dashboard*') ? 'active' : '' }}">
                 <i class="fa-solid fa-house"></i>
                 <span>Dashboard</span>
             </a>
-
             <a href="{{ url('/hewan') }}" class="{{ request()->is('pets*') ? 'active' : '' }}">
-
                 <i class="fa-solid fa-paw"></i>
                 <span>Data Hewan</span>
             </a>
-
-            <a href="{{ url('/kategori') }}" class="{{ request()->is('kategori*') ? 'active' : '' 
-}}">
+            <a href="{{ url('/kategori') }}" class="{{ request()->is('kategori*') ? 'active' : '' }}">
                 <i class="fa-solid fa-layer-group"></i>
                 <span>Kategori</span>
             </a>
-
-
             <a href="{{ route('admin.pengajuan.index') }}" class="sidebar-link">
                 <i class="fas fa-clipboard-list"></i>
                 <span>Pengajuan Adopsi</span>
             </a>
-
-
             <div class="sidebar-divider"></div>
-
-            <a href="{{ url('/profile') }}" class="{{ request()->is('profile*') ? 'active' : '' }}
-">
+            <a href="{{ url('/admin/profile') }}" class="{{ request()->is('profile*') ? 'active' : '' }}">
                 <i class="fa-solid fa-user"></i>
                 <span>Profil</span>
             </a>
@@ -451,7 +659,6 @@
         @hasSection('content')
             @yield('content')
         @else
-
             <section class="profile-section">
                 <div class="profile-info">
                     <div class="admin-avatar-large">
@@ -464,63 +671,57 @@
                 </div>
                 <button class="btn"><i class="fa-solid fa-pen"></i> Edit Profil</button>
             </section>
-
+            @php
+                $hewans = \App\Models\Hewan::orderByDesc('updated_at')
+                    ->take(3)
+                    ->get();
+            @endphp
             <div class="section-header">
-                <h2>Ringkasan Data</h2>
-                <div style="display: flex; gap: 10px;">
-                    <input type="text" class="search-bar" placeholder="Cari data...">
-                    <button class="btn"><i class="fa-solid fa-plus"></i> Tambah Data</button>
+                <h2>Hewan Terbaru</h2>
+                <div style="display:flex;gap:10px;flex-wrap:wrap;">
+                    <input type="text" class="search-bar" placeholder="Cari hewan...">
+                    <a href="{{ url('/hewan') }}" class="btn" style="text-decoration:none;">
+                        <i class="fa-solid fa-paw"></i> Kelola Hewan
+                    </a>
                 </div>
             </div>
-
             <div class="cards-grid">
-                <div class="card-item">
-                    <div class="card-image-placeholder">
-                        <i class="fa-solid fa-image fa-2x"></i>
-                    </div>
-                    <div class="card-content">
-                        <h3>Kucing Persi</h3>
-                        <p>Kategori: Kucing</p>
-                        <p>Status: Tersedia</p>
-                    </div>
-                    <div class="card-actions">
-                        <button class="btn"><i class="fa-solid fa-eye"></i> Detail</button>
-                        <button class="btn"><i class="fa-solid fa-pen"></i> Edit</button>
-                        <button class="btn"><i class="fa-solid fa-trash"></i> Hapus</button>
-                    </div>
-                </div>
+                @forelse ($hewans as $hewan)
+                    <div class="card-item">
+                        <div class="card-image-placeholder">
+                            @if ($hewan->foto)
+                                <img src="{{ asset('storage/' . $hewan->foto) }}" alt="{{ $hewan->nama_hewan }}">
+                            @else
+                                <i class="fa-solid fa-image fa-2x"></i>
+                            @endif
+                        </div>
+                        <div class="card-content">
+                            <h3>{{ $hewan->nama_hewan }}</h3>
+                            <p>
+                                Status:
+                                {{ ucfirst($hewan->status_adopsi ?? 'Belum tersedia') }}
+                            </p>
+                            <p>
+                                <i class="fa-regular fa-clock"></i>
+                                Diperbarui:
+                                {{ $hewan->updated_at ? $hewan->updated_at->format('d M Y') : '-' }}
+                            </p>
+                        </div>
 
-                <div class="card-item">
-                    <div class="card-image-placeholder">
-                        <i class="fa-solid fa-image fa-2x"></i>
+                        <div class="card-actions">
+                            <a href="{{ url('/hewan') }}" class="btn" style="text-decoration:none;">
+                                <i class="fa-solid fa-eye"></i> Lihat
+                            </a>
+                            <a href="{{ url('/hewan') }}" class="btn" style="text-decoration:none;">
+                                <i class="fa-solid fa-gear"></i> Kelola
+                            </a>
+                        </div>
                     </div>
-                    <div class="card-content">
-                        <h3>Anjing Golden</h3>
-                        <p>Kategori: Anjing</p>
-                        <p>Status: Teradopsi</p>
+                @empty
+                    <div class="card-item">
+                        <p>Belum ada data hewan.</p>
                     </div>
-                    <div class="card-actions">
-                        <button class="btn"><i class="fa-solid fa-eye"></i> Detail</button>
-                        <button class="btn"><i class="fa-solid fa-pen"></i> Edit</button>
-                        <button class="btn"><i class="fa-solid fa-trash"></i> Hapus</button>
-                    </div>
-                </div>
-
-                <div class="card-item">
-                    <div class="card-image-placeholder">
-                        <i class="fa-solid fa-image fa-2x"></i>
-                    </div>
-                    <div class="card-content">
-                        <h3>Kelinci Anggora</h3>
-                        <p>Kategori: Kelinci</p>
-                        <p>Status: Tersedia</p>
-                    </div>
-                    <div class="card-actions">
-                        <button class="btn"><i class="fa-solid fa-eye"></i> Detail</button>
-                        <button class="btn"><i class="fa-solid fa-pen"></i> Edit</button>
-                        <button class="btn"><i class="fa-solid fa-trash"></i> Hapus</button>
-                    </div>
-                </div>
+                @endforelse
             </div>
         @endif
     </main>

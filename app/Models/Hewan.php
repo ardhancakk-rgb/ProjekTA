@@ -29,6 +29,8 @@ class Hewan extends Model
         'foto',
         'deskripsi',
         'status_adopsi',
+        'sertifikat',
+        'harga',
     ];
 
     public function kategori()

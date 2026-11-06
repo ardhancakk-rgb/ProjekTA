@@ -39,6 +39,8 @@ class HewanController extends Controller
             'gambar' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
             'deskripsi' => 'nullable|string',
             'status' => 'required|in:tersedia,diproses,diadopsi',
+            'sertifikat' => 'required|in:ada,tidak_ada',
+            'harga' => 'required|numeric|min:0',
         ]);
 
         $data['id_kategori'] = $data['kategori_id'];

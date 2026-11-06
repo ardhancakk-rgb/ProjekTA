@@ -27,6 +27,7 @@
             color: #805b40;
             text-decoration: none;
             font-weight: 600;
+            
         }
 
         .back-link:hover {
